@@ -158,6 +158,10 @@
             <a [routerLink]="['/enroll']" [queryParams]="{ course: course.id }" class="btn btn-primary full-btn mt-20">
               <i class="fa-solid fa-pen-to-square"></i> Enroll in this Course
             </a>
+
+            <button (click)="downloadBrochure()" class="btn btn-ghost full-btn mt-10">
+              <i class="fa-solid fa-file-pdf"></i> Download Brochure (PDF)
+            </button>
             
             <a href="https://wa.me/9779800000000" target="_blank" class="btn btn-ghost full-btn mt-10">
               <i class="fa-brands fa-whatsapp"></i> Chat with Counselor

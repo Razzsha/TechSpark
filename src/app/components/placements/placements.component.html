@@ -1,0 +1,128 @@
+<div class="placements-page">
+  <section class="place-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> CAREER & PLACEMENT NETWORK</div>
+      <h1>Connecting Top Tech Talent with Hiring Leaders</h1>
+      <p>Over 15,000 Techspark graduates are building production software across 120+ corporate tech companies worldwide.</p>
+    </div>
+  </section>
+
+  <!-- Key Metrics -->
+  <section class="place-stats padding-80">
+    <div class="wrap grid-stats">
+      <div class="stat-card">
+        <h3>94%</h3>
+        <p>Graduates Placed Within 3 Months</p>
+      </div>
+      <div class="stat-card">
+        <h3>120+</h3>
+        <p>Corporate Hiring Partners</p>
+      </div>
+      <div class="stat-card">
+        <h3>NPR 4.5 L</h3>
+        <p>Average Graduate Starting Package</p>
+      </div>
+      <div class="stat-card">
+        <h3>500+</h3>
+        <p>Mock Technical Interviews Conducted</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hiring Partners Grid -->
+  <section class="partners-section padding-80 background-paper text-center">
+    <div class="wrap">
+      <h2>Top Corporate Hiring Partners</h2>
+      <p>Leading software companies and fintechs regularly hire Techspark alumni.</p>
+
+      <div class="partners-grid mt-32">
+        <div class="partner-card" *ngFor="let p of hiringPartners">
+          <div class="partner-icon"><i class="fa-solid fa-building"></i></div>
+          <h4 class="partner-name">{{ p.name }}</h4>
+          <span class="partner-type">{{ p.type }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alumni Success Stories -->
+  <section class="alumni-section padding-80">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <h2>Graduate Success Stories</h2>
+        <p>Hear from alumni who transformed their careers through Techspark training.</p>
+      </div>
+
+      <div class="alumni-grid mt-32">
+        <div class="alumni-card" *ngFor="let a of alumni">
+          <div class="alumni-header">
+            <div class="alumni-avatar"><i class="fa-solid fa-user-check"></i></div>
+            <div>
+              <h4 class="alumni-name">{{ a.name }}</h4>
+              <span class="alumni-role">{{ a.role }} at <strong>{{ a.company }}</strong></span>
+            </div>
+          </div>
+          <p class="alumni-quote">"{{ a.quote }}"</p>
+          <div class="alumni-meta">
+            <span><i class="fa-solid fa-graduation-cap"></i> {{ a.course }}</span>
+            <span class="pkg-badge">{{ a.package }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recruiter Talent Request Form -->
+  <section class="recruiter-section padding-80 background-paper">
+    <div class="wrap">
+      <div class="form-card max-600 center-block">
+        <h3 class="text-center">Hire Trained Techspark Graduates</h3>
+        <p class="text-center sub-text">Are you a tech company or recruiter looking for job-ready developers? Submit your hiring request below for zero recruitment fee!</p>
+
+        <div *ngIf="recruiterSubmitted" class="success-alert mt-20">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Recruiter request submitted! Our placement coordinator will share pre-vetted candidate resumes shortly.</span>
+        </div>
+
+        <form *ngIf="!recruiterSubmitted" [formGroup]="recruiterForm" (ngSubmit)="onSubmit()" class="mt-20">
+          <div class="form-group">
+            <label class="form-label">Company Name *</label>
+            <input type="text" formControlName="companyName" placeholder="Company / Startup Name" class="form-input">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">Recruiter / HR Name *</label>
+              <input type="text" formControlName="recruiterName" placeholder="Your Name" class="form-input">
+            </div>
+            <div class="form-group flex-1">
+              <label class="form-label">Work Email *</label>
+              <input type="email" formControlName="email" placeholder="hr@company.com" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">Phone *</label>
+              <input type="text" formControlName="phone" placeholder="Phone Number" class="form-input">
+            </div>
+            <div class="form-group flex-1">
+              <label class="form-label">Role Needed *</label>
+              <select formControlName="rolesNeeded" class="form-select">
+                <option value="MERN / React Developer">MERN / React Developer</option>
+                <option value="Python / Django Developer">Python / Django Developer</option>
+                <option value="Flutter Mobile Engineer">Flutter Mobile Engineer</option>
+                <option value="UI/UX Designer">UI/UX Designer</option>
+                <option value="DevOps Engineer">DevOps Engineer</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary full-width mt-20">
+            Request Graduate Resumes <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

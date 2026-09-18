@@ -43,4 +43,8 @@ export class CourseDetailComponent implements OnInit {
       this.openModuleIndex = index;
     }
   }
+
+  downloadBrochure(): void {
+    window.print();
+  }
 }

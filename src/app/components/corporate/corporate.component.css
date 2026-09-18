@@ -1,0 +1,56 @@
+.corp-hero {
+  background: var(--indigo);
+  color: #fff;
+  padding: 70px 0 60px;
+}
+.corp-hero h1 { color: #fff; font-size: clamp(28px, 4vw, 42px); margin: 12px 0; }
+.corp-hero p { color: var(--on-dark-soft); font-size: 16px; max-width: 650px; margin: 0 auto; }
+
+.padding-80 { padding: 80px 0; }
+.corp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+.calculator-card {
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  padding: 36px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+.calc-title { font-size: 20px; font-weight: 700; color: var(--indigo); }
+.calc-desc { font-size: 14px; color: var(--text-soft); margin-top: 6px; }
+
+.slider-header { display: flex; justify-content: space-between; font-size: 15px; font-weight: 600; color: var(--indigo); margin-bottom: 12px; }
+.seats-val { font-size: 18px; color: var(--spark-deep); font-weight: 800; }
+
+.range-slider { width: 100%; accent-color: var(--indigo); cursor: pointer; height: 6px; }
+
+.tier-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.tier-pill { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 12px; background: var(--paper); color: var(--text-soft); border: 1px solid var(--line); }
+.tier-pill.active { background: var(--indigo); color: #fff; border-color: var(--indigo); }
+
+.price-breakdown { background: #FAFAFA; border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.break-row { display: flex; justify-content: space-between; font-size: 14px; color: var(--text-soft); }
+.strike { text-decoration: line-through; color: #999; }
+.savings-text { color: #2E7D32; font-weight: 700; }
+.break-row.final { padding-top: 10px; border-top: 1px solid var(--line); font-size: 16px; color: var(--indigo); font-weight: 700; }
+.final-price { font-size: 22px; color: var(--indigo); font-weight: 800; }
+
+.form-card { background: #fff; border-radius: 20px; border: 1px solid var(--line); padding: 36px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
+.form-card h3 { font-size: 20px; font-weight: 700; color: var(--indigo); margin-bottom: 24px; }
+
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 13px; font-weight: 600; color: var(--indigo); margin-bottom: 6px; }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid var(--line); font-size: 14px; outline: none; }
+.form-row { display: flex; gap: 14px; }
+.flex-1 { flex: 1; }
+
+.full-width { width: 100%; justify-content: center; }
+.mt-20 { margin-top: 20px; }
+.mt-28 { margin-top: 28px; }
+
+.success-alert { background: #E8F5E9; color: #2E7D32; padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 14.5px; }
+
+@media (max-width: 992px) {
+  .corp-grid { grid-template-columns: 1fr; }
+  .form-row { flex-direction: column; gap: 0; }
+}

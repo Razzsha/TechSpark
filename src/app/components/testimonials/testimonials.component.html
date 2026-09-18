@@ -1,14 +1,40 @@
-<section>
+<section class="testimonials-section">
   <div class="wrap">
+    <div class="section-head text-center">
+      <div class="kicker center"><span class="bar"></span> STUDENT & CLIENT REVIEWS</div>
+      <h2>What Our Graduates & Clients Say</h2>
+    </div>
+
     <div class="testi-wrap">
       <div class="testi-slide" *ngFor="let t of testimonials; let i = index" [class.active]="i === activeIndex">
         <div class="testi-avatar" [style.background]="t.color">{{ t.initials }}</div>
         <p class="testi-quote">"{{ t.quote }}"</p>
         <div class="testi-who">{{ t.who }}</div>
+        
+        <button *ngIf="t.hasVideo" (click)="openVideoModal(t.videoTitle)" class="btn btn-ghost btn-sm video-btn mt-16">
+          <i class="fa-solid fa-circle-play play-icon"></i> Watch Video Interview
+        </button>
       </div>
+
       <div class="testi-dots">
         <button *ngFor="let t of testimonials; let i = index" [class.active]="i === activeIndex" (click)="show(i)" [attr.aria-label]="'Testimonial ' + (i + 1)"></button>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Video Player Modal -->
+<div class="video-backdrop" [class.open]="videoModalOpen" (click)="closeVideoModal()"></div>
+<div class="video-modal-card" [class.open]="videoModalOpen">
+  <div class="video-modal-header">
+    <h4>{{ activeVideoTitle }}</h4>
+    <button (click)="closeVideoModal()" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div class="video-container">
+    <div class="video-placeholder text-center">
+      <i class="fa-solid fa-film film-icon"></i>
+      <p class="mt-10"><strong>{{ activeVideoTitle }}</strong></p>
+      <span class="sub-text">Interactive HD Video Interview Demo</span>
+    </div>
+  </div>
+</div>

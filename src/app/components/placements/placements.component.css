@@ -1,0 +1,55 @@
+.place-hero {
+  background: var(--indigo);
+  color: #fff;
+  padding: 70px 0 60px;
+}
+.place-hero h1 { color: #fff; font-size: clamp(28px, 4vw, 42px); margin: 12px 0; }
+.place-hero p { color: var(--on-dark-soft); font-size: 16px; max-width: 650px; margin: 0 auto; }
+
+.padding-80 { padding: 80px 0; }
+.background-paper { background: var(--paper); }
+.text-center { text-align: center; }
+
+.grid-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+.stat-card { background: #fff; border-radius: 16px; border: 1px solid var(--line); padding: 30px 20px; text-align: center; box-shadow: 0 4px 18px rgba(0,0,0,0.03); }
+.stat-card h3 { font-size: 36px; font-weight: 800; color: var(--indigo); margin-bottom: 6px; }
+.stat-card p { font-size: 14px; color: var(--text-soft); }
+
+.partners-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+.partner-card { background: #fff; border-radius: 14px; border: 1px solid var(--line); padding: 24px 16px; text-align: center; transition: transform 0.2s ease; }
+.partner-card:hover { transform: translateY(-4px); border-color: var(--indigo); }
+.partner-icon { width: 44px; height: 44px; background: #F4F5FB; color: var(--indigo); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin: 0 auto 12px; }
+.partner-name { font-size: 15px; font-weight: 700; color: var(--indigo); margin-bottom: 4px; }
+.partner-type { font-size: 11.5px; color: var(--text-soft); }
+
+.alumni-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+.alumni-card { background: #fff; border-radius: 16px; border: 1px solid var(--line); padding: 28px; display: flex; flex-direction: column; box-shadow: 0 4px 18px rgba(0,0,0,0.03); }
+.alumni-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.alumni-avatar { width: 46px; height: 46px; background: #E8F5E9; color: #2E7D32; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+.alumni-name { font-size: 17px; font-weight: 700; color: var(--indigo); margin: 0; }
+.alumni-role { font-size: 13px; color: var(--text-soft); }
+.alumni-quote { font-size: 14px; color: var(--text); line-height: 1.6; font-style: italic; flex: 1; margin-bottom: 20px; }
+.alumni-meta { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: var(--text-soft); border-top: 1px solid var(--line); padding-top: 14px; }
+.pkg-badge { background: #FFF3C4; color: #B25900; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+
+.form-card { background: #fff; border-radius: 20px; border: 1px solid var(--line); padding: 36px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); }
+.max-600 { max-width: 600px; }
+.center-block { margin: 0 auto; }
+.sub-text { font-size: 14px; color: var(--text-soft); margin-top: 6px; }
+
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-size: 13px; font-weight: 600; color: var(--indigo); margin-bottom: 6px; }
+.form-input, .form-select { width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid var(--line); font-size: 14px; outline: none; }
+.form-row { display: flex; gap: 14px; }
+.flex-1 { flex: 1; }
+
+.full-width { width: 100%; justify-content: center; }
+.mt-20 { margin-top: 20px; }
+.mt-32 { margin-top: 32px; }
+
+.success-alert { background: #E8F5E9; color: #2E7D32; padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 14.5px; }
+
+@media (max-width: 768px) {
+  .alumni-grid { grid-template-columns: 1fr; }
+  .form-row { flex-direction: column; gap: 0; }
+}

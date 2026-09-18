@@ -1,6 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ThemeService } from '../../services/theme.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-nav',
@@ -10,6 +12,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
+  themeService = inject(ThemeService);
+  langService = inject(LanguageService);
+
   mobileOpen = false;
   dropdownOpen = false;
   isScrolled = false;
@@ -43,5 +48,9 @@ export class NavComponent {
     } else {
       this.dropdownOpen = !this.dropdownOpen;
     }
+  }
+
+  t(key: string): string {
+    return this.langService.translate(key);
   }
 }

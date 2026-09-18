@@ -1,0 +1,107 @@
+<div class="corporate-page">
+  <section class="corp-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> B2B CORPORATE TECH TRAINING</div>
+      <h1>Upskill Your Engineering & IT Teams</h1>
+      <p>Customized corporate bootcamps, on-site workshops, and enterprise tech training tailored to your company's technology stack.</p>
+    </div>
+  </section>
+
+  <!-- Interactive Seat Estimator & Form -->
+  <section class="corp-body padding-80">
+    <div class="wrap corp-grid">
+      <!-- Left: Interactive Pricing Calculator -->
+      <div class="calculator-card">
+        <h3 class="calc-title"><i class="fa-solid fa-calculator"></i> Corporate Discount Estimator</h3>
+        <p class="calc-desc">Slide to choose the number of team members to upskill:</p>
+
+        <div class="slider-box mt-20">
+          <div class="slider-header">
+            <span>Trainees Count:</span>
+            <strong class="seats-val">{{ seatsCount }} Employees</strong>
+          </div>
+          <input type="range"
+                 min="1"
+                 max="50"
+                 [(ngModel)]="seatsCount"
+                 (ngModelChange)="calculatePrice()"
+                 class="range-slider">
+        </div>
+
+        <div class="tier-badges mt-20">
+          <span class="tier-pill" [class.active]="seatsCount <= 5">1-5 Seats (Standard)</span>
+          <span class="tier-pill" [class.active]="seatsCount >= 6 && seatsCount <= 15">6-15 Seats (15% OFF)</span>
+          <span class="tier-pill" [class.active]="seatsCount >= 16">16+ Seats (25% Enterprise OFF)</span>
+        </div>
+
+        <div class="price-breakdown mt-28">
+          <div class="break-row">
+            <span>Total Standard Tuition:</span>
+            <span class="strike">NPR {{ totalOriginal | number }}</span>
+          </div>
+          <div class="break-row">
+            <span>Corporate Savings:</span>
+            <span class="savings-text">- NPR {{ totalSavings | number }} ({{ discountRate * 100 }}% OFF)</span>
+          </div>
+          <div class="break-row final">
+            <span>Estimated Corporate Total:</span>
+            <strong class="final-price">NPR {{ totalDiscounted | number }}</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Request Form -->
+      <div class="form-card">
+        <h3>Request Custom Training Plan</h3>
+
+        <div *ngIf="submitted" class="success-alert">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Corporate inquiry received! Our enterprise training advisor will contact you within 24 hours.</span>
+        </div>
+
+        <form *ngIf="!submitted" [formGroup]="corpForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label class="form-label">Company Name *</label>
+            <input type="text" formControlName="companyName" placeholder="e.g. Leapfrog Technology" class="form-input">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">Contact Person *</label>
+              <input type="text" formControlName="contactPerson" placeholder="Full Name" class="form-input">
+            </div>
+            <div class="form-group flex-1">
+              <label class="form-label">Work Email *</label>
+              <input type="email" formControlName="email" placeholder="name@company.com" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">Phone Hotline *</label>
+              <input type="text" formControlName="phone" placeholder="Phone Number" class="form-input">
+            </div>
+            <div class="form-group flex-1">
+              <label class="form-label">Training Track *</label>
+              <select formControlName="domain" class="form-select">
+                <option value="Full Stack Development">Full Stack (MERN / Angular)</option>
+                <option value="AI & Machine Learning">AI & Machine Learning</option>
+                <option value="DevOps & Cloud Security">DevOps & Cloud Security</option>
+                <option value="UI/UX & Design Systems">UI/UX & Design Systems</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Specific Training Needs / Notes</label>
+            <textarea formControlName="requirements" rows="3" placeholder="Tell us about your team size, tech stack, and goals..." class="form-textarea"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary full-width mt-20">
+            Submit Corporate Proposal Request <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

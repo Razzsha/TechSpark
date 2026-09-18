@@ -22,6 +22,26 @@ export const routes: Routes = [
     title: 'Online Admission & Course Enrollment | Techspark'
   },
   {
+    path: 'verify-certificate',
+    loadComponent: () => import('./components/verify-certificate/verify-certificate.component').then(m => m.VerifyCertificateComponent),
+    title: 'Online Certificate Verification | Techspark'
+  },
+  {
+    path: 'career-quiz',
+    loadComponent: () => import('./components/career-quiz/career-quiz.component').then(m => m.CareerQuizComponent),
+    title: 'Interactive Career Path Finder | Techspark'
+  },
+  {
+    path: 'corporate',
+    loadComponent: () => import('./components/corporate/corporate.component').then(m => m.CorporateComponent),
+    title: 'Corporate B2B Tech Training | Techspark'
+  },
+  {
+    path: 'placements',
+    loadComponent: () => import('./components/placements/placements.component').then(m => m.PlacementsComponent),
+    title: 'Graduate Placements & Hiring Partners | Techspark'
+  },
+  {
     path: 'services',
     loadComponent: () => import('./components/services/services.component').then(m => m.ServicesComponent),
     title: 'IT & Software Development Services | Techspark'

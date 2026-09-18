@@ -6,6 +6,8 @@ interface Testimonial {
   color: string;
   quote: string;
   who: string;
+  videoTitle?: string;
+  hasVideo?: boolean;
 }
 
 @Component({
@@ -17,17 +19,40 @@ interface Testimonial {
 })
 export class TestimonialsComponent implements OnInit, OnDestroy {
   testimonials: Testimonial[] = [
-    { initials: 'RS', color: 'var(--indigo)', quote: 'I joined the MERN Stack course knowing nothing about code. Four months later I had three real projects to show in interviews.', who: 'Past Academy student' },
-    { initials: 'MP', color: 'var(--teal-deep)', quote: 'Tech Spark rebuilt our booking system in under two months and actually explained the decisions instead of just handing over code.', who: 'Local business client' },
-    { initials: 'DL', color: 'var(--spark-deep)', quote: 'The mentors are people who build software for a living, so the feedback felt like a real code review, not a classroom exercise.', who: 'Frontend & UI/UX graduate' }
+    {
+      initials: 'RS',
+      color: 'var(--indigo)',
+      quote: 'I joined the MERN Stack course with zero coding background. Four months later I built full-stack SaaS apps and passed Leapfrog technical rounds.',
+      who: 'Rohan Sharma — Full Stack Developer',
+      videoTitle: 'Rohan\'s MERN Stack Placement Journey',
+      hasVideo: true
+    },
+    {
+      initials: 'MP',
+      color: 'var(--teal-deep)',
+      quote: 'Techspark delivered our corporate booking portal under 2 months with pristine React 18 architecture and high test coverage.',
+      who: 'Manish Shrestha — CEO, TravelTech Nepal',
+      videoTitle: 'TravelTech Enterprise Software Review',
+      hasVideo: true
+    },
+    {
+      initials: 'DL',
+      color: 'var(--spark-deep)',
+      quote: 'The mentors are active senior software architects. The code reviews felt like real production engineering, not textbook exercises.',
+      who: 'Dipesh Lama — Senior AI & Python Developer',
+      videoTitle: 'Dipesh\'s Transition to AI Engineering',
+      hasVideo: true
+    }
   ];
 
   activeIndex = 0;
+  videoModalOpen = false;
+  activeVideoTitle = '';
   private intervalId?: ReturnType<typeof setInterval>;
 
   ngOnInit(): void {
     this.intervalId = setInterval(() => {
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (!this.videoModalOpen && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         this.show((this.activeIndex + 1) % this.testimonials.length);
       }
     }, 6000);
@@ -39,5 +64,14 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
 
   show(index: number): void {
     this.activeIndex = index;
+  }
+
+  openVideoModal(title?: string): void {
+    this.activeVideoTitle = title || 'Student Success Story Video';
+    this.videoModalOpen = true;
+  }
+
+  closeVideoModal(): void {
+    this.videoModalOpen = false;
   }
 }

@@ -1,0 +1,79 @@
+<div class="quiz-page">
+  <section class="quiz-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> CAREER PATHFINDER WIZARD</div>
+      <h1>Find Your Ideal IT Course in 60 Seconds</h1>
+      <p>Answer 3 quick questions about your background and career goals to get personalized course recommendations.</p>
+    </div>
+  </section>
+
+  <section class="quiz-body">
+    <div class="wrap">
+      <div class="quiz-container">
+        <!-- Progress Dots -->
+        <div class="quiz-progress" *ngIf="currentStep <= 3">
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="(currentStep / 3) * 100"></div>
+          </div>
+          <span class="step-counter">Question {{ currentStep }} of 3</span>
+        </div>
+
+        <!-- Question Cards -->
+        <div *ngIf="currentStep <= 3" class="question-card">
+          <h2 class="question-title">{{ questions[currentStep - 1].question }}</h2>
+
+          <div class="options-grid">
+            <button *ngFor="let opt of questions[currentStep - 1].options"
+                    (click)="selectOption(currentStep, opt.tag)"
+                    class="option-btn">
+              <div class="option-icon">
+                <i class="fa-solid" [ngClass]="opt.icon"></i>
+              </div>
+              <span class="option-label">{{ opt.label }}</span>
+              <i class="fa-solid fa-chevron-right arrow"></i>
+            </button>
+          </div>
+
+          <div class="quiz-actions" *ngIf="currentStep > 1">
+            <button (click)="prevStep()" class="btn btn-ghost">
+              <i class="fa-solid fa-arrow-left"></i> Previous Question
+            </button>
+          </div>
+        </div>
+
+        <!-- Result Recommendations Screen -->
+        <div *ngIf="currentStep === 4" class="results-card">
+          <div class="result-header text-center">
+            <div class="spark-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h2>Your Best Matching Tech Courses</h2>
+            <p>Based on your background and career ambitions, here are your top recommended learning tracks:</p>
+          </div>
+
+          <div class="recommendations-list">
+            <div class="rec-card" *ngFor="let rec of recommendations">
+              <div class="match-badge">{{ rec.matchScore }}% Match</div>
+              <div class="rec-info">
+                <h3 class="rec-title">{{ rec.title }}</h3>
+                <p class="rec-reason"><i class="fa-solid fa-circle-info"></i> {{ rec.reason }}</p>
+                <div class="rec-meta">
+                  <span><i class="fa-regular fa-clock"></i> Duration: {{ rec.duration }}</span>
+                  <span><i class="fa-solid fa-tag"></i> Fee: NPR {{ rec.fee | number }}</span>
+                </div>
+              </div>
+              <div class="rec-actions">
+                <a [routerLink]="['/course', rec.slug]" class="btn btn-ghost btn-sm">Syllabus</a>
+                <a [routerLink]="['/enroll']" [queryParams]="{ course: rec.slug }" class="btn btn-primary btn-sm">Enroll Now</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-32">
+            <button (click)="resetQuiz()" class="btn btn-ghost">
+              <i class="fa-solid fa-rotate-left"></i> Retake Career Quiz
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
