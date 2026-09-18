@@ -13,8 +13,8 @@ export class ThemeService {
     if (savedTheme === 'dark' || savedTheme === 'light') {
       this.setTheme(savedTheme);
     } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      this.setTheme(prefersDark ? 'dark' : 'light');
+      // Always default to light theme on first visit
+      this.setTheme('light');
     }
   }
 
