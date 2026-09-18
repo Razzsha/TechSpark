@@ -1,0 +1,121 @@
+<header class="header" [class.scrolled]="isScrolled">
+  <!-- Top Bar Announcement -->
+  <div class="top-bar">
+    <div class="wrap top-bar-content">
+      <div class="top-left">
+        <span class="badge-hot">HOT</span>
+        <span>Admissions Open for New Evening & Morning Batches!</span>
+      </div>
+      <div class="top-right">
+        <a href="tel:+97714500000" class="top-link"><i class="fa-solid fa-phone"></i> +977-1-4500000</a>
+        <span class="sep">|</span>
+        <a href="mailto:info@techspark.com.np" class="top-link"><i class="fa-solid fa-envelope"></i> info@techspark.com.np</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navbar -->
+  <div class="nav-container">
+    <div class="wrap nav-wrap">
+      <!-- Logo -->
+      <a routerLink="/" class="brand-logo" (click)="closeMobile()">
+        <div class="logo-icon">
+          <span class="spark-dot"></span>
+          <span class="logo-text">TS</span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Techspark</span>
+          <span class="brand-tag">ACADEMY & TECH</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="desktop-menu">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">Home</a>
+        
+        <!-- Courses Megamenu Dropdown -->
+        <div class="nav-item dropdown-trigger" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
+          <a routerLink="/courses" routerLinkActive="active" class="dropdown-link">
+            All Courses <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </a>
+          <div class="dropdown-menu" [class.show]="dropdownOpen">
+            <div class="dropdown-header">Explore Learning Tracks</div>
+            <div class="dropdown-grid">
+              <a *ngFor="let item of categoryLinks"
+                 [routerLink]="item.route"
+                 [queryParams]="item.queryParams"
+                 (click)="toggleDropdown(false)"
+                 class="dropdown-item">
+                <i class="fa-solid fa-graduation-cap item-icon"></i>
+                <span>{{ item.label }}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a routerLink="/services" routerLinkActive="active" class="nav-item">IT Services</a>
+        <a routerLink="/about" routerLinkActive="active" class="nav-item">About Us</a>
+        <a routerLink="/contact" routerLinkActive="active" class="nav-item">Contact</a>
+      </nav>
+
+      <!-- Action CTA Buttons -->
+      <div class="nav-actions">
+        <a routerLink="/enroll" class="btn btn-enroll">
+          <i class="fa-solid fa-pen-to-square"></i> Enroll Now
+        </a>
+
+        <!-- Mobile Drawer Hamburger Toggle -->
+        <button class="hamburger-btn" (click)="toggleMobile()" aria-label="Toggle Navigation">
+          <i class="fa-solid" [class.fa-bars]="!mobileOpen" [class.fa-xmark]="mobileOpen"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="mobile-drawer-overlay" [class.open]="mobileOpen" (click)="closeMobile()"></div>
+  
+  <div class="mobile-drawer" [class.open]="mobileOpen">
+    <div class="mobile-drawer-header">
+      <a routerLink="/" class="brand-logo" (click)="closeMobile()">
+        <span class="brand-name">Techspark</span>
+      </a>
+      <button class="close-btn" (click)="closeMobile()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="mobile-nav-list">
+      <a routerLink="/" (click)="closeMobile()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="mobile-nav-item">
+        <i class="fa-solid fa-house"></i> Home
+      </a>
+      <a routerLink="/courses" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+        <i class="fa-solid fa-book-open"></i> All Courses
+      </a>
+      
+      <div class="mobile-sub-list">
+        <a *ngFor="let item of categoryLinks"
+           [routerLink]="item.route"
+           [queryParams]="item.queryParams"
+           (click)="closeMobile()"
+           class="mobile-sub-item">
+          • {{ item.label }}
+        </a>
+      </div>
+
+      <a routerLink="/services" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+        <i class="fa-solid fa-laptop-code"></i> IT Services
+      </a>
+      <a routerLink="/about" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+        <i class="fa-solid fa-circle-info"></i> About Us
+      </a>
+      <a routerLink="/contact" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+        <i class="fa-solid fa-location-dot"></i> Contact
+      </a>
+    </div>
+
+    <div class="mobile-drawer-footer">
+      <a routerLink="/enroll" (click)="closeMobile()" class="btn btn-primary full-width">
+        <i class="fa-solid fa-pen-to-square"></i> Online Admission
+      </a>
+    </div>
+  </div>
+</header>

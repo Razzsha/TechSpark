@@ -1,0 +1,17 @@
+<section id="success" class="success-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker teal"><span class="bar"></span>Success Stories</div>
+      <h2>See how our students moved forward</h2>
+      <p>A few graduates from recent Academy batches, and where they work now.</p>
+    </div>
+    <div class="success-grid">
+      <div class="success-card" *ngFor="let story of stories">
+        <div class="avatar" [style.background]="story.color">{{ story.initials }}</div>
+        <h4>{{ story.name }}</h4>
+        <div class="role">{{ story.role }}</div>
+        <div class="batch">{{ story.batch }}</div>
+      </div>
+    </div>
+  </div>
+</section>

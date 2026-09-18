@@ -1,0 +1,8 @@
+.why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 24px; }
+@media (max-width: 900px) { .why-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 560px) { .why-grid { grid-template-columns: 1fr; } }
+.why-item { padding: 6px 0; }
+.why-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,176,32,.14); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.why-icon svg { width: 20px; height: 20px; stroke: var(--spark-deep); }
+.why-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.why-item p { font-size: 14px; }

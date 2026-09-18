@@ -1,0 +1,80 @@
+<app-hero></app-hero>
+
+<app-logo-marquee></app-logo-marquee>
+
+<!-- Key Stats Counter Bar -->
+<section class="stats-section">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-card" *ngFor="let item of stats">
+        <div class="stat-icon-wrap">
+          <i class="fa-solid" [ngClass]="item.icon"></i>
+        </div>
+        <div class="stat-info">
+          <h3 class="stat-value">{{ item.value }}</h3>
+          <p class="stat-label">{{ item.label }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Courses Grid -->
+<section class="featured-section">
+  <div class="wrap">
+    <div class="section-head text-center">
+      <div class="kicker center"><span class="bar"></span> CAREER TRANSFORMING PROGRAMS</div>
+      <h2>Top Featured IT Courses</h2>
+      <p>Industry-aligned training designed by senior software architects with hands-on capstone project builds.</p>
+    </div>
+
+    <div class="courses-grid">
+      <div class="course-card" *ngFor="let course of featuredCourses">
+        <div class="card-badge" [ngClass]="course.badgeColor">{{ course.tag }}</div>
+        
+        <div class="card-body">
+          <span class="category-pill">{{ course.categoryLabel }}</span>
+          <h3 class="course-title">{{ course.title }}</h3>
+          <p class="course-subtitle">{{ course.subtitle }}</p>
+
+          <div class="course-meta">
+            <span><i class="fa-regular fa-clock"></i> {{ course.duration }}</span>
+            <span><i class="fa-solid fa-graduation-cap"></i> {{ course.level }}</span>
+            <span class="rating"><i class="fa-solid fa-star"></i> {{ course.rating }} ({{ course.ratingCount }})</span>
+          </div>
+
+          <div class="topics-preview">
+            <span class="topic-tag" *ngFor="let topic of course.syllabus[0]?.topics?.slice(0, 4)">
+              {{ topic }}
+            </span>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <div class="price-box">
+            <span class="price-current">NPR {{ course.price | number }}</span>
+            <span class="price-original">NPR {{ course.originalPrice | number }}</span>
+          </div>
+          <div class="card-actions">
+            <a [routerLink]="['/course', course.slug]" class="btn btn-ghost btn-sm">View Syllabus</a>
+            <a [routerLink]="['/enroll']" [queryParams]="{ course: course.id }" class="btn btn-primary btn-sm">Enroll Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-48">
+      <a routerLink="/courses" class="btn btn-primary btn-lg">
+        Explore All 12+ Courses <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<app-process></app-process>
+
+<app-testimonials></app-testimonials>
+
+<app-faq></app-faq>
+
+<app-cta-banner></app-cta-banner>

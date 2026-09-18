@@ -1,0 +1,170 @@
+<div *ngIf="!course" class="loading-wrap text-center padding-80">
+  <div class="spinner"></div>
+  <p>Loading course information...</p>
+</div>
+
+<div *ngIf="course" class="course-detail-page">
+  <!-- Detail Hero Header -->
+  <section class="detail-hero">
+    <div class="wrap">
+      <div class="breadcrumb">
+        <a routerLink="/">Home</a> <i class="fa-solid fa-chevron-right"></i>
+        <a routerLink="/courses">Courses</a> <i class="fa-solid fa-chevron-right"></i>
+        <span>{{ course.title }}</span>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-main">
+          <span class="category-tag">{{ course.categoryLabel }}</span>
+          <h1>{{ course.title }}</h1>
+          <p class="subtitle">{{ course.subtitle }}</p>
+
+          <div class="hero-meta">
+            <span class="meta-item"><i class="fa-solid fa-star star"></i> <strong>{{ course.rating }}</strong> ({{ course.ratingCount }} reviews)</span>
+            <span class="meta-item"><i class="fa-solid fa-user-group"></i> {{ course.studentsCount }}+ Enrolled</span>
+            <span class="meta-item"><i class="fa-regular fa-clock"></i> {{ course.duration }}</span>
+            <span class="meta-item"><i class="fa-solid fa-graduation-cap"></i> {{ course.level }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detail Content & Sidebar -->
+  <section class="detail-body">
+    <div class="wrap detail-grid">
+      <!-- Main Content Tabs -->
+      <div class="content-left">
+        <!-- Navigation Tabs -->
+        <div class="detail-tabs">
+          <button (click)="setTab('overview')" [class.active]="activeTab === 'overview'" class="tab-item">Overview & Key Features</button>
+          <button (click)="setTab('syllabus')" [class.active]="activeTab === 'syllabus'" class="tab-item">Complete Syllabus ({{ course.syllabus.length }} Modules)</button>
+          <button (click)="setTab('outcomes')" [class.active]="activeTab === 'outcomes'" class="tab-item">Career Prospects</button>
+          <button (click)="setTab('batches')" [class.active]="activeTab === 'batches'" class="tab-item">Upcoming Batches</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div *ngIf="activeTab === 'overview'" class="tab-pane">
+          <h3>Course Description</h3>
+          <p class="lead-text">{{ course.fullDescription }}</p>
+
+          <h3 class="mt-32">What You Will Learn</h3>
+          <ul class="check-list">
+            <li *ngFor="let item of course.overview">
+              <i class="fa-solid fa-circle-check check-icon"></i>
+              <span>{{ item }}</span>
+            </li>
+          </ul>
+
+          <h3 class="mt-32">Key Course Highlights</h3>
+          <div class="highlights-grid">
+            <div class="highlight-card" *ngFor="let h of course.keyHighlights">
+              <i class="fa-solid fa-award card-icon"></i>
+              <span>{{ h }}</span>
+            </div>
+          </div>
+
+          <h3 class="mt-32">Prerequisites & Target Audience</h3>
+          <ul class="req-list">
+            <li *ngFor="let req of course.prerequisites">
+              <i class="fa-solid fa-arrow-right arrow-icon"></i> {{ req }}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Syllabus Tab -->
+        <div *ngIf="activeTab === 'syllabus'" class="tab-pane">
+          <h3>Course Curriculum & Syllabus</h3>
+          <p class="sub-text">Comprehensive module breakdown prepared for practical hands-on execution.</p>
+
+          <div class="accordion">
+            <div class="accordion-item"
+                 *ngFor="let module of course.syllabus; let i = index"
+                 [class.open]="openModuleIndex === i">
+              <div class="accordion-header" (click)="toggleModule(i)">
+                <span class="module-title">{{ module.title }}</span>
+                <i class="fa-solid fa-chevron-down toggle-icon"></i>
+              </div>
+              <div class="accordion-body" *ngIf="openModuleIndex === i">
+                <ul class="topic-bullet-list">
+                  <li *ngFor="let topic of module.topics">
+                    <i class="fa-regular fa-circle-dot dot-icon"></i> {{ topic }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Outcomes Tab -->
+        <div *ngIf="activeTab === 'outcomes'" class="tab-pane">
+          <h3>Career Outcomes & Job Roles</h3>
+          <p class="sub-text">Skills gained from this course unlock high-demand tech positions:</p>
+
+          <div class="jobs-grid">
+            <div class="job-card" *ngFor="let role of course.careerOutcomes">
+              <i class="fa-solid fa-briefcase job-icon"></i>
+              <span class="job-title">{{ role }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Batches Tab -->
+        <div *ngIf="activeTab === 'batches'" class="tab-pane">
+          <h3>Upcoming Batch Schedules</h3>
+          <div class="batches-list">
+            <div class="batch-card" *ngFor="let batch of course.upcomingBatches">
+              <div class="batch-info">
+                <span class="batch-date"><i class="fa-regular fa-calendar-check"></i> {{ batch.startDate }}</span>
+                <span class="batch-timing"><i class="fa-regular fa-clock"></i> {{ batch.timing }}</span>
+                <span class="batch-mode"><i class="fa-solid fa-location-dot"></i> {{ batch.mode }}</span>
+              </div>
+              <a [routerLink]="['/enroll']" [queryParams]="{ course: course.id }" class="btn btn-primary btn-sm">Join Batch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Pricing & Action Card -->
+      <div class="sidebar-right">
+        <div class="pricing-card">
+          <div class="card-top">
+            <span class="pricing-label">Course Tuition Fee</span>
+            <div class="price-row">
+              <span class="current-price">NPR {{ course.price | number }}</span>
+              <span class="original-price">NPR {{ course.originalPrice | number }}</span>
+            </div>
+            <span class="discount-pill" *ngIf="course.discountBadge">{{ course.discountBadge }} Limited Seats</span>
+          </div>
+
+          <div class="pricing-body">
+            <div class="info-row">
+              <span><i class="fa-solid fa-video"></i> Mode</span>
+              <strong>{{ course.mode }}</strong>
+            </div>
+            <div class="info-row">
+              <span><i class="fa-regular fa-calendar"></i> Duration</span>
+              <strong>{{ course.duration }}</strong>
+            </div>
+            <div class="info-row">
+              <span><i class="fa-solid fa-certificate"></i> Certification</span>
+              <strong>ISO Verified Certificate</strong>
+            </div>
+            <div class="info-row">
+              <span><i class="fa-solid fa-handshake-angle"></i> Placement</span>
+              <strong>100% Job Assistance</strong>
+            </div>
+
+            <a [routerLink]="['/enroll']" [queryParams]="{ course: course.id }" class="btn btn-primary full-btn mt-20">
+              <i class="fa-solid fa-pen-to-square"></i> Enroll in this Course
+            </a>
+            
+            <a href="https://wa.me/9779800000000" target="_blank" class="btn btn-ghost full-btn mt-10">
+              <i class="fa-brands fa-whatsapp"></i> Chat with Counselor
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

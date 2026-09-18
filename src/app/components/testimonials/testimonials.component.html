@@ -1,0 +1,14 @@
+<section>
+  <div class="wrap">
+    <div class="testi-wrap">
+      <div class="testi-slide" *ngFor="let t of testimonials; let i = index" [class.active]="i === activeIndex">
+        <div class="testi-avatar" [style.background]="t.color">{{ t.initials }}</div>
+        <p class="testi-quote">"{{ t.quote }}"</p>
+        <div class="testi-who">{{ t.who }}</div>
+      </div>
+      <div class="testi-dots">
+        <button *ngFor="let t of testimonials; let i = index" [class.active]="i === activeIndex" (click)="show(i)" [attr.aria-label]="'Testimonial ' + (i + 1)"></button>
+      </div>
+    </div>
+  </div>
+</section>

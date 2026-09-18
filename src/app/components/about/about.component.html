@@ -1,0 +1,59 @@
+<div class="about-page">
+  <section class="about-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> ABOUT TECHSPARK</div>
+      <h1>Empowering the Next Generation of Tech Leaders</h1>
+      <p>Techspark is a certified IT training center and software development firm dedicated to bridging the gap between academia and industry expectations.</p>
+    </div>
+  </section>
+
+  <section class="about-values padding-80">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <h2>Why Students & Clients Choose Us</h2>
+        <p>Our commitment to real-world impact guides everything we build and teach.</p>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-card" *ngFor="let value of coreValues">
+          <div class="value-icon">
+            <i class="fa-solid" [ngClass]="value.icon"></i>
+          </div>
+          <h3>{{ value.title }}</h3>
+          <p>{{ value.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mentors-section padding-80 background-paper">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <h2>Learn From Senior Industry Instructors</h2>
+        <p>Our courses are led by practicing engineers, team leads, and architects working in active production environments.</p>
+      </div>
+
+      <div class="mentors-grid">
+        <div class="mentor-card" *ngFor="let m of mentors">
+          <div class="mentor-avatar">
+            <i class="fa-solid fa-user-gear"></i>
+          </div>
+          <h3>{{ m.name }}</h3>
+          <span class="mentor-role">{{ m.role }}</span>
+          <span class="mentor-domain">{{ m.domain }} • {{ m.exp }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-cta padding-80">
+    <div class="wrap text-center">
+      <h2>Ready to Start Your Career Transformation?</h2>
+      <p class="mt-12">Join 15,000+ graduates who have launched successful tech careers through Techspark.</p>
+      <div class="mt-28 flex-center gap-16">
+        <a routerLink="/courses" class="btn btn-primary btn-lg">Explore Courses</a>
+        <a routerLink="/contact" class="btn btn-ghost btn-lg">Visit Our Center</a>
+      </div>
+    </div>
+  </section>
+</div>

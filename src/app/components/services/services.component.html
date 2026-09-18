@@ -1,0 +1,94 @@
+<div class="services-page">
+  <section class="services-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> SOFTWARE & IT SERVICES</div>
+      <h1>Enterprise Software Engineering & IT Solutions</h1>
+      <p>We build robust web platforms, mobile applications, and AI integrations tailored for fast-growing startups and enterprises.</p>
+    </div>
+  </section>
+
+  <section class="services-body padding-80">
+    <div class="wrap">
+      <div class="services-grid">
+        <div class="service-card" *ngFor="let s of serviceList">
+          <div class="card-icon-wrap">
+            <i class="fa-solid" [ngClass]="s.icon"></i>
+          </div>
+          <h3 class="service-title">{{ s.title }}</h3>
+          <p class="service-desc">{{ s.desc }}</p>
+
+          <ul class="feature-list">
+            <li *ngFor="let f of s.features">
+              <i class="fa-solid fa-check check-icon"></i> {{ f }}
+            </li>
+          </ul>
+
+          <button (click)="openQuoteModal(s.title)" class="btn btn-ghost btn-sm full-width mt-20">
+            Request Quote <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Project Quote Request Modal -->
+<div class="modal-backdrop" [class.open]="modalOpen" (click)="closeQuoteModal()"></div>
+
+<div class="modal-card" [class.open]="modalOpen">
+  <div class="modal-header">
+    <h3>Request Project Quote</h3>
+    <button class="close-btn" (click)="closeQuoteModal()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <div class="modal-body" *ngIf="!quoteSubmitted">
+    <form [formGroup]="quoteForm" (ngSubmit)="submitQuote()">
+      <div class="form-group">
+        <label class="form-label">Your Name *</label>
+        <input type="text" formControlName="clientName" placeholder="Full name or company name" class="form-input">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group flex-1">
+          <label class="form-label">Email *</label>
+          <input type="email" formControlName="email" placeholder="name@company.com" class="form-input">
+        </div>
+        <div class="form-group flex-1">
+          <label class="form-label">Phone *</label>
+          <input type="text" formControlName="phone" placeholder="Phone number" class="form-input">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Service Required *</label>
+        <select formControlName="serviceType" class="form-select">
+          <option *ngFor="let s of serviceList" [value]="s.title">{{ s.title }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Estimated Budget *</label>
+        <select formControlName="budget" class="form-select">
+          <option value="$1,000 - $5,000">$1,000 - $5,000</option>
+          <option value="$5,000 - $15,000">$5,000 - $15,000</option>
+          <option value="$15,000+">$15,000+</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Project Details / Scope *</label>
+        <textarea formControlName="projectDetails" rows="3" placeholder="Briefly describe your project requirements..." class="form-textarea"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary full-width mt-20">
+        Submit Request <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+
+  <div class="modal-body text-center" *ngIf="quoteSubmitted">
+    <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+    <h3>Quote Request Submitted!</h3>
+    <p>Our solution engineering team will review your project scope and send an estimate within 24 hours.</p>
+  </div>
+</div>

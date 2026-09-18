@@ -1,0 +1,204 @@
+<div class="enroll-page">
+  <section class="enroll-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> ONLINE ADMISSION FORM</div>
+      <h1>Secure Your Seat for Next Batch</h1>
+      <p>Fill out the application form below. Our academic counselors will get in touch to confirm your seat and batch timings.</p>
+    </div>
+  </section>
+
+  <section class="enroll-body">
+    <div class="wrap">
+      <div class="wizard-container">
+        <!-- Ant Design Styled Steps Indicator Bar -->
+        <div class="steps-bar">
+          <div class="step-item" [class.active]="currentStep >= 1" [class.completed]="currentStep > 1">
+            <div class="step-num">1</div>
+            <div class="step-label">Select Course & Shift</div>
+          </div>
+          <div class="step-line" [class.active]="currentStep > 1"></div>
+          <div class="step-item" [class.active]="currentStep >= 2" [class.completed]="currentStep > 2">
+            <div class="step-num">2</div>
+            <div class="step-label">Personal Details</div>
+          </div>
+          <div class="step-line" [class.active]="currentStep > 2"></div>
+          <div class="step-item" [class.active]="currentStep === 3">
+            <div class="step-num">3</div>
+            <div class="step-label">Confirmation</div>
+          </div>
+        </div>
+
+        <form [formGroup]="enrollForm" (ngSubmit)="onSubmit()" class="form-card">
+          <!-- STEP 1: Course & Shift Selection -->
+          <div *ngIf="currentStep === 1" class="step-pane">
+            <h2 class="form-title"><i class="fa-solid fa-graduation-cap"></i> Step 1: Training Preference</h2>
+
+            <div class="form-group">
+              <label class="form-label">Select Course *</label>
+              <select formControlName="courseId" class="form-select">
+                <option *ngFor="let course of coursesList" [value]="course.id">
+                  {{ course.title }} — (NPR {{ course.price | number }})
+                </option>
+              </select>
+            </div>
+
+            <!-- Selected Course Card Preview -->
+            <div class="course-summary-box" *ngIf="selectedCourseDetail">
+              <div class="summary-header">
+                <div>
+                  <span class="badge-tag">{{ selectedCourseDetail.categoryLabel }}</span>
+                  <h4 class="summary-title">{{ selectedCourseDetail.title }}</h4>
+                </div>
+                <div class="price-tag">NPR {{ selectedCourseDetail.price | number }}</div>
+              </div>
+              <div class="summary-details">
+                <span><i class="fa-regular fa-clock"></i> Duration: {{ selectedCourseDetail.duration }}</span>
+                <span><i class="fa-solid fa-star star"></i> Rating: {{ selectedCourseDetail.rating }} / 5.0</span>
+              </div>
+            </div>
+
+            <div class="form-row mt-24">
+              <div class="form-group flex-1">
+                <label class="form-label">Training Mode *</label>
+                <div class="radio-group">
+                  <label class="radio-card" [class.selected]="enrollForm.get('trainingMode')?.value === 'Physical'">
+                    <input type="radio" formControlName="trainingMode" value="Physical">
+                    <div class="radio-content">
+                      <i class="fa-solid fa-building-columns radio-icon"></i>
+                      <strong>Physical Classroom</strong>
+                      <span>Attending at Institute</span>
+                    </div>
+                  </label>
+
+                  <label class="radio-card" [class.selected]="enrollForm.get('trainingMode')?.value === 'Online Live Class'">
+                    <input type="radio" formControlName="trainingMode" value="Online Live Class">
+                    <div class="radio-content">
+                      <i class="fa-solid fa-video radio-icon"></i>
+                      <strong>Online Live Class</strong>
+                      <span>Interactive Zoom/Teams</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Preferred Shift *</label>
+                <select formControlName="preferredShift" class="form-select">
+                  <option *ngFor="let s of shifts" [value]="s">{{ s }}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="step-actions mt-32 text-right">
+              <button type="button" (click)="nextStep()" class="btn btn-primary btn-lg">
+                Continue to Personal Details <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 2: Personal Information -->
+          <div *ngIf="currentStep === 2" class="step-pane">
+            <h2 class="form-title"><i class="fa-solid fa-user"></i> Step 2: Student Information</h2>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Full Name *</label>
+                <input type="text" formControlName="fullName" placeholder="e.g. Raj Sharma" class="form-input">
+                <span class="error-msg" *ngIf="enrollForm.get('fullName')?.touched && enrollForm.get('fullName')?.invalid">
+                  Please enter your full name.
+                </span>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Email Address *</label>
+                <input type="email" formControlName="email" placeholder="e.g. raj@gmail.com" class="form-input">
+                <span class="error-msg" *ngIf="enrollForm.get('email')?.touched && enrollForm.get('email')?.invalid">
+                  Enter a valid email address.
+                </span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Phone Number *</label>
+                <input type="text" formControlName="phone" placeholder="e.g. 9841234567" class="form-input">
+                <span class="error-msg" *ngIf="enrollForm.get('phone')?.touched && enrollForm.get('phone')?.invalid">
+                  Enter a valid phone number.
+                </span>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Current City *</label>
+                <input type="text" formControlName="city" placeholder="e.g. Kathmandu" class="form-input">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Academic Qualification *</label>
+                <select formControlName="qualification" class="form-select">
+                  <option *ngFor="let q of qualifications" [value]="q">{{ q }}</option>
+                </select>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Coding / Tech Experience *</label>
+                <select formControlName="experienceLevel" class="form-select">
+                  <option value="Beginner (No experience)">Beginner (No experience)</option>
+                  <option value="Basic knowledge">Basic knowledge</option>
+                  <option value="Intermediate">Intermediate</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Additional Comments or Special Requests</label>
+              <textarea formControlName="comments" rows="3" placeholder="Any specific questions or preferred start date?" class="form-textarea"></textarea>
+            </div>
+
+            <div class="step-actions mt-32 space-between">
+              <button type="button" (click)="prevStep()" class="btn btn-ghost">
+                <i class="fa-solid fa-arrow-left"></i> Back
+              </button>
+              <button type="submit" [disabled]="isSubmitting" class="btn btn-primary btn-lg">
+                <span *ngIf="!isSubmitting"><i class="fa-solid fa-paper-plane"></i> Submit Application</span>
+                <span *ngIf="isSubmitting"><i class="fa-solid fa-spinner fa-spin"></i> Submitting...</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- STEP 3: Confirmation -->
+          <div *ngIf="currentStep === 3" class="step-pane text-center confirmation-pane">
+            <div class="success-circle">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <h2 class="success-title">Admission Application Received!</h2>
+            <p class="success-msg">
+              Thank you, <strong>{{ enrollForm.value.fullName }}</strong>! Your enrollment request has been registered under Application ID:
+            </p>
+
+            <div class="app-id-badge">
+              {{ submissionResult?.applicationId }}
+            </div>
+
+            <div class="receipt-box">
+              <div class="receipt-row"><span>Selected Course:</span> <strong>{{ selectedCourseDetail?.title }}</strong></div>
+              <div class="receipt-row"><span>Training Mode:</span> <strong>{{ enrollForm.value.trainingMode }}</strong></div>
+              <div class="receipt-row"><span>Shift:</span> <strong>{{ enrollForm.value.preferredShift }}</strong></div>
+              <div class="receipt-row"><span>Contact Phone:</span> <strong>{{ enrollForm.value.phone }}</strong></div>
+            </div>
+
+            <p class="next-step-info">
+              <i class="fa-solid fa-phone-volume"></i> Our admission counselor will call you within 2 hours to complete your orientation and seat confirmation.
+            </p>
+
+            <div class="mt-32 flex-center gap-14">
+              <a routerLink="/courses" class="btn btn-ghost">Browse Other Courses</a>
+              <a routerLink="/" class="btn btn-primary">Return to Home Page</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

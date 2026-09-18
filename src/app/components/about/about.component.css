@@ -1,0 +1,79 @@
+.about-hero {
+  background: var(--indigo);
+  color: #fff;
+  padding: 70px 0 60px;
+}
+.about-hero h1 { color: #fff; font-size: clamp(28px, 4vw, 42px); margin: 12px 0; }
+.about-hero p { color: var(--on-dark-soft); font-size: 17px; max-width: 650px; margin: 0 auto; }
+
+.padding-80 { padding: 80px 0; }
+.background-paper { background: var(--paper); }
+.text-center { text-align: center; }
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+  margin-top: 40px;
+}
+.value-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  padding: 30px 24px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.03);
+  transition: transform 0.2s ease;
+}
+.value-card:hover { transform: translateY(-5px); border-color: var(--indigo); }
+.value-icon {
+  width: 56px;
+  height: 56px;
+  background: #F4F5FB;
+  color: var(--indigo);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 0 auto 18px;
+}
+.value-card h3 { font-size: 18px; font-weight: 700; color: var(--indigo); margin-bottom: 10px; }
+.value-card p { font-size: 14px; color: var(--text-soft); line-height: 1.55; }
+
+.mentors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.mentor-card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  padding: 24px;
+  text-align: center;
+}
+.mentor-avatar {
+  width: 70px;
+  height: 70px;
+  background: var(--indigo);
+  color: var(--spark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 16px;
+}
+.mentor-card h3 { font-size: 17px; font-weight: 700; color: var(--indigo); }
+.mentor-role { display: block; font-size: 13.5px; font-weight: 600; color: var(--teal-deep); margin-top: 4px; }
+.mentor-domain { display: block; font-size: 12px; color: var(--text-soft); margin-top: 6px; }
+
+.about-cta { background: var(--indigo); color: #fff; }
+.about-cta h2 { color: #fff; font-size: 32px; }
+.about-cta p { color: var(--on-dark-soft); }
+.mt-12 { margin-top: 12px; }
+.mt-28 { margin-top: 28px; }
+.flex-center { display: flex; justify-content: center; }
+.gap-16 { gap: 16px; }

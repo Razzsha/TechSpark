@@ -1,0 +1,121 @@
+.footer {
+  background: var(--indigo-deep);
+  color: #E2E4F0;
+  padding: 70px 0 30px;
+  border-top: 4px solid var(--spark);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 40px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.logo-box {
+  width: 34px;
+  height: 34px;
+  background: var(--spark);
+  color: var(--indigo-deep);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+}
+.brand-desc {
+  font-size: 13.5px;
+  color: var(--on-dark-soft);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.social-links { display: flex; gap: 10px; }
+.social-links a {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  color: var(--on-dark-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+.social-links a:hover {
+  background: var(--spark);
+  color: var(--indigo-deep);
+  transform: translateY(-2px);
+}
+
+.col-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 8px;
+}
+.col-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--spark);
+}
+
+.footer-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.footer-links a {
+  font-size: 13.5px;
+  color: var(--on-dark-soft);
+  transition: color 0.15s ease;
+}
+.footer-links a:hover { color: var(--spark); padding-left: 4px; }
+
+.contact-col p {
+  font-size: 13.5px;
+  color: var(--on-dark-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.contact-col .icon { color: var(--spark); font-size: 14px; }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  font-size: 13px;
+  color: var(--on-dark-soft);
+}
+.bottom-links { display: flex; gap: 10px; }
+.bottom-links a { color: var(--on-dark-soft); }
+.bottom-links a:hover { color: var(--spark); }
+
+@media (max-width: 992px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 576px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+}

@@ -1,0 +1,97 @@
+<!-- Floating Chatbot Launcher Button -->
+<button class="chat-launcher-btn" (click)="toggleChat()" aria-label="Open AI Assistant">
+  <div class="launcher-icon">
+    <i class="fa-solid" [class.fa-comments]="!isOpen" [class.fa-xmark]="isOpen"></i>
+  </div>
+  <span class="ping-dot" *ngIf="!isOpen"></span>
+</button>
+
+<!-- Floating Chatbot Window -->
+<div class="chat-modal" [class.open]="isOpen">
+  <!-- Chat Header -->
+  <div class="chat-header">
+    <div class="header-info">
+      <div class="bot-avatar">
+        <i class="fa-solid fa-robot"></i>
+      </div>
+      <div>
+        <h4 class="bot-name">Techspark AI Assistant</h4>
+        <span class="online-status"><span class="status-dot"></span> Webpage Info & Admissions</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" (click)="showKeyInput = !showKeyInput" title="OpenAI API Key Settings">
+        <i class="fa-solid fa-key"></i>
+      </button>
+      <button class="icon-btn" (click)="toggleChat()" title="Close Chat">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- OpenAI API Key Configuration Panel (Optional) -->
+  <div class="key-panel" *ngIf="showKeyInput">
+    <div class="key-header">
+      <span>OpenAI API Key (Optional)</span>
+      <small>Leave blank to use built-in Techspark AI Engine</small>
+    </div>
+    <div class="key-input-row">
+      <input type="password" [(ngModel)]="openAiKey" placeholder="sk-..." class="key-input">
+      <button (click)="saveApiKey()" class="save-key-btn">Save</button>
+    </div>
+  </div>
+
+  <!-- Chat Messages Body -->
+  <div class="chat-body" #chatScroll>
+    <div class="messages-list">
+      <div *ngFor="let msg of messages" class="msg-row" [class.user]="msg.sender === 'user'" [class.bot]="msg.sender === 'bot'">
+        <div class="msg-avatar" *ngIf="msg.sender === 'bot'">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="msg-content">
+          <div class="msg-bubble">{{ msg.text }}</div>
+          <span class="msg-time">{{ msg.timestamp }}</span>
+        </div>
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="msg-row bot" *ngIf="isTyping">
+        <div class="msg-avatar">
+          <i class="fa-solid fa-robot"></i>
+        </div>
+        <div class="msg-content">
+          <div class="typing-bubble">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Prompts Chips -->
+    <div class="quick-prompts" *ngIf="messages.length <= 3">
+      <div class="prompt-title">Frequently Asked Questions:</div>
+      <div class="chips-wrap">
+        <button *ngFor="let prompt of quickPrompts" (click)="sendQuickPrompt(prompt)" class="chip-btn">
+          {{ prompt }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chat Footer / Input Bar -->
+  <div class="chat-footer">
+    <form (ngSubmit)="sendMessage()" class="input-form">
+      <input type="text"
+             [(ngModel)]="userMessage"
+             name="userMessage"
+             placeholder="Ask about courses, fees, location..."
+             class="chat-input"
+             autocomplete="off">
+      <button type="submit" [disabled]="!userMessage.trim()" class="send-btn">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+  </div>
+</div>

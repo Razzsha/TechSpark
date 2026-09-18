@@ -1,0 +1,16 @@
+<section id="faq" class="faq-section">
+  <div class="wrap">
+    <div class="section-head faq-head">
+      <div class="kicker faq-kicker"><span class="bar"></span>FAQ</div>
+      <h2>Common questions</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let item of items" [class.open]="item.open">
+        <button class="faq-q" (click)="toggle(item)">{{ item.question }}<span class="plus"></span></button>
+        <div class="faq-a" [style.max-height]="item.open ? '200px' : '0'">
+          <p>{{ item.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

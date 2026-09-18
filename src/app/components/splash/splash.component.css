@@ -1,0 +1,25 @@
+#splash {
+  position: fixed; inset: 0; z-index: 9999; background: var(--indigo);
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+#splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+.splash-mark { width: 84px; height: 84px; position: relative; }
+.splash-mark svg { width: 100%; height: 100%; }
+.splash-mark .bolt {
+  stroke: var(--spark); stroke-width: 1.5; fill: none;
+  stroke-dasharray: 120; stroke-dashoffset: 120;
+  animation: drawBolt 0.9s ease forwards 0.15s;
+}
+.splash-mark .bolt-fill {
+  fill: var(--spark); opacity: 0; transform-origin: center; transform: scale(.6);
+  animation: fillBolt .5s ease forwards 0.95s;
+}
+@keyframes drawBolt { to { stroke-dashoffset: 0; } }
+@keyframes fillBolt { to { opacity: 1; transform: scale(1); } }
+.splash-ring {
+  position: absolute; inset: -26px; border-radius: 50%; border: 1.5px solid rgba(255,176,32,.4);
+  opacity: 0; animation: ringPulse 1s ease-out forwards 0.9s;
+}
+@keyframes ringPulse { 0% { opacity: .8; transform: scale(.6); } 100% { opacity: 0; transform: scale(1.6); } }
+@media (prefers-reduced-motion: reduce) { #splash { display: none; } }

@@ -1,0 +1,28 @@
+<section id="process" class="process-strip">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How we work</h2>
+      <p>Two tracks, one team — pick the one that matches what brought you here.</p>
+    </div>
+    <div class="process-toggle">
+      <button [class.active]="activePanel === 'dev'" (click)="setPanel('dev')">For software clients</button>
+      <button [class.active]="activePanel === 'academy'" (click)="setPanel('academy')">For academy students</button>
+    </div>
+    <div class="process-panel" [class.active]="activePanel === 'dev'" *ngIf="activePanel === 'dev'">
+      <div class="process-grid">
+        <div class="process-step"><div class="process-num">01</div><h4>Discover</h4><p>We learn your business, users and constraints before proposing anything.</p></div>
+        <div class="process-step"><div class="process-num">02</div><h4>Design</h4><p>Wireframes and prototypes you can react to, before a line of code is written.</p></div>
+        <div class="process-step"><div class="process-num">03</div><h4>Build</h4><p>Development in short cycles, with working versions to review along the way.</p></div>
+        <div class="process-step"><div class="process-num">04</div><h4>Launch</h4><p>Deployment, handover documentation, and support after you go live.</p></div>
+      </div>
+    </div>
+    <div class="process-panel" [class.active]="activePanel === 'academy'" *ngIf="activePanel === 'academy'">
+      <div class="process-grid">
+        <div class="process-step"><div class="process-num">01</div><h4>Learn</h4><p>Structured classes with mentors who ship production code at Tech Spark Technology.</p></div>
+        <div class="process-step"><div class="process-num">02</div><h4>Practice</h4><p>Apply every concept on real project briefs, not isolated exercises.</p></div>
+        <div class="process-step"><div class="process-num">03</div><h4>Evaluate</h4><p>Project reviews that mirror a real code review, with honest feedback.</p></div>
+        <div class="process-step"><div class="process-num">04</div><h4>Get placed</h4><p>Resume review, mock interviews and introductions to hiring partners.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
