@@ -1,0 +1,73 @@
+<div class="government-page">
+  <!-- Hero Section -->
+  <section class="government-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> WE WORK FOR GOVERNMENT &amp; PUBLIC SECTOR</div>
+      <h1>Empowering GovTech &amp; Public Sector Digital Transformation</h1>
+      <p class="lead">Providing state-of-the-art technology upskilling, secure infrastructure engineering, and digital capacity training to drive Digital Nepal initiatives across federal, provincial, and local levels.</p>
+      
+      <div class="hero-actions mt-32">
+        <a routerLink="/counseling" class="btn btn-spark">
+          <i class="fa-solid fa-file-signature"></i> Request Public Sector RFP / Proposal
+        </a>
+        <a routerLink="/services" class="btn btn-ghost-light">
+          <i class="fa-solid fa-laptop-code"></i> View Software Services
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <section class="gov-stats-band">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat-box" *ngFor="let s of stats">
+          <h3>{{ s.value }}</h3>
+          <p>{{ s.label }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Initiatives & Capabilities -->
+  <section class="gov-programs padding-80">
+    <div class="wrap">
+      <div class="section-head text-center mx-auto">
+        <div class="kicker center"><span class="bar"></span> GOVTECH SOLUTIONS &amp; WORKFORCE CAPACITY</div>
+        <h2>Public Infrastructure &amp; Civic Technology</h2>
+        <p>Tailored solutions meeting strict national compliance, data privacy, and modern software engineering best practices.</p>
+      </div>
+
+      <div class="programs-grid">
+        <div class="program-card" *ngFor="let item of govInitiatives">
+          <div class="p-icon-wrap">
+            <i class="fa-solid" [ngClass]="item.icon"></i>
+          </div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Government Consultation CTA -->
+  <section class="gov-cta padding-80">
+    <div class="wrap">
+      <div class="cta-inner">
+        <div>
+          <h2>Public Sector Inquiries &amp; Tenders</h2>
+          <p>Contact our dedicated GovTech and Public Institutional liaisons for technical consultations and RFP responses.</p>
+        </div>
+        <div class="cta-btns">
+          <a routerLink="/counseling" class="btn btn-primary">Schedule Official Briefing</a>
+          <a href="https://wa.me/9779800000000?text=Hello%20Techspark,%20we%20have%20a%20government/public%20sector%20inquiry%20regarding%20tech%20training%20and%20solutions."
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

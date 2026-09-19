@@ -1,5 +1,5 @@
 .logo-band { background: var(--paper-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 38px 0; overflow: hidden; }
-.logo-band .tag { text-align: center; font-size: 13px; color: var(--text-soft); font-weight: 600; margin-bottom: 22px; }
+.logo-band .tag { text-align: center; font-size: 15px; color: var(--indigo); font-weight: 700; letter-spacing: 0.3px; margin-bottom: 22px; text-transform: uppercase; font-family: var(--font-display); }
 .marquee { display: flex; width: max-content; gap: 64px; animation: scroll 28s linear infinite; }
 .marquee span { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--text-soft); opacity: .65; white-space: nowrap; }
 @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }

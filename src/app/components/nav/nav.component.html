@@ -48,7 +48,7 @@
       <!-- Desktop Nav Menu -->
       <nav class="desktop-menu">
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">{{ t('nav.home') }}</a>
-        
+
         <!-- Courses Megamenu Dropdown -->
         <div class="nav-item dropdown-trigger" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
           <a routerLink="/courses" routerLinkActive="active" class="dropdown-link">
@@ -69,14 +69,42 @@
           </div>
         </div>
 
+        <!-- We Work For Dropdown -->
+        <div class="nav-item dropdown-trigger" (mouseenter)="toggleWorkForDropdown(true)" (mouseleave)="toggleWorkForDropdown(false)">
+          <span class="dropdown-link">
+            We Work For <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </span>
+          <div class="dropdown-menu dropdown-workfor" [class.show]="workForDropdownOpen">
+            <div class="dropdown-header">Sectors We Empower</div>
+            <div class="dropdown-grid">
+              <a *ngFor="let wf of weWorkForLinks"
+                 [routerLink]="wf.route"
+                 (click)="toggleWorkForDropdown(false)"
+                 class="dropdown-item">
+                <i class="fa-solid item-icon" [ngClass]="wf.icon"></i>
+                <div class="wf-item-text">
+                  <strong class="wf-title">{{ wf.label }}</strong>
+                  <small class="wf-desc">{{ wf.desc }}</small>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
         <a routerLink="/services" routerLinkActive="active" class="nav-item">{{ t('nav.services') }}</a>
         <a routerLink="/placements" routerLinkActive="active" class="nav-item">Placements</a>
+        <a routerLink="/counseling" routerLinkActive="active" class="nav-item nav-highlight">
+          <i class="fa-regular fa-calendar-check"></i> Free Consulting
+        </a>
         <a routerLink="/about" routerLinkActive="active" class="nav-item">{{ t('nav.about') }}</a>
         <a routerLink="/contact" routerLinkActive="active" class="nav-item">{{ t('nav.contact') }}</a>
       </nav>
 
       <!-- Action CTA Buttons -->
       <div class="nav-actions">
+        <!-- <a routerLink="/counseling" class="btn btn-consulting-nav">
+          <i class="fa-solid fa-calendar-check"></i> Free Consulting
+        </a> -->
         <a routerLink="/enroll" class="btn btn-enroll">
           <i class="fa-solid fa-pen-to-square"></i> {{ t('nav.enroll') }}
         </a>
@@ -91,7 +119,7 @@
 
   <!-- Mobile Drawer Overlay -->
   <div class="mobile-drawer-overlay" [class.open]="mobileOpen" (click)="closeMobile()"></div>
-  
+
   <div class="mobile-drawer" [class.open]="mobileOpen">
     <div class="mobile-drawer-header">
       <a routerLink="/" class="brand-logo" (click)="closeMobile()">
@@ -99,13 +127,33 @@
       </a>
       <button class="close-btn" (click)="closeMobile()"><i class="fa-solid fa-xmark"></i></button>
     </div>
-    
+
     <div class="mobile-nav-list">
       <a routerLink="/" (click)="closeMobile()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="mobile-nav-item">
         <i class="fa-solid fa-house"></i> {{ t('nav.home') }}
       </a>
+      <a routerLink="/counseling" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item highlight-item">
+        <i class="fa-solid fa-calendar-check"></i> Book a Free Consulting
+      </a>
       <a routerLink="/courses" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
         <i class="fa-solid fa-book-open"></i> {{ t('nav.courses') }}
+      </a>
+
+      <!-- Mobile We Work For Group -->
+      <div class="mobile-group-title">WE WORK FOR</div>
+      <a routerLink="/academic" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+        <i class="fa-solid fa-graduation-cap"></i> Academic
+      </a>
+      <a routerLink="/corporate" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+        <i class="fa-solid fa-building"></i> Corporate
+      </a>
+      <a routerLink="/government" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+        <i class="fa-solid fa-landmark"></i> Government
+      </a>
+
+      <div class="mobile-group-title">PORTALS &amp; SERVICES</div>
+      <a routerLink="/services" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+        <i class="fa-solid fa-laptop-code"></i> {{ t('nav.services') }}
       </a>
       <a routerLink="/verify-certificate" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
         <i class="fa-solid fa-shield-check"></i> Verify Certificate
@@ -113,14 +161,8 @@
       <a routerLink="/career-quiz" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
         <i class="fa-solid fa-wand-magic-sparkles"></i> Career Quiz
       </a>
-      <a routerLink="/corporate" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
-        <i class="fa-solid fa-building"></i> Corporate Training
-      </a>
       <a routerLink="/placements" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
         <i class="fa-solid fa-user-check"></i> Placements
-      </a>
-      <a routerLink="/services" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
-        <i class="fa-solid fa-laptop-code"></i> {{ t('nav.services') }}
       </a>
       <a routerLink="/about" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
         <i class="fa-solid fa-circle-info"></i> {{ t('nav.about') }}
@@ -140,7 +182,10 @@
         </button>
       </div>
 
-      <a routerLink="/enroll" (click)="closeMobile()" class="btn btn-primary full-width">
+      <a routerLink="/counseling" (click)="closeMobile()" class="btn btn-primary full-width mb-12">
+        <i class="fa-solid fa-calendar-check"></i> Book Free Consulting
+      </a>
+      <a routerLink="/enroll" (click)="closeMobile()" class="btn btn-enroll full-width">
         <i class="fa-solid fa-pen-to-square"></i> Online Admission
       </a>
     </div>

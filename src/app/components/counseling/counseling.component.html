@@ -1,0 +1,275 @@
+<div class="counseling-page">
+  <!-- Hero Section -->
+  <section class="counseling-hero">
+    <div class="wrap">
+      <div class="hero-content text-center">
+        <div class="kicker center"><span class="bar"></span> 100% FREE CAREER GUIDANCE</div>
+        <h1>Book a Free 1-on-1 Tech &amp; Career Consultation</h1>
+        <p class="lead">Talk directly with our senior industry mentors. Get personalized advice on learning roadmaps, domain selection, placement outlooks, and corporate skill requirements.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Section: Form & Value Props -->
+  <section class="counseling-body">
+    <div class="wrap">
+
+      <!-- Success Screen after Booking -->
+      <div *ngIf="bookingSubmitted && bookingResult" class="success-card animate-fade-in">
+        <div class="success-icon">
+          <i class="fa-solid fa-calendar-check"></i>
+        </div>
+        <h2>Consultation Session Confirmed!</h2>
+        <p class="success-subtitle">
+          Your 1-on-1 session is reserved. Our career advisory counselor has received your details and will connect with you via WhatsApp/Email shortly.
+        </p>
+
+        <div class="booking-details-box">
+          <div class="detail-row">
+            <span class="lbl">Booking Reference ID:</span>
+            <strong class="val highlight">{{ bookingResult.id }}</strong>
+          </div>
+          <div class="detail-row">
+            <span class="lbl">Applicant Name:</span>
+            <strong class="val">{{ bookingResult.fullName }}</strong>
+          </div>
+          <div class="detail-row">
+            <span class="lbl">Consultation Domain:</span>
+            <strong class="val">{{ bookingResult.domainInterest }}</strong>
+          </div>
+          <div class="detail-row">
+            <span class="lbl">Preferred Mode:</span>
+            <strong class="val">{{ bookingResult.sessionMode }}</strong>
+          </div>
+          <div class="detail-row">
+            <span class="lbl">Date &amp; Time:</span>
+            <strong class="val">{{ bookingResult.preferredDate }} | {{ bookingResult.preferredTime }}</strong>
+          </div>
+          <div class="detail-row">
+            <span class="lbl">Contact Info:</span>
+            <strong class="val">{{ bookingResult.phone }} / {{ bookingResult.email }}</strong>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <a [href]="'https://wa.me/9779800000000?text=' + ('Hello Techspark, I booked a free consulting session. My Reference ID is ' + bookingResult.id)"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> Confirm via WhatsApp
+          </a>
+          <a routerLink="/courses" class="btn btn-primary">
+            <i class="fa-solid fa-graduation-cap"></i> Explore Courses in the Meantime
+          </a>
+          <button (click)="resetForm()" class="btn btn-ghost">
+            Book Another Session
+          </button>
+        </div>
+      </div>
+
+      <!-- Booking Form & Sidebar Grid -->
+      <div *ngIf="!bookingSubmitted" class="counseling-grid">
+        
+        <!-- Left: Booking Form -->
+        <div class="form-container">
+          <div class="form-header">
+            <h3><i class="fa-regular fa-calendar-plus"></i> Reserve Your Free Slot</h3>
+            <p>Fill in your background and goals so our mentors can prepare a tailored recommendation for you.</p>
+          </div>
+
+          <form [formGroup]="counselingForm" (ngSubmit)="onSubmit()" class="counseling-form">
+            <!-- Full Name & Email -->
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Full Name *</label>
+                <input type="text"
+                       formControlName="fullName"
+                       placeholder="e.g. Aarav Sharma"
+                       class="form-input"
+                       [class.is-invalid]="counselingForm.get('fullName')?.touched && counselingForm.get('fullName')?.invalid">
+                <small *ngIf="counselingForm.get('fullName')?.touched && counselingForm.get('fullName')?.invalid" class="field-error">
+                  Please enter your full name (at least 3 characters).
+                </small>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Email Address *</label>
+                <input type="email"
+                       formControlName="email"
+                       placeholder="name@example.com"
+                       class="form-input"
+                       [class.is-invalid]="counselingForm.get('email')?.touched && counselingForm.get('email')?.invalid">
+                <small *ngIf="counselingForm.get('email')?.touched && counselingForm.get('email')?.invalid" class="field-error">
+                  Please enter a valid email address.
+                </small>
+              </div>
+            </div>
+
+            <!-- Phone & City -->
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Phone / WhatsApp Number *</label>
+                <input type="tel"
+                       formControlName="phone"
+                       placeholder="e.g. 98XXXXXXXX"
+                       class="form-input"
+                       [class.is-invalid]="counselingForm.get('phone')?.touched && counselingForm.get('phone')?.invalid">
+                <small *ngIf="counselingForm.get('phone')?.touched && counselingForm.get('phone')?.invalid" class="field-error">
+                  Please enter a valid phone number.
+                </small>
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">City / Location *</label>
+                <input type="text"
+                       formControlName="city"
+                       placeholder="e.g. Kathmandu, Pokhara, Lalitpur"
+                       class="form-input">
+              </div>
+            </div>
+
+            <!-- Academic / Professional Status -->
+            <div class="form-group">
+              <label class="form-label">Current Academic / Professional Background *</label>
+              <select formControlName="currentStatus" class="form-select">
+                <option *ngFor="let opt of statusOptions" [value]="opt">{{ opt }}</option>
+              </select>
+            </div>
+
+            <!-- Area of Interest -->
+            <div class="form-group">
+              <label class="form-label">Tech Track / Domain of Interest *</label>
+              <select formControlName="domainInterest" class="form-select">
+                <option *ngFor="let domain of domainOptions" [value]="domain">{{ domain }}</option>
+              </select>
+            </div>
+
+            <!-- Preferred Session Mode -->
+            <div class="form-group">
+              <label class="form-label">Consultation Mode *</label>
+              <div class="radio-pill-group">
+                <label class="radio-pill" [class.selected]="counselingForm.get('sessionMode')?.value === 'Online 1-on-1 Google Meet'">
+                  <input type="radio" formControlName="sessionMode" value="Online 1-on-1 Google Meet">
+                  <i class="fa-solid fa-video"></i> Online 1-on-1 Google Meet
+                </label>
+                <label class="radio-pill" [class.selected]="counselingForm.get('sessionMode')?.value === 'In-Person at Techspark Academy (Kathmandu)'">
+                  <input type="radio" formControlName="sessionMode" value="In-Person at Techspark Academy (Kathmandu)">
+                  <i class="fa-solid fa-location-dot"></i> In-Person (Kathmandu Office)
+                </label>
+                <label class="radio-pill" [class.selected]="counselingForm.get('sessionMode')?.value === 'Direct Phone Call'">
+                  <input type="radio" formControlName="sessionMode" value="Direct Phone Call">
+                  <i class="fa-solid fa-phone"></i> Direct Phone Call
+                </label>
+              </div>
+            </div>
+
+            <!-- Date & Preferred Time -->
+            <div class="form-row">
+              <div class="form-group flex-1">
+                <label class="form-label">Preferred Date *</label>
+                <input type="date" formControlName="preferredDate" class="form-input">
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Preferred Time Slot *</label>
+                <select formControlName="preferredTime" class="form-select">
+                  <option *ngFor="let slot of timeSlots" [value]="slot">{{ slot }}</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Questions / Notes -->
+            <div class="form-group">
+              <label class="form-label">Specific questions or goals you'd like to discuss (Optional)</label>
+              <textarea formControlName="notes" rows="3" placeholder="e.g. Which framework is best for freshers? Can I transition from civil engineering to web development?" class="form-textarea"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" [disabled]="isSubmitting" class="btn btn-primary submit-btn">
+              <span *ngIf="!isSubmitting"><i class="fa-solid fa-paper-plane"></i> Confirm &amp; Book Free Consultation</span>
+              <span *ngIf="isSubmitting"><i class="fa-solid fa-circle-notch fa-spin"></i> Reserving Slot...</span>
+            </button>
+            <p class="privacy-note"><i class="fa-solid fa-lock"></i> Your information is 100% confidential. No spam guaranteed.</p>
+          </form>
+        </div>
+
+        <!-- Right: Benefits & What to Expect Sidebar -->
+        <div class="benefits-sidebar">
+          <div class="sidebar-card highlight-card">
+            <h3><i class="fa-solid fa-gift"></i> What You Receive</h3>
+            <ul class="benefit-list">
+              <li>
+                <div class="b-icon"><i class="fa-solid fa-compass"></i></div>
+                <div>
+                  <strong>Personalized IT Career Roadmap</strong>
+                  <p>Understand which programming languages and tools match your background.</p>
+                </div>
+              </li>
+              <li>
+                <div class="b-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div>
+                  <strong>Market Salary &amp; Demand Insights</strong>
+                  <p>Realistic data on entry-level and mid-level developer packages in Nepal and remote markets.</p>
+                </div>
+              </li>
+              <li>
+                <div class="b-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <div>
+                  <strong>Live Curriculum &amp; Project Review</strong>
+                  <p>Walk through real-world capstone projects built during training.</p>
+                </div>
+              </li>
+              <li>
+                <div class="b-icon"><i class="fa-solid fa-percent"></i></div>
+                <div>
+                  <strong>Scholarship &amp; Early Bird Eligibility</strong>
+                  <p>Check available discounts and installment payment plans.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card counselor-card">
+            <div class="counselor-badge">
+              <div class="mentor-avatar">
+                <i class="fa-solid fa-user-tie"></i>
+              </div>
+              <div>
+                <strong>Expert Tech Mentors</strong>
+                <span>Senior Software Architects with 8+ yrs industry experience</span>
+              </div>
+            </div>
+            <div class="counselor-stat-row">
+              <div class="c-stat">
+                <strong>1,500+</strong>
+                <small>Students Counseled</small>
+              </div>
+              <div class="c-stat">
+                <strong>4.9/5</strong>
+                <small>Mentorship Rating</small>
+              </div>
+              <div class="c-stat">
+                <strong>30 Mins</strong>
+                <small>Dedicated 1-on-1</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick WhatsApp Card -->
+          <div class="sidebar-card direct-connect-card">
+            <h4>Need Quick Help Right Now?</h4>
+            <p>Connect immediately with our admissions desk on WhatsApp.</p>
+            <a href="https://wa.me/9779800000000?text=Hello%20Techspark,%20I%20would%20like%20to%20get%20instant%20career%20counseling%20advice."
+               target="_blank"
+               rel="noopener noreferrer"
+               class="btn btn-whatsapp full-width">
+              <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp Now
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</div>

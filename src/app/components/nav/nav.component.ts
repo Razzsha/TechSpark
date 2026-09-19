@@ -17,7 +17,14 @@ export class NavComponent {
 
   mobileOpen = false;
   dropdownOpen = false;
+  workForDropdownOpen = false;
   isScrolled = false;
+
+  weWorkForLinks = [
+    { label: 'Academic', route: '/academic', desc: 'Colleges, Universities & Bootcamps', icon: 'fa-graduation-cap' },
+    { label: 'Corporate', route: '/corporate', desc: 'Enterprise Upskilling & B2B Training', icon: 'fa-building' },
+    { label: 'Government', route: '/government', desc: 'GovTech, Digital Nepal & Public Sector', icon: 'fa-landmark' }
+  ];
 
   categoryLinks = [
     { label: 'All Professional Courses', route: '/courses', queryParams: { category: 'all' } },
@@ -47,6 +54,14 @@ export class NavComponent {
       this.dropdownOpen = open;
     } else {
       this.dropdownOpen = !this.dropdownOpen;
+    }
+  }
+
+  toggleWorkForDropdown(open?: boolean): void {
+    if (open !== undefined) {
+      this.workForDropdownOpen = open;
+    } else {
+      this.workForDropdownOpen = !this.workForDropdownOpen;
     }
   }
 

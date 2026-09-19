@@ -1,0 +1,73 @@
+<div class="academic-page">
+  <!-- Hero Section -->
+  <section class="academic-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> WE WORK FOR ACADEMIA &amp; HIGHER EDUCATION</div>
+      <h1>Bridging Academic Theory with Real-World Industry Skills</h1>
+      <p class="lead">Partnering with universities, engineering colleges, and IT faculties across Nepal to produce job-ready tech graduates through curriculum modernizations, bootcamps, and placement drives.</p>
+      
+      <div class="hero-actions mt-32">
+        <a routerLink="/counseling" class="btn btn-spark">
+          <i class="fa-solid fa-handshake"></i> Partner with Techspark
+        </a>
+        <a routerLink="/courses" class="btn btn-ghost-light">
+          <i class="fa-solid fa-book-open"></i> Explore Student Curriculum
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <section class="academic-stats-band">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat-box" *ngFor="let s of stats">
+          <h3>{{ s.value }}</h3>
+          <p>{{ s.label }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs & Offerings -->
+  <section class="academic-programs padding-80">
+    <div class="wrap">
+      <div class="section-head text-center mx-auto">
+        <div class="kicker center"><span class="bar"></span> ACADEMIC COLLABORATION INITIATIVES</div>
+        <h2>Empowering Students &amp; Faculty Alike</h2>
+        <p>We work collaboratively with institutional leadership to equip students with practical skills demanded by top tech companies.</p>
+      </div>
+
+      <div class="programs-grid">
+        <div class="program-card" *ngFor="let p of programs">
+          <div class="p-icon-wrap">
+            <i class="fa-solid" [ngClass]="p.icon"></i>
+          </div>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Academic CTA Banner -->
+  <section class="academic-cta padding-80">
+    <div class="wrap">
+      <div class="cta-inner">
+        <div>
+          <h2>Want to bring Techspark workshops to your campus?</h2>
+          <p>Schedule a collaboration meeting with our academic partnerships team.</p>
+        </div>
+        <div class="cta-btns">
+          <a routerLink="/counseling" class="btn btn-primary">Schedule Campus Discussion</a>
+          <a href="https://wa.me/9779800000000?text=Hello%20Techspark,%20we%20would%20like%20to%20discuss%20an%20academic%20partnership%20for%20our%20college."
+             target="_blank"
+             rel="noopener noreferrer"
+             class="btn btn-whatsapp">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

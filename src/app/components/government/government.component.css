@@ -1,0 +1,163 @@
+.government-page {
+  background: var(--paper);
+}
+
+.government-hero {
+  background: linear-gradient(180deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+  color: #fff;
+  padding: 70px 0 80px;
+}
+.government-hero h1 {
+  color: #fff;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  max-width: 850px;
+  margin: 0 auto 16px;
+}
+.government-hero .lead {
+  color: var(--on-dark-soft);
+  max-width: 740px;
+  margin: 0 auto;
+  font-size: 16.5px;
+}
+.kicker.center {
+  justify-content: center;
+  color: var(--spark);
+}
+.mt-32 { margin-top: 32px; }
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn-spark {
+  background: var(--spark);
+  color: var(--indigo-deep);
+  font-weight: 700;
+}
+.btn-spark:hover {
+  background: var(--spark-deep);
+  transform: translateY(-2px);
+}
+.btn-ghost-light {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+}
+.btn-ghost-light:hover {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+.gov-stats-band {
+  background: var(--paper-alt);
+  border-bottom: 1px solid var(--line);
+  padding: 30px 0;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+.stat-box h3 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--indigo);
+  margin-bottom: 4px;
+}
+.stat-box p {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.padding-80 { padding: 80px 0; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+.program-card {
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-m);
+  padding: 36px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.program-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+  border-color: var(--indigo);
+}
+.p-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(47, 184, 198, 0.12);
+  color: var(--teal-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.program-card h3 {
+  font-size: 20px;
+  color: var(--indigo);
+  margin-bottom: 12px;
+}
+.program-card p {
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.gov-cta {
+  background: var(--paper-alt);
+  border-top: 1px solid var(--line);
+}
+.cta-inner {
+  background: linear-gradient(135deg, var(--indigo) 0%, var(--indigo-deep) 100%);
+  border-radius: var(--radius-l);
+  padding: 48px;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+}
+.cta-inner h2 {
+  color: #fff;
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+.cta-inner p {
+  color: var(--on-dark-soft);
+  font-size: 15px;
+}
+.cta-btns {
+  display: flex;
+  gap: 14px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+}
+.btn-whatsapp:hover {
+  background: #1EBE5D;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .programs-grid { grid-template-columns: 1fr; }
+  .cta-inner { flex-direction: column; text-align: center; }
+  .cta-btns { justify-content: center; }
+}

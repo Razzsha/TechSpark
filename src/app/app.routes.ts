@@ -57,6 +57,25 @@ export const routes: Routes = [
     title: 'Contact Us | Techspark Technology'
   },
   {
+    path: 'counseling',
+    loadComponent: () => import('./components/counseling/counseling.component').then(m => m.CounselingComponent),
+    title: 'Book a Free Tech & Career Consulting | Techspark'
+  },
+  {
+    path: 'free-consulting',
+    redirectTo: 'counseling'
+  },
+  {
+    path: 'academic',
+    loadComponent: () => import('./components/academic/academic.component').then(m => m.AcademicComponent),
+    title: 'Academic Partnerships & University Programs | Techspark'
+  },
+  {
+    path: 'government',
+    loadComponent: () => import('./components/government/government.component').then(m => m.GovernmentComponent),
+    title: 'GovTech & Public Sector Tech Training | Techspark'
+  },
+  {
     path: '**',
     redirectTo: ''
   }
