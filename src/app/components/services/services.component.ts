@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-services',
@@ -10,10 +11,27 @@ import { RouterLink } from '@angular/router';
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.css']
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit {
   private fb = inject(FormBuilder);
+  private seoService = inject(SeoService);
+
   modalOpen = false;
   quoteSubmitted = false;
+
+  ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'Custom Software Development & IT Services | Techspark Technology',
+      description: 'End-to-end enterprise web portals, mobile apps (Flutter), Generative AI integration, and DevOps cloud infrastructure from Kathmandu, Nepal.',
+      keywords: ['software development company Nepal', 'custom web app development Kathmandu', 'mobile app development Nepal', 'AI software studio'],
+      canonicalUrl: 'https://techspark.edu.np/services'
+    });
+
+    const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Services', path: '/services' }
+    ]);
+    this.seoService.setStructuredData(breadcrumbs);
+  }
 
   quoteForm: FormGroup = this.fb.group({
     clientName: ['', Validators.required],

@@ -12,8 +12,8 @@
         <span class="sep">|</span>
         <a routerLink="/career-quiz" class="top-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Career Quiz</a>
         <span class="sep">|</span>
-        <a routerLink="/corporate" class="top-link"><i class="fa-solid fa-building"></i> Corporate</a>
-        <span class="sep">|</span>
+        <!-- <a routerLink="/corporate" class="top-link"><i class="fa-solid fa-building"></i> Corporate</a>
+        <span class="sep">|</span> -->
         <a routerLink="/placements" class="top-link"><i class="fa-solid fa-user-check"></i> Placements</a>
         <span class="sep">|</span>
 
@@ -44,10 +44,18 @@
           <span class="brand-tag">ACADEMY & TECH</span>
         </div>
       </a>
+      <!-- <a routerLink="/" (click)="closeMobile()">
+  <img
+    src="assets/"
+    alt="Techspark Academy & Tech"
+    width="150"
+    height="50"
+  />
+</a> -->
 
       <!-- Desktop Nav Menu -->
       <nav class="desktop-menu">
-        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">{{ t('nav.home') }}</a>
+        <!-- <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">{{ t('nav.home') }}</a> -->
 
         <!-- Courses Megamenu Dropdown -->
         <div class="nav-item dropdown-trigger" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
@@ -92,7 +100,7 @@
         </div>
 
         <a routerLink="/services" routerLinkActive="active" class="nav-item">{{ t('nav.services') }}</a>
-        <a routerLink="/placements" routerLinkActive="active" class="nav-item">Placements</a>
+        <!-- <a routerLink="/placements" routerLinkActive="active" class="nav-item">Placements</a> -->
         <a routerLink="/counseling" routerLinkActive="active" class="nav-item nav-highlight">
           <i class="fa-regular fa-calendar-check"></i> Free Consulting
         </a>

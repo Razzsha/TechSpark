@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CourseService } from '../../services/course.service';
+import { SeoService } from '../../services/seo.service';
 import { Course } from '../../models/course.model';
 
 @Component({
@@ -12,14 +13,13 @@ import { Course } from '../../models/course.model';
   styleUrls: ['./course-detail.component.css']
 })
 export class CourseDetailComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private courseService = inject(CourseService);
+  private seoService = inject(SeoService);
+
   course: Course | undefined;
   activeTab: 'overview' | 'syllabus' | 'outcomes' | 'batches' = 'overview';
   openModuleIndex: number = 0;
-
-  constructor(
-    private route: ActivatedRoute,
-    private courseService: CourseService
-  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -27,6 +27,28 @@ export class CourseDetailComponent implements OnInit {
       if (id) {
         this.courseService.getCourseByIdOrSlug(id).subscribe(c => {
           this.course = c;
+          if (c) {
+            this.seoService.setSeoData({
+              title: `${c.title} Training Course Kathmandu | Techspark Academy`,
+              description: `${c.subtitle}. Complete ${c.duration} hands-on curriculum with real capstone projects and placement assistance in Nepal.`,
+              keywords: [
+                c.title,
+                `${c.title} Nepal`,
+                `${c.title} syllabus and fee Kathmandu`,
+                `${c.categoryLabel} training`,
+                'Techspark Academy'
+              ],
+              canonicalUrl: `https://techspark.edu.np/course/${c.slug}`
+            });
+
+            const courseSchema = this.seoService.getCourseSchema(c);
+            const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+              { name: 'Home', path: '/' },
+              { name: 'Courses', path: '/courses' },
+              { name: c.title, path: `/course/${c.slug}` }
+            ]);
+            this.seoService.setStructuredData([courseSchema, breadcrumbs]);
+          }
         });
       }
     });

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 interface VerifiedCertificate {
   id: string;
@@ -21,6 +22,9 @@ interface VerifiedCertificate {
   styleUrls: ['./verify-certificate.component.css']
 })
 export class VerifyCertificateComponent implements OnInit {
+  private route = inject(ActivatedRoute);
+  private seoService = inject(SeoService);
+
   certIdInput = '';
   searchAttempted = false;
   verifiedData?: VerifiedCertificate;
@@ -55,9 +59,20 @@ export class VerifyCertificateComponent implements OnInit {
     }
   };
 
-  constructor(private route: ActivatedRoute) {}
-
   ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'Online Certificate & Credential Verification | Techspark Nepal',
+      description: 'Instantly verify official Techspark Skill Academy graduate credentials, course completion records, and ISO-9001 certified student certificates.',
+      keywords: ['verify certificate Techspark', 'certificate validation Nepal', 'student credentials verification Kathmandu'],
+      canonicalUrl: 'https://techspark.edu.np/verify-certificate'
+    });
+
+    const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Verify Certificate', path: '/verify-certificate' }
+    ]);
+    this.seoService.setStructuredData(breadcrumbs);
+
     this.route.queryParams.subscribe(params => {
       const id = params['id'];
       if (id) {

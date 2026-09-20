@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { EnrollmentService } from '../../services/enrollment.service';
+import { SeoService } from '../../services/seo.service';
 import { Course, EnrollmentRequest } from '../../models/course.model';
 
 @Component({
@@ -17,6 +18,7 @@ export class EnrollComponent implements OnInit {
   private fb = inject(FormBuilder);
   private courseService = inject(CourseService);
   private enrollmentService = inject(EnrollmentService);
+  private seoService = inject(SeoService);
   private route = inject(ActivatedRoute);
 
   currentStep = 1;
@@ -52,6 +54,19 @@ export class EnrollComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'Online Admission & Course Enrollment | Techspark Academy Nepal',
+      description: 'Apply online for upcoming morning, day, and evening IT batches in Kathmandu. Instant application tracking and flexible seat reservation.',
+      keywords: ['IT course admission Kathmandu', 'enroll software training Nepal', 'Techspark enrollment online'],
+      canonicalUrl: 'https://techspark.edu.np/enroll'
+    });
+
+    const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Enroll', path: '/enroll' }
+    ]);
+    this.seoService.setStructuredData(breadcrumbs);
+
     this.courseService.getCourses().subscribe(courses => {
       this.coursesList = courses;
 

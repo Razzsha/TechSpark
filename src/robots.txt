@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow internal API endpoints if any
+Disallow: /admin/
+Disallow: /*?*query=
+
+# Sitemaps
+Sitemap: https://techspark.edu.np/sitemap.xml

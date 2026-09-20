@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 export interface CounselingBooking {
   id: string;
@@ -27,6 +28,7 @@ export interface CounselingBooking {
 })
 export class CounselingComponent implements OnInit {
   private fb = inject(FormBuilder);
+  private seoService = inject(SeoService);
 
   isSubmitting = false;
   bookingSubmitted = false;
@@ -73,6 +75,19 @@ export class CounselingComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'Book a Free 1-on-1 Tech & Career Counseling Session | Techspark',
+      description: 'Get free expert career advice from senior software engineers. Discuss course roadmaps, career transitions, salary expectations, and placement assistance in Nepal.',
+      keywords: ['free IT counseling Nepal', 'career guidance Kathmandu', 'IT courses consulting', 'career switch to tech Nepal'],
+      canonicalUrl: 'https://techspark.edu.np/counseling'
+    });
+
+    const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Free Consulting', path: '/counseling' }
+    ]);
+    this.seoService.setStructuredData(breadcrumbs);
+
     // Default preferred date to tomorrow's date
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);

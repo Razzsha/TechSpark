@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 interface QuizQuestion {
   id: number;
@@ -24,11 +25,28 @@ interface RecommendedCourse {
   templateUrl: './career-quiz.component.html',
   styleUrls: ['./career-quiz.component.css']
 })
-export class CareerQuizComponent {
+export class CareerQuizComponent implements OnInit {
+  private seoService = inject(SeoService);
+
   currentStep = 1;
   selectedBackground = '';
   selectedGoal = '';
   selectedInterest = '';
+
+  ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'Interactive IT Career Path Finder & Skill Quiz | Techspark',
+      description: 'Take our 1-minute tech career assessment quiz to find your ideal programming, AI, design, or cloud engineering learning track.',
+      keywords: ['IT career quiz Nepal', 'which programming language to learn quiz', 'best tech career path finder'],
+      canonicalUrl: 'https://techspark.edu.np/career-quiz'
+    });
+
+    const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Career Quiz', path: '/career-quiz' }
+    ]);
+    this.seoService.setStructuredData(breadcrumbs);
+  }
 
   questions: QuizQuestion[] = [
     {

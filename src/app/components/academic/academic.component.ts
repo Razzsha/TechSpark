@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-academic',
@@ -9,7 +10,24 @@ import { RouterLink } from '@angular/router';
   templateUrl: './academic.component.html',
   styleUrls: ['./academic.component.css']
 })
-export class AcademicComponent {
+export class AcademicComponent implements OnInit {
+  private seoService = inject(SeoService);
+
+  ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'Academic Partnerships & College IT Bootcamps | Techspark Nepal',
+      description: 'Techspark partners with colleges and universities to provide industry-standard student finish-school bootcamps, faculty development, and placement drives.',
+      keywords: ['college IT training Nepal', 'university tech partnership Kathmandu', 'student coding bootcamp Nepal'],
+      canonicalUrl: 'https://techspark.edu.np/academic'
+    });
+
+    const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+      { name: 'Home', path: '/' },
+      { name: 'We Work For', path: '/' },
+      { name: 'Academic', path: '/academic' }
+    ]);
+    this.seoService.setStructuredData(breadcrumbs);
+  }
   programs = [
     {
       title: 'College & University MoUs',

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-government',
@@ -9,7 +10,24 @@ import { RouterLink } from '@angular/router';
   templateUrl: './government.component.html',
   styleUrls: ['./government.component.css']
 })
-export class GovernmentComponent {
+export class GovernmentComponent implements OnInit {
+  private seoService = inject(SeoService);
+
+  ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'GovTech & Public Sector Tech Training | Techspark Nepal',
+      description: 'Capacity building, cybersecurity compliance, and Digital Nepal initiative training for government bodies, public utilities, and civil services.',
+      keywords: ['GovTech training Nepal', 'Digital Nepal initiative tech', 'public sector IT capacity building Kathmandu'],
+      canonicalUrl: 'https://techspark.edu.np/government'
+    });
+
+    const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+      { name: 'Home', path: '/' },
+      { name: 'We Work For', path: '/' },
+      { name: 'Government', path: '/government' }
+    ]);
+    this.seoService.setStructuredData(breadcrumbs);
+  }
   govInitiatives = [
     {
       title: 'Digital Nepal & Public Sector Capacity Building',

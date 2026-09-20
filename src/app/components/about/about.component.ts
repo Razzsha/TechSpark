@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-about',
@@ -9,7 +10,23 @@ import { RouterLink } from '@angular/router';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit {
+  private seoService = inject(SeoService);
+
+  ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'About Techspark | Premier IT Skill Academy & Software Studio Kathmandu',
+      description: 'Learn about Techspark’s mission, ISO-9001 certified curriculum, senior engineering mentors, and industry-backed software training in Nepal.',
+      keywords: ['about Techspark Nepal', 'IT training institute Putalisadak Kathmandu', 'software engineering mentors Nepal'],
+      canonicalUrl: 'https://techspark.edu.np/about'
+    });
+
+    const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+      { name: 'Home', path: '/' },
+      { name: 'About Us', path: '/about' }
+    ]);
+    this.seoService.setStructuredData(breadcrumbs);
+  }
   coreValues = [
     { title: 'Practical Learning', desc: '100% project-driven training with real enterprise codebases and Git workflows.', icon: 'fa-laptop-code' },
     { title: 'Industry Experts', desc: 'Mentors with 5+ years of active software engineering experience in top IT firms.', icon: 'fa-user-tie' },

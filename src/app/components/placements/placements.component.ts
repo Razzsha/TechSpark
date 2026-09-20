@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-placements',
@@ -10,10 +11,26 @@ import { RouterLink } from '@angular/router';
   templateUrl: './placements.component.html',
   styleUrls: ['./placements.component.css']
 })
-export class PlacementsComponent {
+export class PlacementsComponent implements OnInit {
   private fb = inject(FormBuilder);
+  private seoService = inject(SeoService);
 
   recruiterSubmitted = false;
+
+  ngOnInit(): void {
+    this.seoService.setSeoData({
+      title: 'Graduate Placements, Hiring Network & Success Stories | Techspark',
+      description: '94% Placement Rate. See where Techspark alumni work — Leapfrog, F1Soft, Deerhold, Fusemachines, and hire certified developers.',
+      keywords: ['IT job placements Kathmandu', 'hire developers Nepal', 'Techspark alumni reviews and success stories'],
+      canonicalUrl: 'https://techspark.edu.np/placements'
+    });
+
+    const breadcrumbs = this.seoService.getBreadcrumbsSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Placements', path: '/placements' }
+    ]);
+    this.seoService.setStructuredData(breadcrumbs);
+  }
 
   recruiterForm: FormGroup = this.fb.group({
     companyName: ['', Validators.required],
