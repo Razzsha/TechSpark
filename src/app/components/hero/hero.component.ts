@@ -21,7 +21,7 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   @ViewChild('statsStrip') statsStripRef?: ElementRef<HTMLElement>;
 
   stats: Stat[] = [
-    { count: 500, label: 'Students trained', display: '0' },
+    { count: 2000, label: 'Students trained', display: '0' },
     { count: 60, label: 'Projects delivered', display: '0' },
     { count: 40, label: 'Hiring partners', display: '0' },
     { count: 35, label: 'Happy clients', display: '0' }
