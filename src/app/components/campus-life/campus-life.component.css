@@ -1,0 +1,197 @@
+.campus-page {
+  padding-bottom: 80px;
+}
+
+.campus-hero {
+  background: radial-gradient(circle at top center, rgba(0, 168, 150, 0.1), transparent 50%),
+              linear-gradient(180deg, var(--paper-alt) 0%, var(--paper) 100%);
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--line);
+}
+
+.campus-hero h1 {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--indigo-deep);
+  margin: 16px 0 12px;
+}
+
+.hero-subtitle {
+  font-size: 17px;
+  color: var(--text-soft);
+  max-width: 720px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.section-head {
+  margin-bottom: 48px;
+}
+
+.section-head h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--indigo-deep);
+  margin-top: 8px;
+}
+
+.section-head p {
+  color: var(--text-soft);
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+/* Facilities Grid */
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+
+.facility-card {
+  background: var(--paper-alt);
+  padding: 32px 28px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  transition: all 0.2s ease;
+}
+
+.facility-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--teal-deep);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+}
+
+.fac-icon-wrap {
+  width: 54px;
+  height: 54px;
+  background: rgba(0, 168, 150, 0.12);
+  color: var(--teal-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.facility-card h3 {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--indigo-deep);
+  margin-bottom: 10px;
+}
+
+.facility-card p {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+/* Gallery */
+.bg-alt {
+  background: var(--paper);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.gallery-card {
+  background: var(--paper-alt);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  transition: all 0.2s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.gallery-img-wrap {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.gallery-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.gallery-card:hover .gallery-img-wrap img {
+  transform: scale(1.05);
+}
+
+.gallery-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(17, 21, 58, 0.8);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.gallery-info {
+  padding: 16px;
+}
+
+.gallery-info h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--indigo-deep);
+}
+
+/* Visit CTA */
+.cta-box {
+  background: linear-gradient(135deg, var(--indigo-deep) 0%, #151d45 100%);
+  color: #fff;
+  padding: 56px 32px;
+  border-radius: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cta-box h2 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.cta-box p {
+  color: #c7cad9;
+  font-size: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .campus-hero h1 { font-size: 28px; }
+  .cta-box { padding: 36px 20px; }
+  .cta-box h2 { font-size: 24px; }
+}

@@ -3,8 +3,13 @@
   <div class="top-bar">
     <div class="wrap top-bar-content">
       <div class="top-left">
-        <span class="badge-hot">HOT</span>
-        <span>Admissions Open for New Evening & Morning Batches!</span>
+        <a href="mailto:info@techspark.com.np" class="top-link">
+          <i class="fa-solid fa-envelope"></i> info@techspark.com.np
+        </a>
+        <span class="sep">|</span>
+        <a href="tel:+9779800000000" class="top-link">
+          <i class="fa-solid fa-phone"></i> +977-9821884720
+        </a>
       </div>
       <div class="top-right">
         <!-- Quick Portal Links -->
@@ -12,10 +17,10 @@
         <span class="sep">|</span>
         <a routerLink="/career-quiz" class="top-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Career Quiz</a>
         <span class="sep">|</span>
-        <!-- <a routerLink="/corporate" class="top-link"><i class="fa-solid fa-building"></i> Corporate</a>
-        <span class="sep">|</span> -->
         <a routerLink="/placements" class="top-link"><i class="fa-solid fa-user-check"></i> Placements</a>
         <span class="sep">|</span>
+        <!-- <a routerLink="/careers" class="top-link tutor-top-link"><i class="fa-solid fa-chalkboard-user"></i> Teach With Us</a>
+        <span class="sep">|</span> -->
 
         <!-- Theme Toggle Button -->
         <button class="top-btn" (click)="themeService.toggleTheme()" [title]="themeService.isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
@@ -33,36 +38,19 @@
   <!-- Main Navbar -->
   <div class="nav-container">
     <div class="wrap nav-wrap">
-      <!-- Logo -->
-      <a routerLink="/" class="brand-logo" (click)="closeMobile()">
-        <div class="logo-icon">
-          <span class="spark-dot"></span>
-          <span class="logo-text">TS</span>
-        </div>
-        <div class="brand-text">
-          <span class="brand-name">Techspark</span>
-          <span class="brand-tag">ACADEMY & TECH</span>
-        </div>
+      <!-- Logo (Anchored at start with zero extra left gap) -->
+      <a routerLink="/" class="brand-logo" (click)="closeMobile()" aria-label="Techspark Home">
+        <img src="assets/logo.png" alt="Techspark Logo" class="nav-logo-img" />
       </a>
-      <!-- <a routerLink="/" (click)="closeMobile()">
-  <img
-    src="assets/"
-    alt="Techspark Academy & Tech"
-    width="150"
-    height="50"
-  />
-</a> -->
 
-      <!-- Desktop Nav Menu -->
+      <!-- Desktop Nav Menu (Centered & Spaced Out) -->
       <nav class="desktop-menu">
-        <!-- <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-item">{{ t('nav.home') }}</a> -->
-
         <!-- Courses Megamenu Dropdown -->
         <div class="nav-item dropdown-trigger" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
           <a routerLink="/courses" routerLinkActive="active" class="dropdown-link">
             {{ t('nav.courses') }} <i class="fa-solid fa-chevron-down arrow-icon"></i>
           </a>
-          <div class="dropdown-menu" [class.show]="dropdownOpen">
+          <div class="dropdown-menu dropdown-courses" [class.show]="dropdownOpen">
             <div class="dropdown-header">Explore Learning Tracks</div>
             <div class="dropdown-grid">
               <a *ngFor="let item of categoryLinks"
@@ -90,29 +78,74 @@
                  (click)="toggleWorkForDropdown(false)"
                  class="dropdown-item">
                 <i class="fa-solid item-icon" [ngClass]="wf.icon"></i>
-                <div class="wf-item-text">
-                  <strong class="wf-title">{{ wf.label }}</strong>
-                  <small class="wf-desc">{{ wf.desc }}</small>
+                <div class="menu-item-text">
+                  <strong class="item-title">{{ wf.label }}</strong>
+                  <small class="item-desc">{{ wf.desc }}</small>
                 </div>
               </a>
             </div>
           </div>
         </div>
 
-        <a routerLink="/services" routerLinkActive="active" class="nav-item">{{ t('nav.services') }}</a>
-        <!-- <a routerLink="/placements" routerLinkActive="active" class="nav-item">Placements</a> -->
+        <!-- IT Services Dropdown -->
+        <div class="nav-item dropdown-trigger" (mouseenter)="toggleServicesDropdown(true)" (mouseleave)="toggleServicesDropdown(false)">
+          <a routerLink="/services" routerLinkActive="active" class="dropdown-link">
+            IT Services <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </a>
+          <div class="dropdown-menu dropdown-services" [class.show]="servicesDropdownOpen">
+            <div class="dropdown-header">Engineering &amp; Solutions</div>
+            <div class="dropdown-grid">
+              <a *ngFor="let s of serviceLinks"
+                 [routerLink]="s.route"
+                 (click)="toggleServicesDropdown(false)"
+                 class="dropdown-item">
+                <i class="fa-solid item-icon" [ngClass]="s.icon"></i>
+                <div class="menu-item-text">
+                  <strong class="item-title">{{ s.label }}</strong>
+                  <small class="item-desc">{{ s.desc }}</small>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Careers / Tutor Recruitment -->
+        <a routerLink="/careers" routerLinkActive="active" class="nav-item">
+          Careers <span class="nav-badge">Hiring</span>
+        </a>
+
+        <!-- About Dropdown -->
+        <div class="nav-item dropdown-trigger" (mouseenter)="toggleAboutDropdown(true)" (mouseleave)="toggleAboutDropdown(false)">
+          <a routerLink="/about" routerLinkActive="active" class="dropdown-link">
+            {{ t('nav.about') }} <i class="fa-solid fa-chevron-down arrow-icon"></i>
+          </a>
+          <div class="dropdown-menu dropdown-about" [class.show]="aboutDropdownOpen">
+            <div class="dropdown-header">Discover Techspark</div>
+            <div class="dropdown-grid">
+              <a *ngFor="let ab of aboutLinks"
+                 [routerLink]="ab.route"
+                 (click)="toggleAboutDropdown(false)"
+                 class="dropdown-item">
+                <i class="fa-solid item-icon" [ngClass]="ab.icon"></i>
+                <div class="menu-item-text">
+                  <strong class="item-title">{{ ab.label }}</strong>
+                  <small class="item-desc">{{ ab.desc }}</small>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Free Consulting Nav CTA -->
         <a routerLink="/counseling" routerLinkActive="active" class="nav-item nav-highlight">
           <i class="fa-regular fa-calendar-check"></i> Free Consulting
         </a>
-        <a routerLink="/about" routerLinkActive="active" class="nav-item">{{ t('nav.about') }}</a>
+
         <a routerLink="/contact" routerLinkActive="active" class="nav-item">{{ t('nav.contact') }}</a>
       </nav>
 
-      <!-- Action CTA Buttons -->
+      <!-- Action CTA Buttons (Anchored at Far End) -->
       <div class="nav-actions">
-        <!-- <a routerLink="/counseling" class="btn btn-consulting-nav">
-          <i class="fa-solid fa-calendar-check"></i> Free Consulting
-        </a> -->
         <a routerLink="/enroll" class="btn btn-enroll">
           <i class="fa-solid fa-pen-to-square"></i> {{ t('nav.enroll') }}
         </a>
@@ -128,10 +161,11 @@
   <!-- Mobile Drawer Overlay -->
   <div class="mobile-drawer-overlay" [class.open]="mobileOpen" (click)="closeMobile()"></div>
 
+  <!-- Mobile Drawer Panel -->
   <div class="mobile-drawer" [class.open]="mobileOpen">
     <div class="mobile-drawer-header">
-      <a routerLink="/" class="brand-logo" (click)="closeMobile()">
-        <span class="brand-name">Techspark</span>
+      <a routerLink="/" class="brand-logo" (click)="closeMobile()" aria-label="Techspark Home">
+        <img src="assets/logo.png" alt="Techspark Logo" class="nav-logo-img" />
       </a>
       <button class="close-btn" (click)="closeMobile()"><i class="fa-solid fa-xmark"></i></button>
     </div>
@@ -159,9 +193,30 @@
         <i class="fa-solid fa-landmark"></i> Government
       </a>
 
-      <div class="mobile-group-title">PORTALS &amp; SERVICES</div>
-      <a routerLink="/services" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
-        <i class="fa-solid fa-laptop-code"></i> {{ t('nav.services') }}
+      <!-- Mobile IT Services Group -->
+      <div class="mobile-group-title">IT SERVICES &amp; SOLUTIONS</div>
+      <a routerLink="/services" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+        <i class="fa-solid fa-laptop-code"></i> All IT Services
+      </a>
+
+      <!-- Mobile About Group -->
+      <div class="mobile-group-title">ABOUT TECHSPARK</div>
+      <a routerLink="/about" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+        <i class="fa-solid fa-circle-info"></i> Our Story &amp; Vision
+      </a>
+      <a routerLink="/mentors" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+        <i class="fa-solid fa-chalkboard-user"></i> Faculty &amp; Mentors
+      </a>
+      <a routerLink="/campus-life" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+        <i class="fa-solid fa-laptop-code"></i> Campus Life &amp; Labs
+      </a>
+      <a routerLink="/why-us" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+        <i class="fa-solid fa-shield-heart"></i> Why Techspark
+      </a>
+
+      <div class="mobile-group-title">PORTALS &amp; CAREERS</div>
+      <a routerLink="/careers" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+        <i class="fa-solid fa-chalkboard-user"></i> Careers / Teach With Us
       </a>
       <a routerLink="/verify-certificate" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
         <i class="fa-solid fa-shield-check"></i> Verify Certificate
@@ -171,9 +226,6 @@
       </a>
       <a routerLink="/placements" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
         <i class="fa-solid fa-user-check"></i> Placements
-      </a>
-      <a routerLink="/about" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
-        <i class="fa-solid fa-circle-info"></i> {{ t('nav.about') }}
       </a>
       <a routerLink="/contact" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
         <i class="fa-solid fa-location-dot"></i> {{ t('nav.contact') }}

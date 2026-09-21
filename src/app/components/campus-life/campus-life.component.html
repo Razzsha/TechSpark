@@ -1,0 +1,82 @@
+<div class="campus-page">
+  <!-- Hero Section -->
+  <section class="campus-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> IMMERSIVE LEARNING CULTURE</div>
+      <h1>Life & Innovation at Techspark Campus</h1>
+      <p class="hero-subtitle">
+        We believe developers grow fastest in an ecosystem of intense collaboration, real code sprints, and supportive mentorship. Step inside our Kathmandu tech hub.
+      </p>
+      <div class="hero-actions">
+        <a routerLink="/counseling" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-map-location-dot"></i> Schedule a Campus Visit
+        </a>
+        <a routerLink="/courses" class="btn btn-outline btn-lg">
+          <i class="fa-solid fa-book-open"></i> Browse Cohorts
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facilities Grid -->
+  <section class="facilities-section padding-80">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <div class="kicker center"><span class="bar"></span> WORLD-CLASS INFRASTRUCTURE</div>
+        <h2>Designed Specifically for Software Engineers</h2>
+        <p>Everything you need to write production code, collaborate in teams, and build portfolio projects.</p>
+      </div>
+
+      <div class="facilities-grid">
+        <div class="facility-card" *ngFor="let fac of facilities">
+          <div class="fac-icon-wrap">
+            <i class="fa-solid" [ngClass]="fac.icon"></i>
+          </div>
+          <h3>{{ fac.title }}</h3>
+          <p>{{ fac.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section padding-80 bg-alt">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <div class="kicker center"><span class="bar"></span> GLIMPSE OF TECHSPARK</div>
+        <h2>Moments of Learning &amp; Building</h2>
+        <p>From late night debugging sessions to celebration pitches on Demo Day.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-card" *ngFor="let g of gallery">
+          <div class="gallery-img-wrap">
+            <img [src]="g.image" [alt]="g.title" loading="lazy">
+            <span class="gallery-tag">{{ g.tag }}</span>
+          </div>
+          <div class="gallery-info">
+            <h4>{{ g.title }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Visit CTA -->
+  <section class="visit-cta padding-80">
+    <div class="wrap">
+      <div class="cta-box text-center">
+        <h2>Experience the Vibe in Person</h2>
+        <p>Drop by our campus for a cup of coffee, meet our instructors, and get your personalized career assessment.</p>
+        <div class="cta-buttons mt-20">
+          <a routerLink="/counseling" class="btn btn-primary btn-lg">
+            <i class="fa-regular fa-calendar-check"></i> Book Campus Tour &amp; Counseling
+          </a>
+          <a routerLink="/contact" class="btn btn-ghost btn-lg">
+            <i class="fa-solid fa-phone"></i> Contact Admissions Desk
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

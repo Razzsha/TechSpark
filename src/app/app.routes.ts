@@ -76,6 +76,26 @@ export const routes: Routes = [
     title: 'GovTech & Public Sector Tech Training | Techspark'
   },
   {
+    path: 'careers',
+    loadComponent: () => import('./components/careers/careers.component').then(m => m.CareersComponent),
+    title: 'Careers & Tutor Vacancies | Techspark'
+  },
+  {
+    path: 'mentors',
+    loadComponent: () => import('./components/mentors/mentors.component').then(m => m.MentorsComponent),
+    title: 'Faculty & Industry Mentors | Techspark'
+  },
+  {
+    path: 'campus-life',
+    loadComponent: () => import('./components/campus-life/campus-life.component').then(m => m.CampusLifeComponent),
+    title: 'Campus Life & Innovation Labs | Techspark'
+  },
+  {
+    path: 'why-us',
+    loadComponent: () => import('./components/why-us/why-us.component').then(m => m.WhyUsComponent),
+    title: 'Why Choose Techspark | Premier IT Academy'
+  },
+  {
     path: '**',
     redirectTo: ''
   }

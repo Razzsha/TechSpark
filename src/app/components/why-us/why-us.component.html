@@ -1,0 +1,58 @@
+<div class="why-us-page">
+  <!-- Hero Section -->
+  <section class="why-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> THE TECHSPARK ADVANTAGE</div>
+      <h1>Why Nepal's Ambitious Tech Leaders Choose Us</h1>
+      <p class="hero-subtitle">
+        We bridge the critical gap between university theory and real-world tech industry expectations through project-driven cohorts led by senior practicing engineers.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat-card" *ngFor="let s of stats">
+          <div class="stat-val">{{ s.value }}</div>
+          <div class="stat-lbl">{{ s.label }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillars Grid -->
+  <section class="pillars-section padding-80">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <div class="kicker center"><span class="bar"></span> OUR CORE PROMISES</div>
+        <h2>What Sets Techspark Apart</h2>
+        <p>Built with quality, mentorship, and tangible career outcomes at the core.</p>
+      </div>
+
+      <div class="pillars-grid">
+        <div class="pillar-card" *ngFor="let p of pillars">
+          <div class="pillar-icon-wrap">
+            <i class="fa-solid" [ngClass]="p.icon"></i>
+          </div>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="ready-cta padding-80">
+    <div class="wrap">
+      <div class="cta-banner-box text-center">
+        <h2>Ready to Level Up Your Tech Career?</h2>
+        <p>Book a free 1-on-1 career consultation with our senior advisors and choose the right learning path.</p>
+        <div class="cta-actions mt-20">
+          <a routerLink="/counseling" class="btn btn-primary btn-lg">
+            <i class="fa-regular fa-calendar-check"></i> Book Free Tech Consulting
+          </a>
+          <a routerLink="/courses" class="btn btn-outline btn-lg">
+            <i class="fa-solid fa-graduation-cap"></i> View All Courses
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

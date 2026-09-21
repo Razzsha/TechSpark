@@ -1,0 +1,64 @@
+<div class="mentors-page">
+  <!-- Hero Section -->
+  <section class="mentors-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> LEARN FROM PRACTICING ENGINEERS</div>
+      <h1>Meet Your Industry Mentors</h1>
+      <p class="hero-subtitle">
+        At Techspark, courses aren't taught by academic lecturers. You learn directly from Senior Software Engineers, AI Researchers, and Cloud Architects building live production systems.
+      </p>
+      <div class="filter-tabs">
+        <button class="tab-btn" [class.active]="activeFilter === 'all'" (click)="filterDomain('all')">All Faculty</button>
+        <button class="tab-btn" [class.active]="activeFilter === 'web'" (click)="filterDomain('web')">Full-Stack Web</button>
+        <button class="tab-btn" [class.active]="activeFilter === 'ai'" (click)="filterDomain('ai')">AI &amp; Data Science</button>
+        <button class="tab-btn" [class.active]="activeFilter === 'cloud'" (click)="filterDomain('cloud')">Cloud &amp; DevOps</button>
+        <button class="tab-btn" [class.active]="activeFilter === 'mobile'" (click)="filterDomain('mobile')">Mobile Dev</button>
+        <button class="tab-btn" [class.active]="activeFilter === 'design'" (click)="filterDomain('design')">UI/UX Design</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mentors Grid -->
+  <section class="mentors-grid-section padding-80">
+    <div class="wrap">
+      <div class="mentors-grid">
+        <div class="mentor-card" *ngFor="let m of filteredMentors">
+          <div class="mentor-header">
+            <div class="mentor-avatar">
+              <img [src]="m.image" [alt]="m.name" loading="lazy">
+              <span class="exp-badge">{{ m.experience }}</span>
+            </div>
+            <div class="mentor-info">
+              <h3 class="mentor-name">{{ m.name }}</h3>
+              <p class="mentor-role">{{ m.role }}</p>
+              <span class="mentor-company"><i class="fa-solid fa-building-circle-check"></i> {{ m.company }}</span>
+            </div>
+          </div>
+
+          <p class="mentor-bio">{{ m.bio }}</p>
+
+          <div class="skills-wrap">
+            <span class="skill-tag" *ngFor="let s of m.skills">{{ s }}</span>
+          </div>
+
+          <div class="mentor-footer">
+            <a routerLink="/counseling" class="btn btn-sm btn-outline full-width">
+              <i class="fa-regular fa-calendar-check"></i> Book 1-on-1 Guidance
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Faculty CTA -->
+  <section class="join-banner padding-60">
+    <div class="wrap text-center">
+      <h2>Are You a Senior Engineer or Tech Leader?</h2>
+      <p>Join Techspark's mentor network, teach on flexible shifts, and inspire the next cohort.</p>
+      <a routerLink="/careers" class="btn btn-primary btn-lg mt-20">
+        <i class="fa-solid fa-chalkboard-user"></i> Apply as a Mentor / Instructor
+      </a>
+    </div>
+  </section>
+</div>

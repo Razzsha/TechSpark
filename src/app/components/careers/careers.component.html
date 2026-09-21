@@ -1,0 +1,180 @@
+<div class="careers-page">
+  <!-- Hero Section -->
+  <section class="careers-hero">
+    <div class="wrap text-center">
+      <div class="kicker center"><span class="bar"></span> TEACH & INSPIRE AT TECHSPARK</div>
+      <h1>Join Our Elite IT Faculty & Mentor Community</h1>
+      <p class="hero-subtitle">
+        Shape Nepal's next generation of top tech talent. We are hiring passionate Senior Software Engineers, AI Researchers, DevOps Architects, and UI/UX Designers as Mentors and Instructors.
+      </p>
+      <div class="hero-stats">
+        <div class="stat-pill"><i class="fa-solid fa-users"></i> <strong>50+</strong> Instructors</div>
+        <div class="stat-pill"><i class="fa-solid fa-graduation-cap"></i> <strong>5,000+</strong> Graduates</div>
+        <div class="stat-pill"><i class="fa-solid fa-clock"></i> <strong>Flexible</strong> Shifts (AM/PM)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Perks & Benefits -->
+  <section class="perks-section padding-80">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <div class="kicker center"><span class="bar"></span> WHY TEACH WITH US</div>
+        <h2>Empower Your Career While Empowering Others</h2>
+        <p>Teach without quitting your full-time job. Share real-world production engineering practices.</p>
+      </div>
+
+      <div class="perks-grid">
+        <div class="perk-card" *ngFor="let perk of perks">
+          <div class="perk-icon-wrap">
+            <i class="fa-solid" [ngClass]="perk.icon"></i>
+          </div>
+          <h3>{{ perk.title }}</h3>
+          <p>{{ perk.desc }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Active Openings -->
+  <section class="openings-section padding-80 bg-alt">
+    <div class="wrap">
+      <div class="section-head text-center">
+        <div class="kicker center"><span class="bar"></span> CURRENT OPENINGS</div>
+        <h2>Open Instructor &amp; Mentor Positions</h2>
+        <p>Explore high-impact teaching positions available across our Kathmandu campus and hybrid cohorts.</p>
+      </div>
+
+      <div class="openings-grid">
+        <div class="opening-card" *ngFor="let op of openings">
+          <div class="opening-top">
+            <span class="badge-role">{{ op.type }}</span>
+            <span class="badge-exp">{{ op.exp }}</span>
+          </div>
+          <h3 class="opening-title">{{ op.title }}</h3>
+          <p class="opening-desc">{{ op.desc }}</p>
+          <div class="opening-footer">
+            <span class="location"><i class="fa-solid fa-location-dot"></i> {{ op.location }}</span>
+            <a href="#apply-section" class="btn btn-sm btn-outline">Apply Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Application Form Section -->
+  <section id="apply-section" class="apply-section padding-80">
+    <div class="wrap">
+      <div class="apply-card">
+        <div class="apply-header text-center">
+          <div class="kicker center"><span class="bar"></span> APPLICATION FORM</div>
+          <h2>Apply to Become an Instructor / Mentor</h2>
+          <p>Fill out the application below and our Academic Dean will reach out within 48 hours for a quick technical sync.</p>
+        </div>
+
+        <!-- Success Message -->
+        <div class="success-banner text-center" *ngIf="applicationSubmitted">
+          <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+          <h3>Application Received Successfully!</h3>
+          <p>
+            Thank you, <strong>{{ applicationResult?.fullName }}</strong>! Your application ID is
+            <code>{{ applicationResult?.id }}</code>. Our academic coordinator will review your profile and connect via <strong>{{ applicationResult?.email }}</strong>.
+          </p>
+          <button (click)="resetForm()" class="btn btn-outline mt-20">Submit Another Application</button>
+        </div>
+
+        <!-- Form -->
+        <form [formGroup]="tutorForm" (ngSubmit)="onSubmit()" *ngIf="!applicationSubmitted" class="tutor-form">
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">Full Name *</label>
+              <input type="text" formControlName="fullName" placeholder="e.g. Aarav Sharma" class="form-input"
+                     [class.invalid]="tutorForm.get('fullName')?.invalid && tutorForm.get('fullName')?.touched">
+              <small class="error-msg" *ngIf="tutorForm.get('fullName')?.invalid && tutorForm.get('fullName')?.touched">Please enter your full name.</small>
+            </div>
+
+            <div class="form-group flex-1">
+              <label class="form-label">Email Address *</label>
+              <input type="email" formControlName="email" placeholder="name@domain.com" class="form-input"
+                     [class.invalid]="tutorForm.get('email')?.invalid && tutorForm.get('email')?.touched">
+              <small class="error-msg" *ngIf="tutorForm.get('email')?.invalid && tutorForm.get('email')?.touched">Valid email is required.</small>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">Phone / WhatsApp *</label>
+              <input type="text" formControlName="phone" placeholder="+977 98XXXXXXXX" class="form-input"
+                     [class.invalid]="tutorForm.get('phone')?.invalid && tutorForm.get('phone')?.touched">
+              <small class="error-msg" *ngIf="tutorForm.get('phone')?.invalid && tutorForm.get('phone')?.touched">Valid phone number required.</small>
+            </div>
+
+            <div class="form-group flex-1">
+              <label class="form-label">Teaching Domain / Specialization *</label>
+              <select formControlName="domain" class="form-select">
+                <option *ngFor="let d of domains" [value]="d">{{ d }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">Total Industry Experience *</label>
+              <select formControlName="experienceYears" class="form-select">
+                <option *ngFor="let exp of experienceLevels" [value]="exp">{{ exp }}</option>
+              </select>
+            </div>
+
+            <div class="form-group flex-1">
+              <label class="form-label">Preferred Teaching Shift *</label>
+              <select formControlName="preferredShift" class="form-select">
+                <option *ngFor="let shift of shifts" [value]="shift">{{ shift }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label">LinkedIn Profile URL *</label>
+              <input type="url" formControlName="linkedinUrl" placeholder="https://linkedin.com/in/username" class="form-input"
+                     [class.invalid]="tutorForm.get('linkedinUrl')?.invalid && tutorForm.get('linkedinUrl')?.touched">
+              <small class="error-msg" *ngIf="tutorForm.get('linkedinUrl')?.invalid && tutorForm.get('linkedinUrl')?.touched">LinkedIn URL is required.</small>
+            </div>
+
+            <div class="form-group flex-1">
+              <label class="form-label">GitHub / Portfolio URL (Optional)</label>
+              <input type="url" formControlName="githubUrl" placeholder="https://github.com/username" class="form-input">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Preferred Delivery Mode *</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" formControlName="mode" value="Physical in Kathmandu"> Physical (Kathmandu Campus)
+              </label>
+              <label class="radio-label">
+                <input type="radio" formControlName="mode" value="Online Live Interactive"> Online Live Interactive
+              </label>
+              <label class="radio-label">
+                <input type="radio" formControlName="mode" value="Hybrid / Flexible"> Hybrid / Flexible
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Short Note / Previous Teaching Experience (Optional)</label>
+            <textarea formControlName="coverNote" rows="3" placeholder="Tell us about your teaching style, past training experience, or production projects..." class="form-textarea"></textarea>
+          </div>
+
+          <div class="form-submit text-center mt-20">
+            <button type="submit" class="btn btn-primary btn-lg" [disabled]="isSubmitting">
+              <span *ngIf="!isSubmitting">Submit Tutor Application <i class="fa-solid fa-paper-plane"></i></span>
+              <span *ngIf="isSubmitting"><i class="fa-solid fa-spinner fa-spin"></i> Submitting Profile...</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

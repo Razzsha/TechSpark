@@ -18,6 +18,8 @@ export class NavComponent {
   mobileOpen = false;
   dropdownOpen = false;
   workForDropdownOpen = false;
+  servicesDropdownOpen = false;
+  aboutDropdownOpen = false;
   isScrolled = false;
 
   weWorkForLinks = [
@@ -36,6 +38,22 @@ export class NavComponent {
     { label: 'Digital Marketing', route: '/courses', queryParams: { category: 'marketing' } }
   ];
 
+  serviceLinks = [
+    { label: 'Enterprise Web Apps', route: '/services', desc: 'SaaS, MERN, Angular & Django systems', icon: 'fa-code' },
+    { label: 'Mobile App Development', route: '/services', desc: 'Flutter & React Native iOS/Android', icon: 'fa-mobile-screen-button' },
+    { label: 'AI & Machine Learning', route: '/services', desc: 'GenAI, LLMs, Agents & NLP models', icon: 'fa-robot' },
+    { label: 'UI/UX & Product Design', route: '/services', desc: 'Figma design systems & user testing', icon: 'fa-pen-ruler' },
+    { label: 'Cloud & DevOps Solutions', route: '/services', desc: 'AWS, Docker, K8s & CI/CD pipelines', icon: 'fa-cloud' },
+    { label: 'IT Consulting & Code Audit', route: '/services', desc: 'Architecture review & security audit', icon: 'fa-chart-pie' }
+  ];
+
+  aboutLinks = [
+    { label: 'Our Story & Vision', route: '/about', desc: 'Mission, leadership & our tech legacy', icon: 'fa-building-columns' },
+    { label: 'Faculty & Mentors', route: '/mentors', desc: 'Senior practicing engineers & scientists', icon: 'fa-chalkboard-user' },
+    // { label: 'Campus Life & Labs', route: '/campus-life', desc: 'Innovation hubs, workstations & hackathons', icon: 'fa-laptop-code' },
+    { label: 'Why Techspark', route: '/why-us', desc: '92% placement rate & verifiable credentials', icon: 'fa-shield-heart' }
+  ];
+
   @HostListener('window:scroll')
   onScroll(): void {
     this.isScrolled = window.scrollY > 20;
@@ -50,19 +68,19 @@ export class NavComponent {
   }
 
   toggleDropdown(open?: boolean): void {
-    if (open !== undefined) {
-      this.dropdownOpen = open;
-    } else {
-      this.dropdownOpen = !this.dropdownOpen;
-    }
+    this.dropdownOpen = open !== undefined ? open : !this.dropdownOpen;
   }
 
   toggleWorkForDropdown(open?: boolean): void {
-    if (open !== undefined) {
-      this.workForDropdownOpen = open;
-    } else {
-      this.workForDropdownOpen = !this.workForDropdownOpen;
-    }
+    this.workForDropdownOpen = open !== undefined ? open : !this.workForDropdownOpen;
+  }
+
+  toggleServicesDropdown(open?: boolean): void {
+    this.servicesDropdownOpen = open !== undefined ? open : !this.servicesDropdownOpen;
+  }
+
+  toggleAboutDropdown(open?: boolean): void {
+    this.aboutDropdownOpen = open !== undefined ? open : !this.aboutDropdownOpen;
   }
 
   t(key: string): string {
