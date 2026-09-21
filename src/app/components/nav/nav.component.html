@@ -8,28 +8,49 @@
         </a>
         <span class="sep">|</span>
         <a href="tel:+9779800000000" class="top-link">
-          <i class="fa-solid fa-phone"></i> +977-9821884720
+          <i class="fa-solid fa-phone"></i> +977-986-8720125
         </a>
       </div>
       <div class="top-right">
         <!-- Quick Portal Links -->
-        <a routerLink="/verify-certificate" class="top-link"><i class="fa-solid fa-shield-check"></i> Verify Certificate</a>
+        <a routerLink="/verify-certificate" class="top-link"
+          ><i class="fa-solid fa-shield-check"></i> Verify Certificate</a
+        >
         <span class="sep">|</span>
-        <a routerLink="/career-quiz" class="top-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Career Quiz</a>
+        <a routerLink="/career-quiz" class="top-link"
+          ><i class="fa-solid fa-wand-magic-sparkles"></i> Career Quiz</a
+        >
         <span class="sep">|</span>
-        <a routerLink="/placements" class="top-link"><i class="fa-solid fa-user-check"></i> Placements</a>
+        <a routerLink="/placements" class="top-link"
+          ><i class="fa-solid fa-user-check"></i> Placements</a
+        >
         <span class="sep">|</span>
         <!-- <a routerLink="/careers" class="top-link tutor-top-link"><i class="fa-solid fa-chalkboard-user"></i> Teach With Us</a>
         <span class="sep">|</span> -->
 
         <!-- Theme Toggle Button -->
-        <button class="top-btn" (click)="themeService.toggleTheme()" [title]="themeService.isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
-          <i class="fa-solid" [class.fa-sun]="themeService.isDark" [class.fa-moon]="!themeService.isDark"></i>
+        <button
+          class="top-btn"
+          (click)="themeService.toggleTheme()"
+          [title]="
+            themeService.isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'
+          "
+        >
+          <i
+            class="fa-solid"
+            [class.fa-sun]="themeService.isDark"
+            [class.fa-moon]="!themeService.isDark"
+          ></i>
         </button>
 
         <!-- Language Switcher Toggle -->
-        <button class="top-btn lang-btn" (click)="langService.toggleLanguage()" title="Switch Language">
-          <i class="fa-solid fa-globe"></i> {{ langService.currentLang === 'en' ? 'NP' : 'EN' }}
+        <button
+          class="top-btn lang-btn"
+          (click)="langService.toggleLanguage()"
+          title="Switch Language"
+        >
+          <i class="fa-solid fa-globe"></i>
+          {{ langService.currentLang === "en" ? "NP" : "EN" }}
         </button>
       </div>
     </div>
@@ -39,25 +60,44 @@
   <div class="nav-container">
     <div class="wrap nav-wrap">
       <!-- Logo (Anchored at start with zero extra left gap) -->
-      <a routerLink="/" class="brand-logo" (click)="closeMobile()" aria-label="Techspark Home">
+      <a
+        routerLink="/"
+        class="brand-logo"
+        (click)="closeMobile()"
+        aria-label="Techspark Home"
+      >
         <img src="assets/logo.png" alt="Techspark Logo" class="nav-logo-img" />
       </a>
 
       <!-- Desktop Nav Menu (Centered & Spaced Out) -->
       <nav class="desktop-menu">
         <!-- Courses Megamenu Dropdown -->
-        <div class="nav-item dropdown-trigger" (mouseenter)="toggleDropdown(true)" (mouseleave)="toggleDropdown(false)">
-          <a routerLink="/courses" routerLinkActive="active" class="dropdown-link">
-            {{ t('nav.courses') }} <i class="fa-solid fa-chevron-down arrow-icon"></i>
+        <div
+          class="nav-item dropdown-trigger"
+          (mouseenter)="toggleDropdown(true)"
+          (mouseleave)="toggleDropdown(false)"
+        >
+          <a
+            routerLink="/courses"
+            routerLinkActive="active"
+            class="dropdown-link"
+          >
+            {{ t("nav.courses") }}
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
           </a>
-          <div class="dropdown-menu dropdown-courses" [class.show]="dropdownOpen">
+          <div
+            class="dropdown-menu dropdown-courses"
+            [class.show]="dropdownOpen"
+          >
             <div class="dropdown-header">Explore Learning Tracks</div>
             <div class="dropdown-grid">
-              <a *ngFor="let item of categoryLinks"
-                 [routerLink]="item.route"
-                 [queryParams]="item.queryParams"
-                 (click)="toggleDropdown(false)"
-                 class="dropdown-item">
+              <a
+                *ngFor="let item of categoryLinks"
+                [routerLink]="item.route"
+                [queryParams]="item.queryParams"
+                (click)="toggleDropdown(false)"
+                class="dropdown-item"
+              >
                 <i class="fa-solid fa-graduation-cap item-icon"></i>
                 <span>{{ item.label }}</span>
               </a>
@@ -66,17 +106,26 @@
         </div>
 
         <!-- We Work For Dropdown -->
-        <div class="nav-item dropdown-trigger" (mouseenter)="toggleWorkForDropdown(true)" (mouseleave)="toggleWorkForDropdown(false)">
+        <div
+          class="nav-item dropdown-trigger"
+          (mouseenter)="toggleWorkForDropdown(true)"
+          (mouseleave)="toggleWorkForDropdown(false)"
+        >
           <span class="dropdown-link">
             We Work For <i class="fa-solid fa-chevron-down arrow-icon"></i>
           </span>
-          <div class="dropdown-menu dropdown-workfor" [class.show]="workForDropdownOpen">
+          <div
+            class="dropdown-menu dropdown-workfor"
+            [class.show]="workForDropdownOpen"
+          >
             <div class="dropdown-header">Sectors We Empower</div>
             <div class="dropdown-grid">
-              <a *ngFor="let wf of weWorkForLinks"
-                 [routerLink]="wf.route"
-                 (click)="toggleWorkForDropdown(false)"
-                 class="dropdown-item">
+              <a
+                *ngFor="let wf of weWorkForLinks"
+                [routerLink]="wf.route"
+                (click)="toggleWorkForDropdown(false)"
+                class="dropdown-item"
+              >
                 <i class="fa-solid item-icon" [ngClass]="wf.icon"></i>
                 <div class="menu-item-text">
                   <strong class="item-title">{{ wf.label }}</strong>
@@ -88,17 +137,30 @@
         </div>
 
         <!-- IT Services Dropdown -->
-        <div class="nav-item dropdown-trigger" (mouseenter)="toggleServicesDropdown(true)" (mouseleave)="toggleServicesDropdown(false)">
-          <a routerLink="/services" routerLinkActive="active" class="dropdown-link">
+        <div
+          class="nav-item dropdown-trigger"
+          (mouseenter)="toggleServicesDropdown(true)"
+          (mouseleave)="toggleServicesDropdown(false)"
+        >
+          <a
+            routerLink="/services"
+            routerLinkActive="active"
+            class="dropdown-link"
+          >
             IT Services <i class="fa-solid fa-chevron-down arrow-icon"></i>
           </a>
-          <div class="dropdown-menu dropdown-services" [class.show]="servicesDropdownOpen">
+          <div
+            class="dropdown-menu dropdown-services"
+            [class.show]="servicesDropdownOpen"
+          >
             <div class="dropdown-header">Engineering &amp; Solutions</div>
             <div class="dropdown-grid">
-              <a *ngFor="let s of serviceLinks"
-                 [routerLink]="s.route"
-                 (click)="toggleServicesDropdown(false)"
-                 class="dropdown-item">
+              <a
+                *ngFor="let s of serviceLinks"
+                [routerLink]="s.route"
+                (click)="toggleServicesDropdown(false)"
+                class="dropdown-item"
+              >
                 <i class="fa-solid item-icon" [ngClass]="s.icon"></i>
                 <div class="menu-item-text">
                   <strong class="item-title">{{ s.label }}</strong>
@@ -115,17 +177,31 @@
         </a>
 
         <!-- About Dropdown -->
-        <div class="nav-item dropdown-trigger" (mouseenter)="toggleAboutDropdown(true)" (mouseleave)="toggleAboutDropdown(false)">
-          <a routerLink="/about" routerLinkActive="active" class="dropdown-link">
-            {{ t('nav.about') }} <i class="fa-solid fa-chevron-down arrow-icon"></i>
+        <div
+          class="nav-item dropdown-trigger"
+          (mouseenter)="toggleAboutDropdown(true)"
+          (mouseleave)="toggleAboutDropdown(false)"
+        >
+          <a
+            routerLink="/about"
+            routerLinkActive="active"
+            class="dropdown-link"
+          >
+            {{ t("nav.about") }}
+            <i class="fa-solid fa-chevron-down arrow-icon"></i>
           </a>
-          <div class="dropdown-menu dropdown-about" [class.show]="aboutDropdownOpen">
+          <div
+            class="dropdown-menu dropdown-about"
+            [class.show]="aboutDropdownOpen"
+          >
             <div class="dropdown-header">Discover Techspark</div>
             <div class="dropdown-grid">
-              <a *ngFor="let ab of aboutLinks"
-                 [routerLink]="ab.route"
-                 (click)="toggleAboutDropdown(false)"
-                 class="dropdown-item">
+              <a
+                *ngFor="let ab of aboutLinks"
+                [routerLink]="ab.route"
+                (click)="toggleAboutDropdown(false)"
+                class="dropdown-item"
+              >
                 <i class="fa-solid item-icon" [ngClass]="ab.icon"></i>
                 <div class="menu-item-text">
                   <strong class="item-title">{{ ab.label }}</strong>
@@ -137,115 +213,241 @@
         </div>
 
         <!-- Free Consulting Nav CTA -->
-        <a routerLink="/counseling" routerLinkActive="active" class="nav-item nav-highlight">
+        <a
+          routerLink="/counseling"
+          routerLinkActive="active"
+          class="nav-item nav-highlight"
+        >
           <i class="fa-regular fa-calendar-check"></i> Free Consulting
         </a>
 
-        <a routerLink="/contact" routerLinkActive="active" class="nav-item">{{ t('nav.contact') }}</a>
+        <a routerLink="/contact" routerLinkActive="active" class="nav-item">{{
+          t("nav.contact")
+        }}</a>
       </nav>
 
       <!-- Action CTA Buttons (Anchored at Far End) -->
       <div class="nav-actions">
         <a routerLink="/enroll" class="btn btn-enroll">
-          <i class="fa-solid fa-pen-to-square"></i> {{ t('nav.enroll') }}
+          <i class="fa-solid fa-pen-to-square"></i> {{ t("nav.enroll") }}
         </a>
 
         <!-- Mobile Drawer Hamburger Toggle -->
-        <button class="hamburger-btn" (click)="toggleMobile()" aria-label="Toggle Navigation">
-          <i class="fa-solid" [class.fa-bars]="!mobileOpen" [class.fa-xmark]="mobileOpen"></i>
+        <button
+          class="hamburger-btn"
+          (click)="toggleMobile()"
+          aria-label="Toggle Navigation"
+        >
+          <i
+            class="fa-solid"
+            [class.fa-bars]="!mobileOpen"
+            [class.fa-xmark]="mobileOpen"
+          ></i>
         </button>
       </div>
     </div>
   </div>
 
   <!-- Mobile Drawer Overlay -->
-  <div class="mobile-drawer-overlay" [class.open]="mobileOpen" (click)="closeMobile()"></div>
+  <div
+    class="mobile-drawer-overlay"
+    [class.open]="mobileOpen"
+    (click)="closeMobile()"
+  ></div>
 
   <!-- Mobile Drawer Panel -->
   <div class="mobile-drawer" [class.open]="mobileOpen">
     <div class="mobile-drawer-header">
-      <a routerLink="/" class="brand-logo" (click)="closeMobile()" aria-label="Techspark Home">
+      <a
+        routerLink="/"
+        class="brand-logo"
+        (click)="closeMobile()"
+        aria-label="Techspark Home"
+      >
         <img src="assets/logo.png" alt="Techspark Logo" class="nav-logo-img" />
       </a>
-      <button class="close-btn" (click)="closeMobile()"><i class="fa-solid fa-xmark"></i></button>
+      <button class="close-btn" (click)="closeMobile()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
     </div>
 
     <div class="mobile-nav-list">
-      <a routerLink="/" (click)="closeMobile()" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="mobile-nav-item">
-        <i class="fa-solid fa-house"></i> {{ t('nav.home') }}
+      <a
+        routerLink="/"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="mobile-nav-item"
+      >
+        <i class="fa-solid fa-house"></i> {{ t("nav.home") }}
       </a>
-      <a routerLink="/counseling" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item highlight-item">
+      <a
+        routerLink="/counseling"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-item highlight-item"
+      >
         <i class="fa-solid fa-calendar-check"></i> Book a Free Consulting
       </a>
-      <a routerLink="/courses" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
-        <i class="fa-solid fa-book-open"></i> {{ t('nav.courses') }}
+      <a
+        routerLink="/courses"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-item"
+      >
+        <i class="fa-solid fa-book-open"></i> {{ t("nav.courses") }}
       </a>
 
       <!-- Mobile We Work For Group -->
       <div class="mobile-group-title">WE WORK FOR</div>
-      <a routerLink="/academic" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+      <a
+        routerLink="/academic"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-subitem"
+      >
         <i class="fa-solid fa-graduation-cap"></i> Academic
       </a>
-      <a routerLink="/corporate" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+      <a
+        routerLink="/corporate"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-subitem"
+      >
         <i class="fa-solid fa-building"></i> Corporate
       </a>
-      <a routerLink="/government" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+      <a
+        routerLink="/government"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-subitem"
+      >
         <i class="fa-solid fa-landmark"></i> Government
       </a>
 
       <!-- Mobile IT Services Group -->
       <div class="mobile-group-title">IT SERVICES &amp; SOLUTIONS</div>
-      <a routerLink="/services" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+      <a
+        routerLink="/services"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-subitem"
+      >
         <i class="fa-solid fa-laptop-code"></i> All IT Services
       </a>
 
       <!-- Mobile About Group -->
       <div class="mobile-group-title">ABOUT TECHSPARK</div>
-      <a routerLink="/about" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+      <a
+        routerLink="/about"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-subitem"
+      >
         <i class="fa-solid fa-circle-info"></i> Our Story &amp; Vision
       </a>
-      <a routerLink="/mentors" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+      <a
+        routerLink="/mentors"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-subitem"
+      >
         <i class="fa-solid fa-chalkboard-user"></i> Faculty &amp; Mentors
       </a>
-      <a routerLink="/campus-life" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+      <a
+        routerLink="/campus-life"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-subitem"
+      >
         <i class="fa-solid fa-laptop-code"></i> Campus Life &amp; Labs
       </a>
-      <a routerLink="/why-us" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-subitem">
+      <a
+        routerLink="/why-us"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-subitem"
+      >
         <i class="fa-solid fa-shield-heart"></i> Why Techspark
       </a>
 
       <div class="mobile-group-title">PORTALS &amp; CAREERS</div>
-      <a routerLink="/careers" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+      <a
+        routerLink="/careers"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-item"
+      >
         <i class="fa-solid fa-chalkboard-user"></i> Careers / Teach With Us
       </a>
-      <a routerLink="/verify-certificate" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+      <a
+        routerLink="/verify-certificate"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-item"
+      >
         <i class="fa-solid fa-shield-check"></i> Verify Certificate
       </a>
-      <a routerLink="/career-quiz" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+      <a
+        routerLink="/career-quiz"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-item"
+      >
         <i class="fa-solid fa-wand-magic-sparkles"></i> Career Quiz
       </a>
-      <a routerLink="/placements" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
+      <a
+        routerLink="/placements"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-item"
+      >
         <i class="fa-solid fa-user-check"></i> Placements
       </a>
-      <a routerLink="/contact" (click)="closeMobile()" routerLinkActive="active" class="mobile-nav-item">
-        <i class="fa-solid fa-location-dot"></i> {{ t('nav.contact') }}
+      <a
+        routerLink="/contact"
+        (click)="closeMobile()"
+        routerLinkActive="active"
+        class="mobile-nav-item"
+      >
+        <i class="fa-solid fa-location-dot"></i> {{ t("nav.contact") }}
       </a>
     </div>
 
     <div class="mobile-drawer-footer">
       <div class="mobile-ctrl-row mb-12">
-        <button class="btn btn-ghost flex-1" (click)="themeService.toggleTheme()">
-          <i class="fa-solid" [class.fa-sun]="themeService.isDark" [class.fa-moon]="!themeService.isDark"></i> Theme
+        <button
+          class="btn btn-ghost flex-1"
+          (click)="themeService.toggleTheme()"
+        >
+          <i
+            class="fa-solid"
+            [class.fa-sun]="themeService.isDark"
+            [class.fa-moon]="!themeService.isDark"
+          ></i>
+          Theme
         </button>
-        <button class="btn btn-ghost flex-1" (click)="langService.toggleLanguage()">
-          <i class="fa-solid fa-globe"></i> {{ langService.currentLang === 'en' ? 'Nepali' : 'English' }}
+        <button
+          class="btn btn-ghost flex-1"
+          (click)="langService.toggleLanguage()"
+        >
+          <i class="fa-solid fa-globe"></i>
+          {{ langService.currentLang === "en" ? "Nepali" : "English" }}
         </button>
       </div>
 
-      <a routerLink="/counseling" (click)="closeMobile()" class="btn btn-primary full-width mb-12">
+      <a
+        routerLink="/counseling"
+        (click)="closeMobile()"
+        class="btn btn-primary full-width mb-12"
+      >
         <i class="fa-solid fa-calendar-check"></i> Book Free Consulting
       </a>
-      <a routerLink="/enroll" (click)="closeMobile()" class="btn btn-enroll full-width">
+      <a
+        routerLink="/enroll"
+        (click)="closeMobile()"
+        class="btn btn-enroll full-width"
+      >
         <i class="fa-solid fa-pen-to-square"></i> Online Admission
       </a>
     </div>
