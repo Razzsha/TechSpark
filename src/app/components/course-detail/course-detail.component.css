@@ -54,7 +54,7 @@
 }
 .tab-item:hover, .tab-item.active { color: var(--indigo); border-bottom-color: var(--spark); }
 
-.tab-pane { background: #fff; padding: 32px; border-radius: 16px; border: 1px solid var(--line); }
+.tab-pane { background: var(--paper-alt); padding: 32px; border-radius: 16px; border: 1px solid var(--line); }
 .tab-pane h3 { font-size: 20px; font-weight: 700; color: var(--indigo); }
 .lead-text { font-size: 16px; line-height: 1.6; color: var(--text); margin-top: 12px; }
 .sub-text { font-size: 14px; color: var(--text-soft); margin-top: 6px; margin-bottom: 20px; }
@@ -75,27 +75,27 @@
 /* Accordion */
 .accordion { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
 .accordion-item { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-.accordion-header { background: #FAFAFA; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; color: var(--indigo); }
-.accordion-item.open .accordion-header { background: #F4F5FB; }
+.accordion-header { background: var(--paper); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 700; color: var(--indigo); }
+.accordion-item.open .accordion-header { background: var(--paper); }
 .toggle-icon { transition: transform 0.2s ease; }
 .accordion-item.open .toggle-icon { transform: rotate(180deg); }
-.accordion-body { padding: 20px; background: #fff; border-top: 1px solid var(--line); }
+.accordion-body { padding: 20px; background: var(--paper-alt); border-top: 1px solid var(--line); }
 .topic-bullet-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
 .topic-bullet-list li { font-size: 14px; color: var(--text); display: flex; align-items: center; gap: 10px; }
 .dot-icon { color: var(--teal-deep); font-size: 10px; }
 
 /* Jobs grid */
 .jobs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 20px; }
-.job-card { background: #F4F5FB; padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 14px; font-weight: 700; color: var(--indigo); }
+.job-card { background: var(--paper); padding: 20px; border-radius: 12px; display: flex; align-items: center; gap: 14px; font-weight: 700; color: var(--indigo); }
 .job-icon { font-size: 22px; color: var(--teal-deep); }
 
 /* Batches */
 .batches-list { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
-.batch-card { background: #fff; padding: 20px; border-radius: 12px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+.batch-card { background: var(--paper-alt); padding: 20px; border-radius: 12px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
 .batch-info { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--text); }
 
 /* Sidebar Pricing Card */
-.pricing-card { background: #fff; border-radius: 18px; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,0.06); padding: 28px; position: sticky; top: 100px; }
+.pricing-card { background: var(--paper-alt); border-radius: 18px; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,0.06); padding: 28px; position: sticky; top: 100px; }
 .pricing-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-soft); }
 .price-row { display: flex; align-items: baseline; gap: 12px; margin: 8px 0; }
 .current-price { font-size: 28px; font-weight: 800; color: var(--indigo); }

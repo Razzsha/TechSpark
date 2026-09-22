@@ -87,9 +87,9 @@
   flex-shrink: 0;
 }
 .nav-logo-img {
-  height: 54px;
+  height: 48px;
   width: auto;
-  max-width: 220px;
+  max-width: 165px;
   object-fit: contain;
   display: block;
   transition: transform 0.2s ease;
@@ -383,7 +383,7 @@
 
 @media (max-width: 600px) {
   .nav-logo-img {
-    height: 48px;
-    max-width: 200px;
+    height: 38px;
+    max-width: 135px;
   }
 }

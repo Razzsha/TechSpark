@@ -119,7 +119,7 @@ export class SeoService {
           'name': 'Techspark Academy',
           'alternateName': 'Techspark Technology Pvt. Ltd.',
           'url': this.baseUrl,
-          'logo': `${this.baseUrl}/assets/logo.png`,
+          'logo': `${this.baseUrl}/assets/logoFn.png`,
           'sameAs': [
             'https://facebook.com/techsparknepal',
             'https://linkedin.com/company/techspark-nepal',

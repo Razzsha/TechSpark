@@ -17,7 +17,7 @@
   margin-top: 40px;
 }
 .value-card {
-  background: #fff;
+  background: var(--paper-alt);
   border-radius: 16px;
   border: 1px solid var(--line);
   padding: 30px 24px;
@@ -29,7 +29,7 @@
 .value-icon {
   width: 56px;
   height: 56px;
-  background: #F4F5FB;
+  background: var(--paper);
   color: var(--indigo);
   border-radius: 14px;
   display: flex;
@@ -48,7 +48,7 @@
   margin-top: 40px;
 }
 .mentor-card {
-  background: #fff;
+  background: var(--paper-alt);
   border-radius: 16px;
   border: 1px solid var(--line);
   padding: 24px;

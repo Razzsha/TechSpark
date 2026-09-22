@@ -43,7 +43,7 @@
 .step-line.active { background: var(--indigo); }
 
 .form-card {
-  background: #fff;
+  background: var(--paper-alt);
   border-radius: 20px;
   border: 1px solid var(--line);
   box-shadow: 0 12px 36px rgba(0,0,0,0.06);
@@ -60,11 +60,16 @@
   border: 1px solid var(--line);
   font-size: 14.5px;
   color: var(--text);
-  background: #fff;
+  background: var(--paper);
   outline: none;
-  transition: border-color 0.2s ease;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--spark-deep); }
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--spark-deep);
+  background: var(--paper-alt);
+  box-shadow: 0 0 0 3px rgba(255, 176, 32, 0.1);
+}
 .error-msg { font-size: 12px; color: #D32F2F; margin-top: 4px; display: block; }
 
 .form-row { display: flex; gap: 20px; }
@@ -76,17 +81,18 @@
   padding: 16px;
   border-radius: 12px;
   border: 2px solid var(--line);
+  background: var(--paper-alt);
   cursor: pointer;
   display: flex;
   align-items: center;
   transition: all 0.2s ease;
 }
 .radio-card input { display: none; }
-.radio-card.selected { border-color: var(--indigo); background: #F4F5FB; }
+.radio-card.selected { border-color: var(--indigo); background: var(--paper); }
 .radio-content { display: flex; flex-direction: column; gap: 4px; }
 .radio-icon { font-size: 20px; color: var(--teal-deep); margin-bottom: 4px; }
 
-.course-summary-box { background: #F7F7F4; border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin-top: 14px; }
+.course-summary-box { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 18px; margin-top: 14px; }
 .summary-header { display: flex; justify-content: space-between; align-items: flex-start; }
 .badge-tag { font-size: 11px; font-weight: 700; color: var(--teal-deep); text-transform: uppercase; }
 .summary-title { font-size: 16px; font-weight: 700; color: var(--indigo); margin-top: 4px; }

@@ -1,1 +1,122 @@
-/* Layout styling lives in each section component; shared tokens live in src/styles.css */
+/* Circular Route Transition Loader Overlay */
+.route-circular-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 21, 58, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 1;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease;
+  pointer-events: all;
+  animation: overlayFadeIn 0.2s ease forwards;
+}
+
+.route-circular-overlay.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.circular-spinner-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 32px;
+  background: var(--paper-alt);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+  border: 1px solid var(--line);
+  animation: cardPopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cardPopIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.circular-spinner {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-svg {
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  animation: rotateSpinner 1.3s linear infinite;
+}
+
+.spinner-track {
+  stroke: rgba(255, 176, 32, 0.18);
+}
+
+.spinner-circle {
+  stroke: var(--spark);
+  stroke-linecap: round;
+  stroke-dasharray: 125;
+  stroke-dashoffset: 60;
+  animation: dashSpinner 1.3s ease-in-out infinite;
+}
+
+.spinner-spark {
+  position: absolute;
+  font-size: 15px;
+  color: var(--spark);
+  animation: sparkPulse 1.2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px rgba(255, 176, 32, 0.6));
+}
+
+.spinner-caption {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--indigo);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+[data-theme="dark"] .spinner-caption {
+  color: #fff;
+}
+
+@keyframes rotateSpinner {
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dashSpinner {
+  0% {
+    stroke-dashoffset: 120;
+    stroke: var(--spark);
+  }
+  50% {
+    stroke-dashoffset: 35;
+    stroke: var(--teal);
+  }
+  100% {
+    stroke-dashoffset: 120;
+    stroke: var(--spark);
+  }
+}
+
+@keyframes sparkPulse {
+  0% { transform: scale(0.85); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+/* Page content smooth entrance */
+.main-content {
+  min-height: 80vh;
+}

@@ -30,7 +30,7 @@
 .verify-body { padding: 60px 0 90px; background: var(--paper); }
 
 .certificate-card {
-  background: #fff;
+  background: var(--paper-alt);
   border-radius: 20px;
   border: 4px double var(--indigo);
   box-shadow: 0 16px 48px rgba(0,0,0,0.08);
@@ -67,7 +67,7 @@
 .cert-desc { font-size: 15px; color: var(--text-soft); }
 .course-name { font-size: 24px; font-weight: 700; color: var(--teal-deep); margin-top: 8px; }
 
-.cert-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 580px; margin: 30px auto 0; background: #F7F7F4; padding: 20px; border-radius: 12px; border: 1px solid var(--line); text-align: left; }
+.cert-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 580px; margin: 30px auto 0; background: var(--paper); padding: 20px; border-radius: 12px; border: 1px solid var(--line); text-align: left; }
 .meta-item { display: flex; flex-direction: column; font-size: 13px; }
 .meta-label { color: var(--text-soft); }
 .meta-val { font-size: 14px; color: var(--indigo); margin-top: 2px; }
@@ -83,7 +83,7 @@
 
 .cert-actions { margin-top: 30px; }
 
-.not-found-card { background: #fff; padding: 40px; border-radius: 16px; max-width: 500px; margin: 0 auto; border: 1px solid var(--line); }
+.not-found-card { background: var(--paper-alt); padding: 40px; border-radius: 16px; max-width: 500px; margin: 0 auto; border: 1px solid var(--line); }
 .warning-icon { font-size: 48px; color: #E0951A; margin-bottom: 16px; }
 
 @media (max-width: 768px) {

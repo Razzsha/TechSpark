@@ -55,7 +55,7 @@
 }
 
 .course-card {
-  background: #fff;
+  background: var(--paper-alt);
   border-radius: var(--radius-m);
   border: 1px solid var(--line);
   box-shadow: 0 4px 20px rgba(0,0,0,0.04);
@@ -137,7 +137,7 @@
 
 .card-footer {
   padding: 18px 24px;
-  background: #FAFAFA;
+  background: var(--paper);
   border-top: 1px solid var(--line);
   display: flex;
   align-items: center;

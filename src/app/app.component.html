@@ -1,4 +1,27 @@
 <app-splash></app-splash>
+
+<!-- Circular Route Transition Loader -->
+<div
+  class="route-circular-overlay"
+  *ngIf="loadingService.isLoading$ | async"
+  [class.fade-out]="loadingService.isFadingOut$ | async"
+  aria-live="polite"
+  aria-label="Loading page"
+>
+  <div class="circular-spinner-card">
+    <div class="circular-spinner">
+      <svg class="spinner-svg" viewBox="0 0 50 50">
+        <circle class="spinner-track" cx="25" cy="25" r="20" fill="none" stroke-width="3.5"></circle>
+        <circle class="spinner-circle" cx="25" cy="25" r="20" fill="none" stroke-width="3.5"></circle>
+      </svg>
+      <div class="spinner-spark">
+        <i class="fa-solid fa-bolt-lightning"></i>
+      </div>
+    </div>
+    <span class="spinner-caption">Loading...</span>
+  </div>
+</div>
+
 <app-nav></app-nav>
 
 <main class="main-content" id="main-content">
@@ -8,3 +31,4 @@
 <app-footer></app-footer>
 
 <app-chatbot></app-chatbot>
+

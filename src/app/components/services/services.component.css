@@ -15,7 +15,7 @@
   gap: 30px;
 }
 .service-card {
-  background: #fff;
+  background: var(--paper-alt);
   border-radius: 18px;
   border: 1px solid var(--line);
   padding: 32px 26px;
@@ -57,7 +57,7 @@
 .modal-backdrop { position: fixed; inset: 0; background: rgba(17,21,58,0.6); backdrop-filter: blur(4px); z-index: 3000; opacity: 0; visibility: hidden; transition: all 0.25s ease; }
 .modal-backdrop.open { opacity: 1; visibility: visible; }
 
-.modal-card { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 90%; max-width: 540px; background: #fff; border-radius: 20px; z-index: 3001; opacity: 0; visibility: hidden; transition: all 0.25s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.2); padding: 30px; }
+.modal-card { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -45%); width: 90%; max-width: 540px; background: var(--paper-alt); border-radius: 20px; z-index: 3001; opacity: 0; visibility: hidden; transition: all 0.25s ease; box-shadow: 0 20px 50px rgba(0,0,0,0.2); padding: 30px; border: 1px solid var(--line); }
 .modal-card.open { transform: translate(-50%, -50%); opacity: 1; visibility: visible; }
 
 .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--line); padding-bottom: 16px; margin-bottom: 20px; }
@@ -66,7 +66,22 @@
 
 .form-group { margin-bottom: 16px; }
 .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--indigo); margin-bottom: 6px; }
-.form-input, .form-select, .form-textarea { width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid var(--line); font-size: 14px; outline: none; }
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--text);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--indigo);
+  background: var(--paper-alt);
+}
 .form-row { display: flex; gap: 14px; }
 .flex-1 { flex: 1; }
 
