@@ -21,15 +21,15 @@ export class SeoService {
   private metaService = inject(Meta);
   private doc = inject(DOCUMENT);
 
-  private readonly siteName = 'Techspark Academy & Technology';
-  private readonly baseUrl = 'https://techspark.edu.np';
-  private readonly defaultImage = 'https://techspark.edu.np/assets/techspark-og-banner.jpg';
+  private readonly siteName = 'Vision Grid Academy';
+  private readonly baseUrl = 'https://visiongridacademy.com';
+  private readonly defaultImage = 'https://visiongridacademy.com/assets/logo.png';
 
   /**
    * Set dynamic page titles, standard meta tags, OpenGraph, and Twitter cards
    */
   setSeoData(config: SeoConfig): void {
-    const fullTitle = config.title.includes('Techspark') ? config.title : `${config.title} | ${this.siteName}`;
+    const fullTitle = config.title.includes('Vision Grid Academy') ? config.title : `${config.title} | ${this.siteName}`;
     this.titleService.setTitle(fullTitle);
 
     // Standard Meta Tags
@@ -39,11 +39,11 @@ export class SeoService {
     } else {
       this.metaService.updateTag({
         name: 'keywords',
-        content: 'IT training Kathmandu, best software courses Nepal, MERN stack course, Python AI training, DevOps AWS Kathmandu, UI/UX Figma course, Techspark Academy'
+        content: 'IT training Kathmandu, best software courses Nepal, MERN stack course, Python AI training, DevOps AWS Kathmandu, UI/UX Figma course, Vision Grid Academy'
       });
     }
 
-    this.metaService.updateTag({ name: 'author', content: 'Techspark Technology Pvt. Ltd.' });
+    this.metaService.updateTag({ name: 'author', content: 'Vision Grid Academy' });
     this.metaService.updateTag({
       name: 'robots',
       content: config.noIndex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'

@@ -29,6 +29,7 @@ export interface Course {
   studentsCount: number;
   price: number;
   originalPrice: number;
+  syllabusUrl?: string;
   discountBadge?: string;
   shortDescription: string;
   fullDescription: string;
