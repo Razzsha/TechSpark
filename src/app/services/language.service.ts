@@ -22,7 +22,7 @@ export class LanguageService {
       'nav.placements': 'Placements & Hiring',
       'hero.kicker': 'LEADING IT ACADEMY & SOFTWARE HOUSE',
       'hero.title': 'Transform Your Career with Industry IT Skills',
-      'hero.cta': 'Explore All Courses'
+      'hero.cta': 'Explore All Courses',
     },
     np: {
       'nav.home': 'गृहपृष्ठ (Home)',
@@ -37,12 +37,12 @@ export class LanguageService {
       'nav.placements': 'रोजगार र प्लेसमेन्ट',
       'hero.kicker': 'नेपालको उत्कृष्ट आइटी एकेडेमी',
       'hero.title': 'आइटी सीप सिकेर आफ्नो उज्ज्वल भविष्य बनाउनुहोस्',
-      'hero.cta': 'कोर्सहरू हेर्नुहोस्'
-    }
+      'hero.cta': 'कोर्सहरू हेर्नुहोस्',
+    },
   };
 
   constructor() {
-    const saved = localStorage.getItem('techspark_lang') as LanguageCode;
+    const saved = localStorage.getItem('Visiongrid_lang') as LanguageCode;
     if (saved === 'en' || saved === 'np') {
       this.setLanguage(saved);
     }
@@ -50,7 +50,7 @@ export class LanguageService {
 
   setLanguage(lang: LanguageCode): void {
     this.langSubject.next(lang);
-    localStorage.setItem('techspark_lang', lang);
+    localStorage.setItem('Visiongrid_lang', lang);
   }
 
   toggleLanguage(): void {
@@ -60,7 +60,9 @@ export class LanguageService {
 
   translate(key: string): string {
     const current = this.langSubject.value;
-    return this.translations[current]?.[key] || this.translations['en']?.[key] || key;
+    return (
+      this.translations[current]?.[key] || this.translations['en']?.[key] || key
+    );
   }
 
   get currentLang(): LanguageCode {

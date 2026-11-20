@@ -19,7 +19,7 @@ interface VerifiedCertificate {
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './verify-certificate.component.html',
-  styleUrls: ['./verify-certificate.component.css']
+  styleUrls: ['./verify-certificate.component.css'],
 })
 export class VerifyCertificateComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -37,7 +37,7 @@ export class VerifyCertificateComponent implements OnInit {
       completionDate: 'August 14, 2025',
       grade: 'Distinction (94%)',
       issueNo: 'ISO-9001-NEP-88492',
-      verifier: 'Techspark Academic Board & ISO Assessor'
+      verifier: 'Visiongrid Academic Board & ISO Assessor',
     },
     'TS-CERT-10294': {
       id: 'TS-CERT-10294',
@@ -46,7 +46,7 @@ export class VerifyCertificateComponent implements OnInit {
       completionDate: 'July 28, 2025',
       grade: 'Grade A+ (91%)',
       issueNo: 'ISO-9001-NEP-10294',
-      verifier: 'Techspark AI Research Lab'
+      verifier: 'Visiongrid AI Research Lab',
     },
     'TS-CERT-55201': {
       id: 'TS-CERT-55201',
@@ -55,25 +55,30 @@ export class VerifyCertificateComponent implements OnInit {
       completionDate: 'September 02, 2025',
       grade: 'Distinction (96%)',
       issueNo: 'ISO-9001-NEP-55201',
-      verifier: 'Techspark Product Design Board'
-    }
+      verifier: 'Visiongrid Product Design Board',
+    },
   };
 
   ngOnInit(): void {
     this.seoService.setSeoData({
-      title: 'Online Certificate & Credential Verification | Techspark Nepal',
-      description: 'Instantly verify official Techspark Skill Academy graduate credentials, course completion records, and ISO-9001 certified student certificates.',
-      keywords: ['verify certificate Techspark', 'certificate validation Nepal', 'student credentials verification Kathmandu'],
-      canonicalUrl: 'https://techspark.edu.np/verify-certificate'
+      title: 'Online Certificate & Credential Verification | Visiongrid Nepal',
+      description:
+        'Instantly verify official Visiongrid Skill Academy graduate credentials, course completion records, and ISO-9001 certified student certificates.',
+      keywords: [
+        'verify certificate Visiongrid',
+        'certificate validation Nepal',
+        'student credentials verification Kathmandu',
+      ],
+      canonicalUrl: 'https://Visiongrid.edu.np/verify-certificate',
     });
 
     const breadcrumbs = this.seoService.getBreadcrumbsSchema([
       { name: 'Home', path: '/' },
-      { name: 'Verify Certificate', path: '/verify-certificate' }
+      { name: 'Verify Certificate', path: '/verify-certificate' },
     ]);
     this.seoService.setStructuredData(breadcrumbs);
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const id = params['id'];
       if (id) {
         this.certIdInput = id;
@@ -95,10 +100,14 @@ export class VerifyCertificateComponent implements OnInit {
         id: cleanId,
         studentName: 'Verified Student',
         courseTitle: 'Professional IT Certification',
-        completionDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+        completionDate: new Date().toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
         grade: 'Distinction (92%)',
         issueNo: `ISO-9001-NEP-${cleanId.replace(/[^0-9]/g, '') || '99999'}`,
-        verifier: 'Techspark Academic Council'
+        verifier: 'Visiongrid Academic Council',
       };
     }
   }

@@ -6,4 +6,4 @@ Disallow: /admin/
 Disallow: /*?*query=
 
 # Sitemaps
-Sitemap: https://techspark.edu.np/sitemap.xml
+Sitemap: https://Visiongrid.edu.np/sitemap.xml

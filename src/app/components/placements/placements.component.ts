@@ -1,6 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../services/seo.service';
 
@@ -9,7 +14,7 @@ import { SeoService } from '../../services/seo.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './placements.component.html',
-  styleUrls: ['./placements.component.css']
+  styleUrls: ['./placements.component.css'],
 })
 export class PlacementsComponent implements OnInit {
   private fb = inject(FormBuilder);
@@ -19,15 +24,21 @@ export class PlacementsComponent implements OnInit {
 
   ngOnInit(): void {
     this.seoService.setSeoData({
-      title: 'Graduate Placements, Hiring Network & Success Stories | Techspark',
-      description: '94% Placement Rate. See where Techspark alumni work — Leapfrog, F1Soft, Deerhold, Fusemachines, and hire certified developers.',
-      keywords: ['IT job placements Kathmandu', 'hire developers Nepal', 'Techspark alumni reviews and success stories'],
-      canonicalUrl: 'https://techspark.edu.np/placements'
+      title:
+        'Graduate Placements, Hiring Network & Success Stories | Visiongrid',
+      description:
+        '94% Placement Rate. See where Visiongrid alumni work — Leapfrog, F1Soft, Deerhold, Fusemachines, and hire certified developers.',
+      keywords: [
+        'IT job placements Kathmandu',
+        'hire developers Nepal',
+        'Visiongrid alumni reviews and success stories',
+      ],
+      canonicalUrl: 'https://Visiongrid.edu.np/placements',
     });
 
     const breadcrumbs = this.seoService.getBreadcrumbsSchema([
       { name: 'Home', path: '/' },
-      { name: 'Placements', path: '/placements' }
+      { name: 'Placements', path: '/placements' },
     ]);
     this.seoService.setStructuredData(breadcrumbs);
   }
@@ -38,7 +49,7 @@ export class PlacementsComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     phone: ['', Validators.required],
     rolesNeeded: ['MERN / React Developer', Validators.required],
-    count: [2, Validators.required]
+    count: [2, Validators.required],
   });
 
   hiringPartners = [
@@ -47,7 +58,7 @@ export class PlacementsComponent implements OnInit {
     { name: 'Deerhold Nepal', type: 'Healthcare Tech' },
     { name: 'Fusemachines AI', type: 'AI & Data Firm' },
     { name: 'Cotiviti Nepal', type: 'Healthcare Analytics' },
-    { name: 'eSewa Payment', type: 'Digital Wallet' }
+    { name: 'eSewa Payment', type: 'Digital Wallet' },
   ];
 
   alumni = [
@@ -57,7 +68,8 @@ export class PlacementsComponent implements OnInit {
       company: 'Leapfrog Technology',
       course: 'MERN Stack Development',
       package: 'NPR 5.2 L / Yr',
-      quote: 'The practical capstone projects at Techspark gave me the exact skills needed to clear Leapfrog technical rounds.'
+      quote:
+        'The practical capstone projects at Visiongrid gave me the exact skills needed to clear Leapfrog technical rounds.',
     },
     {
       name: 'Suman Shrestha',
@@ -65,7 +77,8 @@ export class PlacementsComponent implements OnInit {
       company: 'F1Soft International',
       course: 'Python & Django Full Stack',
       package: 'NPR 4.8 L / Yr',
-      quote: 'Learning PostgreSQL database architecture and REST API development directly under industry mentors changed my career.'
+      quote:
+        'Learning PostgreSQL database architecture and REST API development directly under industry mentors changed my career.',
     },
     {
       name: 'Anjali Shah',
@@ -73,8 +86,9 @@ export class PlacementsComponent implements OnInit {
       company: 'Fusemachines',
       course: 'UI/UX Design Masterclass',
       package: 'NPR 4.2 L / Yr',
-      quote: 'Figma Auto Layout and Design Systems training helped me build a professional Behance portfolio that got me hired.'
-    }
+      quote:
+        'Figma Auto Layout and Design Systems training helped me build a professional Behance portfolio that got me hired.',
+    },
   ];
 
   onSubmit(): void {

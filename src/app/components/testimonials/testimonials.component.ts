@@ -15,34 +15,37 @@ interface Testimonial {
   standalone: true,
   imports: [CommonModule],
   templateUrl: './testimonials.component.html',
-  styleUrls: ['./testimonials.component.css']
+  styleUrls: ['./testimonials.component.css'],
 })
 export class TestimonialsComponent implements OnInit, OnDestroy {
   testimonials: Testimonial[] = [
     {
       initials: 'RS',
       color: 'var(--indigo)',
-      quote: 'I joined the MERN Stack course with zero coding background. Four months later I built full-stack SaaS apps and passed Leapfrog technical rounds.',
+      quote:
+        'I joined the MERN Stack course with zero coding background. Four months later I built full-stack SaaS apps and passed Leapfrog technical rounds.',
       who: 'Rohan Sharma — Full Stack Developer',
-      videoTitle: 'Rohan\'s MERN Stack Placement Journey',
-      hasVideo: true
+      videoTitle: "Rohan's MERN Stack Placement Journey",
+      hasVideo: true,
     },
     {
       initials: 'MP',
       color: 'var(--teal-deep)',
-      quote: 'Techspark delivered our corporate booking portal under 2 months with pristine React 18 architecture and high test coverage.',
+      quote:
+        'Visiongrid delivered our corporate booking portal under 2 months with pristine React 18 architecture and high test coverage.',
       who: 'Manish Shrestha — CEO, TravelTech Nepal',
       videoTitle: 'TravelTech Enterprise Software Review',
-      hasVideo: true
+      hasVideo: true,
     },
     {
       initials: 'DL',
       color: 'var(--spark-deep)',
-      quote: 'The mentors are active senior software architects. The code reviews felt like real production engineering, not textbook exercises.',
+      quote:
+        'The mentors are active senior software architects. The code reviews felt like real production engineering, not textbook exercises.',
       who: 'Dipesh Lama — Senior AI & Python Developer',
-      videoTitle: 'Dipesh\'s Transition to AI Engineering',
-      hasVideo: true
-    }
+      videoTitle: "Dipesh's Transition to AI Engineering",
+      hasVideo: true,
+    },
   ];
 
   activeIndex = 0;
@@ -52,7 +55,10 @@ export class TestimonialsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.intervalId = setInterval(() => {
-      if (!this.videoModalOpen && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (
+        !this.videoModalOpen &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      ) {
         this.show((this.activeIndex + 1) % this.testimonials.length);
       }
     }, 6000);

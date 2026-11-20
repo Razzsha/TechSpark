@@ -1,6 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../services/seo.service';
 
@@ -24,7 +29,7 @@ export interface CounselingBooking {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './counseling.component.html',
-  styleUrls: ['./counseling.component.css']
+  styleUrls: ['./counseling.component.css'],
 })
 export class CounselingComponent implements OnInit {
   private fb = inject(FormBuilder);
@@ -40,11 +45,14 @@ export class CounselingComponent implements OnInit {
     phone: ['', [Validators.required, Validators.pattern('^[0-9+ -]{8,15}$')]],
     city: ['Kathmandu', Validators.required],
     currentStatus: ['Undergraduate / College Student', Validators.required],
-    domainInterest: ['Full-Stack Web Development (MERN / Python)', Validators.required],
+    domainInterest: [
+      'Full-Stack Web Development (MERN / Python)',
+      Validators.required,
+    ],
     sessionMode: ['Online 1-on-1 Google Meet', Validators.required],
     preferredDate: ['', Validators.required],
     preferredTime: ['Morning (10:00 AM - 12:00 PM)', Validators.required],
-    notes: ['']
+    notes: [''],
   });
 
   statusOptions = [
@@ -52,7 +60,7 @@ export class CounselingComponent implements OnInit {
     'Undergraduate / College Student',
     'Fresh IT / Non-IT Graduate',
     'Working Professional Looking to Upskill',
-    'Career Switcher from Non-Tech'
+    'Career Switcher from Non-Tech',
   ];
 
   domainOptions = [
@@ -64,27 +72,33 @@ export class CounselingComponent implements OnInit {
     'UI/UX Design Masterclass with Figma',
     'Digital Marketing 360° & SEO',
     'Corporate & B2B Team Upskilling',
-    'Undecided (Need General Career Advice)'
+    'Undecided (Need General Career Advice)',
   ];
 
   timeSlots = [
     'Morning (10:00 AM - 12:00 PM)',
     'Afternoon (1:00 PM - 3:00 PM)',
     'Evening (4:00 PM - 6:00 PM)',
-    'Flexible (Any Available Slot)'
+    'Flexible (Any Available Slot)',
   ];
 
   ngOnInit(): void {
     this.seoService.setSeoData({
-      title: 'Book a Free 1-on-1 Tech & Career Counseling Session | Techspark',
-      description: 'Get free expert career advice from senior software engineers. Discuss course roadmaps, career transitions, salary expectations, and placement assistance in Nepal.',
-      keywords: ['free IT counseling Nepal', 'career guidance Kathmandu', 'IT courses consulting', 'career switch to tech Nepal'],
-      canonicalUrl: 'https://techspark.edu.np/counseling'
+      title: 'Book a Free 1-on-1 Tech & Career Counseling Session | Visiongrid',
+      description:
+        'Get free expert career advice from senior software engineers. Discuss course roadmaps, career transitions, salary expectations, and placement assistance in Nepal.',
+      keywords: [
+        'free IT counseling Nepal',
+        'career guidance Kathmandu',
+        'IT courses consulting',
+        'career switch to tech Nepal',
+      ],
+      canonicalUrl: 'https://Visiongrid.edu.np/counseling',
     });
 
     const breadcrumbs = this.seoService.getBreadcrumbsSchema([
       { name: 'Home', path: '/' },
-      { name: 'Free Consulting', path: '/counseling' }
+      { name: 'Free Consulting', path: '/counseling' },
     ]);
     this.seoService.setStructuredData(breadcrumbs);
 
@@ -107,7 +121,7 @@ export class CounselingComponent implements OnInit {
     const bookingData: CounselingBooking = {
       id: bookingId,
       ...this.counselingForm.value,
-      bookedAt: new Date().toISOString()
+      bookedAt: new Date().toISOString(),
     };
 
     setTimeout(() => {
@@ -126,7 +140,7 @@ export class CounselingComponent implements OnInit {
       currentStatus: 'Undergraduate / College Student',
       domainInterest: 'Full-Stack Web Development (MERN / Python)',
       sessionMode: 'Online 1-on-1 Google Meet',
-      preferredTime: 'Morning (10:00 AM - 12:00 PM)'
+      preferredTime: 'Morning (10:00 AM - 12:00 PM)',
     });
   }
 }

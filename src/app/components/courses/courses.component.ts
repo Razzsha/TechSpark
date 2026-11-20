@@ -11,7 +11,7 @@ import { Course, CourseCategory } from '../../models/course.model';
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css']
+  styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent implements OnInit {
   private courseService = inject(CourseService);
@@ -28,26 +28,37 @@ export class CoursesComponent implements OnInit {
     { key: 'web-dev', label: 'Web & Software', icon: 'fa-code' },
     { key: 'ai-data', label: 'AI & Data Science', icon: 'fa-brain' },
     { key: 'mobile', label: 'Mobile App', icon: 'fa-mobile-screen' },
-    { key: 'security-devops', label: 'Security & DevOps', icon: 'fa-shield-halved' },
+    {
+      key: 'security-devops',
+      label: 'Security & DevOps',
+      icon: 'fa-shield-halved',
+    },
     { key: 'design', label: 'Design & UI/UX', icon: 'fa-pen-nib' },
-    { key: 'marketing', label: 'Digital Marketing', icon: 'fa-bullhorn' }
+    { key: 'marketing', label: 'Digital Marketing', icon: 'fa-bullhorn' },
   ];
 
   ngOnInit(): void {
     this.seoService.setSeoData({
-      title: 'Professional IT & Software Courses in Kathmandu | Techspark Academy',
-      description: 'Explore Nepal’s leading IT programs: MERN Stack, Python Machine Learning & AI, AWS DevOps, Flutter iOS/Android, and Figma UI/UX Design.',
-      keywords: ['IT courses in Nepal', 'programming training Kathmandu', 'best web development course Nepal', 'AI training Kathmandu'],
-      canonicalUrl: 'https://techspark.edu.np/courses'
+      title:
+        'Professional IT & Software Courses in Kathmandu | Visiongrid Academy',
+      description:
+        'Explore Nepal’s leading IT programs: MERN Stack, Python Machine Learning & AI, AWS DevOps, Flutter iOS/Android, and Figma UI/UX Design.',
+      keywords: [
+        'IT courses in Nepal',
+        'programming training Kathmandu',
+        'best web development course Nepal',
+        'AI training Kathmandu',
+      ],
+      canonicalUrl: 'https://Visiongrid.edu.np/courses',
     });
 
     const breadcrumbs = this.seoService.getBreadcrumbsSchema([
       { name: 'Home', path: '/' },
-      { name: 'Courses', path: '/courses' }
+      { name: 'Courses', path: '/courses' },
     ]);
     this.seoService.setStructuredData(breadcrumbs);
 
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       if (params['category']) {
         this.activeCategory = params['category'] as CourseCategory;
       }
@@ -56,9 +67,11 @@ export class CoursesComponent implements OnInit {
   }
 
   loadCourses(): void {
-    this.courseService.filterCourses(this.activeCategory, this.searchTerm).subscribe(list => {
-      this.filteredCourses = list;
-    });
+    this.courseService
+      .filterCourses(this.activeCategory, this.searchTerm)
+      .subscribe((list) => {
+        this.filteredCourses = list;
+      });
   }
 
   setCategory(cat: CourseCategory): void {

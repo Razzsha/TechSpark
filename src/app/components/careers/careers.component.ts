@@ -1,6 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../services/seo.service';
 
@@ -23,7 +28,7 @@ export interface TutorApplication {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './careers.component.html',
-  styleUrls: ['./careers.component.css']
+  styleUrls: ['./careers.component.css'],
 })
 export class CareersComponent implements OnInit {
   private fb = inject(FormBuilder);
@@ -43,7 +48,7 @@ export class CareersComponent implements OnInit {
     githubUrl: [''],
     preferredShift: ['Evening (4:00 PM - 7:00 PM)', Validators.required],
     mode: ['Physical in Kathmandu', Validators.required],
-    coverNote: ['']
+    coverNote: [''],
   });
 
   domains = [
@@ -54,14 +59,14 @@ export class CareersComponent implements OnInit {
     'Java & Spring Boot Microservices',
     'UI/UX Design Masterclass & Figma Systems',
     'Cybersecurity & Ethical Hacking',
-    'Software QA Automation (Selenium & Postman)'
+    'Software QA Automation (Selenium & Postman)',
   ];
 
   experienceLevels = [
     '1-2 Years (Associate Mentor)',
     '3-5 Years (Lead Instructor)',
     '5-8 Years (Senior Tech Specialist)',
-    '8+ Years (Principal Architect / Advisor)'
+    '8+ Years (Principal Architect / Advisor)',
   ];
 
   shifts = [
@@ -69,7 +74,7 @@ export class CareersComponent implements OnInit {
     'Day Shift (11:00 AM - 2:00 PM)',
     'Evening Shift (4:00 PM - 7:00 PM)',
     'Weekend Intensive Batches (Sat/Sun)',
-    'Flexible / On-Demand Guest Lectures'
+    'Flexible / On-Demand Guest Lectures',
   ];
 
   openings = [
@@ -78,56 +83,77 @@ export class CareersComponent implements OnInit {
       type: 'Part-Time / Full-Time',
       location: 'Kathmandu / Hybrid',
       exp: '3+ Yrs Exp',
-      desc: 'Guide batches through modern React 18, Node.js, Express, and MongoDB with real enterprise projects.'
+      desc: 'Guide batches through modern React 18, Node.js, Express, and MongoDB with real enterprise projects.',
     },
     {
       title: 'Python, ML & Generative AI Mentor',
       type: 'Part-Time / Evening',
       location: 'Kathmandu / Online',
       exp: '3+ Yrs Exp',
-      desc: 'Teach Scikit-learn, PyTorch, LangChain, RAG chatbots, and computer vision to ambitious engineers.'
+      desc: 'Teach Scikit-learn, PyTorch, LangChain, RAG chatbots, and computer vision to ambitious engineers.',
     },
     {
       title: 'DevOps & AWS Cloud Architecture Trainer',
       type: 'Morning / Evening Batch',
       location: 'Kathmandu / Remote Live',
       exp: '4+ Yrs Exp',
-      desc: 'Lead hands-on labs covering Linux, Docker, Kubernetes, Jenkins CI/CD, and Terraform on AWS.'
+      desc: 'Lead hands-on labs covering Linux, Docker, Kubernetes, Jenkins CI/CD, and Terraform on AWS.',
     },
     {
       title: 'Flutter Cross-Platform Mobile Mentor',
       type: 'Part-Time',
       location: 'Kathmandu Campus',
       exp: '2+ Yrs Exp',
-      desc: 'Mentor students in Dart OOP, BLoC architecture, custom animations, and Firebase integration.'
+      desc: 'Mentor students in Dart OOP, BLoC architecture, custom animations, and Firebase integration.',
     },
     {
       title: 'UI/UX Product Design Specialist',
       type: 'Evening / Weekend',
       location: 'Kathmandu Campus',
       exp: '3+ Yrs Exp',
-      desc: 'Facilitate design thinking workshops, Figma Auto Layout masterclasses, and portfolio reviews.'
-    }
+      desc: 'Facilitate design thinking workshops, Figma Auto Layout masterclasses, and portfolio reviews.',
+    },
   ];
 
   perks = [
-    { icon: 'fa-money-bill-trend-up', title: 'Top Industry Compensation', desc: 'Highly competitive hourly, per-batch, and monthly retainer compensation packages.' },
-    { icon: 'fa-calendar-check', title: 'Ultra-Flexible Schedules', desc: 'Teach during morning (7-9 AM), evening (4-7 PM), or weekends without quitting your day job.' },
-    { icon: 'fa-users', title: 'Mentorship Impact', desc: 'Directly shape the next generation of engineers and build your personal brand in Nepal’s tech ecosystem.' },
-    { icon: 'fa-laptop-code', title: 'Modern Labs & Resources', desc: 'High-speed fiber connectivity, presentation rigs, lab infrastructure, and teaching assistants.' }
+    {
+      icon: 'fa-money-bill-trend-up',
+      title: 'Top Industry Compensation',
+      desc: 'Highly competitive hourly, per-batch, and monthly retainer compensation packages.',
+    },
+    {
+      icon: 'fa-calendar-check',
+      title: 'Ultra-Flexible Schedules',
+      desc: 'Teach during morning (7-9 AM), evening (4-7 PM), or weekends without quitting your day job.',
+    },
+    {
+      icon: 'fa-users',
+      title: 'Mentorship Impact',
+      desc: 'Directly shape the next generation of engineers and build your personal brand in Nepal’s tech ecosystem.',
+    },
+    {
+      icon: 'fa-laptop-code',
+      title: 'Modern Labs & Resources',
+      desc: 'High-speed fiber connectivity, presentation rigs, lab infrastructure, and teaching assistants.',
+    },
   ];
 
   ngOnInit(): void {
     this.seoService.setSeoData({
-      title: 'Careers for Tech Tutors & Instructors | Join Techspark Academy',
-      description: 'Teach with Techspark. Looking for Senior Software Engineers, AI Mentors, DevOps Trainers, and UI/UX Designers to lead batches in Kathmandu.',
-      keywords: ['IT trainer jobs Kathmandu', 'teaching jobs for software engineers Nepal', 'part-time tech instructor vacancy Nepal'],
-      canonicalUrl: 'https://techspark.edu.np/careers'
+      title: 'Careers for Tech Tutors & Instructors | Join Visiongrid Academy',
+      description:
+        'Teach with Visiongrid. Looking for Senior Software Engineers, AI Mentors, DevOps Trainers, and UI/UX Designers to lead batches in Kathmandu.',
+      keywords: [
+        'IT trainer jobs Kathmandu',
+        'teaching jobs for software engineers Nepal',
+        'part-time tech instructor vacancy Nepal',
+      ],
+      canonicalUrl: 'https://Visiongrid.edu.np/careers',
     });
 
     const breadcrumbs = this.seoService.getBreadcrumbsSchema([
       { name: 'Home', path: '/' },
-      { name: 'Careers', path: '/careers' }
+      { name: 'Careers', path: '/careers' },
     ]);
     this.seoService.setStructuredData(breadcrumbs);
   }
@@ -143,7 +169,7 @@ export class CareersComponent implements OnInit {
 
     const appData: TutorApplication = {
       id: applicationId,
-      ...this.tutorForm.value
+      ...this.tutorForm.value,
     };
 
     setTimeout(() => {
@@ -161,7 +187,7 @@ export class CareersComponent implements OnInit {
       domain: 'MERN / Full-Stack Web Development',
       experienceYears: '3-5 Years',
       preferredShift: 'Evening (4:00 PM - 7:00 PM)',
-      mode: 'Physical in Kathmandu'
+      mode: 'Physical in Kathmandu',
     });
   }
 }

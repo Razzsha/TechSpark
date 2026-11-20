@@ -48,7 +48,7 @@ export class ChatbotComponent implements OnInit {
     'What courses do you offer?',
     'When does the next MERN batch start?',
     'What is the fee for Python with AI?',
-    'Where is Techspark located?',
+    'Where is Visiongrid located?',
     'Do you offer online classes?',
   ];
 
@@ -57,7 +57,7 @@ export class ChatbotComponent implements OnInit {
       this.coursesList = c;
     });
 
-    const savedKey = localStorage.getItem('techspark_openai_key');
+    const savedKey = localStorage.getItem('Visiongrid_openai_key');
     if (savedKey) {
       this.openAiKey = savedKey;
     }
@@ -72,9 +72,9 @@ export class ChatbotComponent implements OnInit {
 
   saveApiKey(): void {
     if (this.openAiKey.trim()) {
-      localStorage.setItem('techspark_openai_key', this.openAiKey.trim());
+      localStorage.setItem('Visiongrid_openai_key', this.openAiKey.trim());
     } else {
-      localStorage.removeItem('techspark_openai_key');
+      localStorage.removeItem('Visiongrid_openai_key');
     }
     this.showKeyInput = false;
   }
@@ -115,10 +115,10 @@ export class ChatbotComponent implements OnInit {
   }
 
   private async fetchOpenAiResponse(query: string): Promise<void> {
-    const systemPrompt = `You are  AI Assistant for Techspark Academy & Technology located in Tinkune, Kathmandu, Nepal.
-Your goal is to answer queries strictly about Techspark's IT courses (MERN Stack, Python & Django, AI & GenAI with Python, Flutter Mobile Dev, DevOps & AWS Cloud, Cybersecurity & Ethical Hacking, Java Spring Boot, Digital Marketing 360, UI/UX Design, QA Automation, Data Science, C# .NET Core), tuition fees (NPR 18,000 - 30,000), physical vs online classes, admissions, and IT services.
+    const systemPrompt = `You are  AI Assistant for Visiongrid Academy & Technology located in Tinkune, Kathmandu, Nepal.
+Your goal is to answer queries strictly about Visiongrid's IT courses (MERN Stack, Python & Django, AI & GenAI with Python, Flutter Mobile Dev, DevOps & AWS Cloud, Cybersecurity & Ethical Hacking, Java Spring Boot, Digital Marketing 360, UI/UX Design, QA Automation, Data Science, C# .NET Core), tuition fees (NPR 18,000 - 30,000), physical vs online classes, admissions, and IT services.
 Keep your responses polite, concise, professional, and formatted clearly.
-If the question is completely unrelated to Techspark or IT training, politely direct the user back to Techspark courses or services.`;
+If the question is completely unrelated to Visiongrid or IT training, politely direct the user back to Visiongrid courses or services.`;
 
     try {
       const response = await fetch(
@@ -182,7 +182,7 @@ If the question is completely unrelated to Techspark or IT training, politely di
       q.includes('phone') ||
       q.includes('map')
     ) {
-      return `📍 Techspark Academy Location & Contact:
+      return `📍 Visiongrid Academy Location & Contact:
 - Address: Tinkune, Subidhanagar (Near Ring Road Bridge), Kathmandu, Nepal
 - Phone Hotline: +977-1-4500000 / +977-9800000000
 - Email: visiongridacademy@gmail.com
@@ -217,7 +217,7 @@ We also offer installment payment options and up to 20% discount for early batch
       q.includes('catalog') ||
       q.includes('learn')
     ) {
-      return `🎓 Popular IT Courses at Techspark:
+      return `🎓 Popular IT Courses at Visiongrid:
 1. MERN Stack Development (3.5 Months)
 2. Python & Django Full Stack (3 Months)
 3. AI with Python: Machine Learning & GenAI (3 Months)
@@ -259,7 +259,7 @@ New batches start every Monday and the 1st of every month. You can register onli
       q.includes('register') ||
       q.includes('join')
     ) {
-      return `📝 How to Enroll at Techspark:
+      return `📝 How to Enroll at Visiongrid:
 1. Visit our Online Admission Page at /enroll or click the yellow "Enroll Now" button.
 2. Select your course, preferred shift (Morning/Day/Evening), and learning mode (Physical/Online).
 3. Complete the form and receive your instant Application ID.
@@ -288,7 +288,7 @@ Click "Syllabus" on the course card or visit /course/${matchedCourse.slug} for t
     }
 
     // Default polite response
-    return `I am here to assist you with Techspark Academy! You can ask me about:
+    return `I am here to assist you with Visiongrid Academy! You can ask me about:
 - 🎓 Courses (MERN, Python, AI, Flutter, DevOps, Cybersecurity, Java, UI/UX, Marketing)
 - 💰 Tuition Fees & Discounts
 - 📅 Upcoming Batch Schedules & Shifts

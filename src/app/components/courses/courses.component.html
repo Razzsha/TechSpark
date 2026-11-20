@@ -2,19 +2,30 @@
 <section class="catalog-hero">
   <div class="wrap">
     <div class="catalog-hero-content text-center">
-      <div class="kicker center"><span class="bar"></span> TECHSPARK ACADEMY CATALOG</div>
+      <div class="kicker center">
+        <span class="bar"></span> Visiongrid ACADEMY CATALOG
+      </div>
       <h1>Explore Professional IT Training Courses</h1>
-      <p>Job-oriented computer courses designed with live projects, certification, and placement assistance.</p>
-      
+      <p>
+        Job-oriented computer courses designed with live projects,
+        certification, and placement assistance.
+      </p>
+
       <!-- Search Input Bar -->
       <div class="search-box-wrap">
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text"
-               [(ngModel)]="searchTerm"
-               (ngModelChange)="onSearchChange()"
-               placeholder="Search course title (e.g. MERN, Python, AI, Flutter, DevOps, QA...)"
-               class="search-input">
-        <button *ngIf="searchTerm" (click)="searchTerm = ''; onSearchChange()" class="clear-btn">
+        <input
+          type="text"
+          [(ngModel)]="searchTerm"
+          (ngModelChange)="onSearchChange()"
+          placeholder="Search course title (e.g. MERN, Python, AI, Flutter, DevOps, QA...)"
+          class="search-input"
+        />
+        <button
+          *ngIf="searchTerm"
+          (click)="searchTerm = ''; onSearchChange()"
+          class="clear-btn"
+        >
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -27,17 +38,22 @@
   <div class="wrap">
     <!-- Category Tabs -->
     <div class="category-tabs">
-      <button *ngFor="let tab of categories"
-              (click)="setCategory(tab.key)"
-              [class.active]="activeCategory === tab.key"
-              class="tab-btn">
+      <button
+        *ngFor="let tab of categories"
+        (click)="setCategory(tab.key)"
+        [class.active]="activeCategory === tab.key"
+        class="tab-btn"
+      >
         <i class="fa-solid" [ngClass]="tab.icon"></i>
         <span>{{ tab.label }}</span>
       </button>
     </div>
 
     <div class="catalog-meta-info">
-      <span>Showing <strong>{{ filteredCourses.length }}</strong> professional course(s)</span>
+      <span
+        >Showing <strong>{{ filteredCourses.length }}</strong> professional
+        course(s)</span
+      >
     </div>
 
     <!-- Empty State -->
@@ -45,13 +61,20 @@
       <i class="fa-solid fa-folder-open empty-icon"></i>
       <h3>No matching courses found</h3>
       <p>Try searching for a different keyword or choose another category.</p>
-      <button (click)="searchTerm = ''; setCategory('all')" class="btn btn-ghost">Reset Filters</button>
+      <button
+        (click)="searchTerm = ''; setCategory('all')"
+        class="btn btn-ghost"
+      >
+        Reset Filters
+      </button>
     </div>
 
     <!-- Course Cards Grid -->
     <div class="courses-grid" *ngIf="filteredCourses.length > 0">
       <div class="course-card" *ngFor="let course of filteredCourses">
-        <div class="card-badge" [ngClass]="course.badgeColor">{{ course.tag }}</div>
+        <div class="card-badge" [ngClass]="course.badgeColor">
+          {{ course.tag }}
+        </div>
 
         <div class="card-body">
           <span class="category-pill">{{ course.categoryLabel }}</span>
@@ -59,13 +82,25 @@
           <p class="course-subtitle">{{ course.shortDescription }}</p>
 
           <div class="course-meta">
-            <span><i class="fa-regular fa-clock"></i> {{ course.duration }}</span>
-            <span><i class="fa-solid fa-graduation-cap"></i> {{ course.level }}</span>
-            <span class="rating"><i class="fa-solid fa-star"></i> {{ course.rating }} ({{ course.ratingCount }})</span>
+            <span
+              ><i class="fa-regular fa-clock"></i> {{ course.duration }}</span
+            >
+            <span
+              ><i class="fa-solid fa-graduation-cap"></i>
+              {{ course.level }}</span
+            >
+            <span class="rating"
+              ><i class="fa-solid fa-star"></i> {{ course.rating }} ({{
+                course.ratingCount
+              }})</span
+            >
           </div>
 
           <div class="highlights-list">
-            <div class="highlight-item" *ngFor="let h of course.keyHighlights.slice(0, 2)">
+            <div
+              class="highlight-item"
+              *ngFor="let h of course.keyHighlights.slice(0, 2)"
+            >
               <i class="fa-solid fa-check check-icon"></i> {{ h }}
             </div>
           </div>
@@ -74,12 +109,23 @@
         <div class="card-footer">
           <div class="price-box">
             <span class="price-current">NPR {{ course.price | number }}</span>
-            <span class="price-original">NPR {{ course.originalPrice | number }}</span>
+            <span class="price-original"
+              >NPR {{ course.originalPrice | number }}</span
+            >
           </div>
 
           <div class="card-actions">
-            <a [routerLink]="['/course', course.slug]" class="btn btn-ghost btn-sm">Syllabus</a>
-            <a [routerLink]="['/enroll']" [queryParams]="{ course: course.id }" class="btn btn-primary btn-sm">Enroll Now</a>
+            <a
+              [routerLink]="['/course', course.slug]"
+              class="btn btn-ghost btn-sm"
+              >Syllabus</a
+            >
+            <a
+              [routerLink]="['/enroll']"
+              [queryParams]="{ course: course.id }"
+              class="btn btn-primary btn-sm"
+              >Enroll Now</a
+            >
           </div>
         </div>
       </div>

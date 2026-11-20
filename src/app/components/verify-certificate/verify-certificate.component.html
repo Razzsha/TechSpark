@@ -1,16 +1,23 @@
 <div class="verify-page">
   <section class="verify-hero no-print">
     <div class="wrap text-center">
-      <div class="kicker center"><span class="bar"></span> ISO 9001:2015 CREDENTIAL VERIFICATION</div>
+      <div class="kicker center">
+        <span class="bar"></span> ISO 9001:2015 CREDENTIAL VERIFICATION
+      </div>
       <h1>Online Certificate Verification Portal</h1>
-      <p>Enter the Certificate ID printed on the bottom of the diploma (e.g. <strong>TS-CERT-88492</strong>) to verify authentic student credentials.</p>
+      <p>
+        Enter the Certificate ID printed on the bottom of the diploma (e.g.
+        <strong>TS-CERT-88492</strong>) to verify authentic student credentials.
+      </p>
 
       <div class="search-wrap">
-        <input type="text"
-               [(ngModel)]="certIdInput"
-               (keyup.enter)="searchCertificate()"
-               placeholder="Enter Certificate ID (e.g. TS-CERT-88492)"
-               class="cert-input">
+        <input
+          type="text"
+          [(ngModel)]="certIdInput"
+          (keyup.enter)="searchCertificate()"
+          placeholder="Enter Certificate ID (e.g. TS-CERT-88492)"
+          class="cert-input"
+        />
         <button (click)="searchCertificate()" class="btn btn-primary">
           <i class="fa-solid fa-shield-check"></i> Verify Credential
         </button>
@@ -18,9 +25,24 @@
 
       <div class="sample-ids">
         <span>Try sample IDs:</span>
-        <button (click)="certIdInput='TS-CERT-88492'; searchCertificate()" class="sample-chip">TS-CERT-88492</button>
-        <button (click)="certIdInput='TS-CERT-10294'; searchCertificate()" class="sample-chip">TS-CERT-10294</button>
-        <button (click)="certIdInput='TS-CERT-55201'; searchCertificate()" class="sample-chip">TS-CERT-55201</button>
+        <button
+          (click)="certIdInput = 'TS-CERT-88492'; searchCertificate()"
+          class="sample-chip"
+        >
+          TS-CERT-88492
+        </button>
+        <button
+          (click)="certIdInput = 'TS-CERT-10294'; searchCertificate()"
+          class="sample-chip"
+        >
+          TS-CERT-10294
+        </button>
+        <button
+          (click)="certIdInput = 'TS-CERT-55201'; searchCertificate()"
+          class="sample-chip"
+        >
+          TS-CERT-55201
+        </button>
       </div>
     </div>
   </section>
@@ -30,12 +52,12 @@
       <!-- Verified Card Result -->
       <div class="certificate-card" *ngIf="verifiedData">
         <div class="card-watermark">TS</div>
-        
+
         <div class="cert-header">
           <div class="logo-group">
             <div class="brand-box">TS</div>
             <div>
-              <h2 class="brand-title">Techspark Academy</h2>
+              <h2 class="brand-title">Visiongrid Academy</h2>
               <span class="iso-tag">ISO 9001:2015 Certified IT Institute</span>
             </div>
           </div>
@@ -47,17 +69,24 @@
         <div class="cert-body text-center">
           <span class="cert-sub">THIS IS TO OFFICIALLY CERTIFY THAT</span>
           <h1 class="student-name">{{ verifiedData.studentName }}</h1>
-          <p class="cert-desc">has successfully completed all practical capstone requirements and examinations for</p>
+          <p class="cert-desc">
+            has successfully completed all practical capstone requirements and
+            examinations for
+          </p>
           <h3 class="course-name">{{ verifiedData.courseTitle }}</h3>
-          
+
           <div class="cert-meta-grid">
             <div class="meta-item">
               <span class="meta-label">Completion Date:</span>
-              <strong class="meta-val">{{ verifiedData.completionDate }}</strong>
+              <strong class="meta-val">{{
+                verifiedData.completionDate
+              }}</strong>
             </div>
             <div class="meta-item">
               <span class="meta-label">Final Evaluation Grade:</span>
-              <strong class="meta-val highlight">{{ verifiedData.grade }}</strong>
+              <strong class="meta-val highlight">{{
+                verifiedData.grade
+              }}</strong>
             </div>
             <div class="meta-item">
               <span class="meta-label">Certificate Serial ID:</span>
@@ -95,10 +124,16 @@
       </div>
 
       <!-- Invalid / Not Found State -->
-      <div class="not-found-card text-center" *ngIf="searchAttempted && !verifiedData">
+      <div
+        class="not-found-card text-center"
+        *ngIf="searchAttempted && !verifiedData"
+      >
         <i class="fa-solid fa-triangle-exclamation warning-icon"></i>
         <h3>Certificate Record Not Found</h3>
-        <p>No verified certificate matches ID: <strong>{{ certIdInput }}</strong>. Please check the serial number or contact admissions.</p>
+        <p>
+          No verified certificate matches ID: <strong>{{ certIdInput }}</strong
+          >. Please check the serial number or contact admissions.
+        </p>
       </div>
     </div>
   </section>

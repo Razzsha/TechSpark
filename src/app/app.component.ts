@@ -16,12 +16,12 @@ import { LoadingService } from './services/loading.service';
     NavComponent,
     RouterOutlet,
     FooterComponent,
-    ChatbotComponent
+    ChatbotComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'techspark-angular';
+  title = 'Visiongrid-angular';
   loadingService = inject(LoadingService);
 }

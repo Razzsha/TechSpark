@@ -10,7 +10,7 @@ import { Course } from '../../models/course.model';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './course-detail.component.html',
-  styleUrls: ['./course-detail.component.css']
+  styleUrls: ['./course-detail.component.css'],
 })
 export class CourseDetailComponent implements OnInit {
   private route = inject(ActivatedRoute);
@@ -22,30 +22,30 @@ export class CourseDetailComponent implements OnInit {
   openModuleIndex: number = 0;
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
-        this.courseService.getCourseByIdOrSlug(id).subscribe(c => {
+        this.courseService.getCourseByIdOrSlug(id).subscribe((c) => {
           this.course = c;
           if (c) {
             this.seoService.setSeoData({
-              title: `${c.title} Training Course Kathmandu | Techspark Academy`,
+              title: `${c.title} Training Course Kathmandu | Visiongrid Academy`,
               description: `${c.subtitle}. Complete ${c.duration} hands-on curriculum with real capstone projects and placement assistance in Nepal.`,
               keywords: [
                 c.title,
                 `${c.title} Nepal`,
                 `${c.title} syllabus and fee Kathmandu`,
                 `${c.categoryLabel} training`,
-                'Techspark Academy'
+                'Visiongrid Academy',
               ],
-              canonicalUrl: `https://techspark.edu.np/course/${c.slug}`
+              canonicalUrl: `https://Visiongrid.edu.np/course/${c.slug}`,
             });
 
             const courseSchema = this.seoService.getCourseSchema(c);
             const breadcrumbs = this.seoService.getBreadcrumbsSchema([
               { name: 'Home', path: '/' },
               { name: 'Courses', path: '/courses' },
-              { name: c.title, path: `/course/${c.slug}` }
+              { name: c.title, path: `/course/${c.slug}` },
             ]);
             this.seoService.setStructuredData([courseSchema, breadcrumbs]);
           }

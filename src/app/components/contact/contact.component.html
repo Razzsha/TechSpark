@@ -2,8 +2,11 @@
   <section class="contact-hero">
     <div class="wrap text-center">
       <div class="kicker center"><span class="bar"></span> GET IN TOUCH</div>
-      <h1>Contact Techspark Academy & Services</h1>
-      <p>Have questions regarding course schedules, fees, or custom software projects? Reach out to our team.</p>
+      <h1>Contact Visiongrid Academy & Services</h1>
+      <p>
+        Have questions regarding course schedules, fees, or custom software
+        projects? Reach out to our team.
+      </p>
     </div>
   </section>
 
@@ -13,7 +16,9 @@
         <!-- Contact Cards Column -->
         <div class="cards-col">
           <div class="info-card" *ngFor="let info of contactInfo">
-            <div class="info-icon"><i class="fa-solid" [ngClass]="info.icon"></i></div>
+            <div class="info-icon">
+              <i class="fa-solid" [ngClass]="info.icon"></i>
+            </div>
             <div>
               <h3>{{ info.title }}</h3>
               <p>{{ info.line1 }}</p>
@@ -29,23 +34,45 @@
 
             <div *ngIf="contactSubmitted" class="success-alert">
               <i class="fa-solid fa-circle-check"></i>
-              <span>Thank you! Your message has been sent successfully. We will reply shortly.</span>
+              <span
+                >Thank you! Your message has been sent successfully. We will
+                reply shortly.</span
+              >
             </div>
 
-            <form *ngIf="!contactSubmitted" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <form
+              *ngIf="!contactSubmitted"
+              [formGroup]="contactForm"
+              (ngSubmit)="onSubmit()"
+            >
               <div class="form-group">
                 <label class="form-label">Full Name *</label>
-                <input type="text" formControlName="name" placeholder="Your name" class="form-input">
+                <input
+                  type="text"
+                  formControlName="name"
+                  placeholder="Your name"
+                  class="form-input"
+                />
               </div>
 
               <div class="form-row">
                 <div class="form-group flex-1">
                   <label class="form-label">Email *</label>
-                  <input type="email" formControlName="email" placeholder="name@email.com" class="form-input">
+                  <input
+                    type="email"
+                    formControlName="email"
+                    placeholder="name@email.com"
+                    class="form-input"
+                  />
                 </div>
                 <div class="form-group flex-1">
                   <label class="form-label">Phone *</label>
-                  <input type="text" formControlName="phone" placeholder="Phone number" class="form-input">
+                  <input
+                    type="text"
+                    formControlName="phone"
+                    placeholder="Phone number"
+                    class="form-input"
+                  />
                 </div>
               </div>
 
@@ -53,15 +80,26 @@
                 <label class="form-label">Inquiry Type *</label>
                 <select formControlName="subject" class="form-select">
                   <option value="General Inquiry">General Inquiry</option>
-                  <option value="Course Admission">Course Admission & Batches</option>
-                  <option value="Corporate Training">Corporate / Institutional Training</option>
-                  <option value="Software Project Quote">Software Development Quote</option>
+                  <option value="Course Admission">
+                    Course Admission & Batches
+                  </option>
+                  <option value="Corporate Training">
+                    Corporate / Institutional Training
+                  </option>
+                  <option value="Software Project Quote">
+                    Software Development Quote
+                  </option>
                 </select>
               </div>
 
               <div class="form-group">
                 <label class="form-label">Message *</label>
-                <textarea formControlName="message" rows="4" placeholder="How can we help you?" class="form-textarea"></textarea>
+                <textarea
+                  formControlName="message"
+                  rows="4"
+                  placeholder="How can we help you?"
+                  class="form-textarea"
+                ></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary full-width mt-20">

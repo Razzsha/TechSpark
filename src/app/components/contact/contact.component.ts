@@ -24,15 +24,15 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.seoService.setSeoData({
-      title: 'Contact Us & Campus Location | Techspark Academy Kathmandu',
+      title: 'Contact Us & Campus Location | Visiongrid Academy Kathmandu',
       description:
         'Visit our Kathmandu campus or reach out via phone, email, and WhatsApp for admissions, student counseling, and corporate tech training.',
       keywords: [
-        'Techspark contact number',
-        'Techspark location Kathmandu',
+        'Visiongrid contact number',
+        'Visiongrid location Kathmandu',
         'IT institute contact Nepal',
       ],
-      canonicalUrl: 'https://techspark.edu.np/contact',
+      canonicalUrl: 'https://Visiongrid.edu.np/contact',
     });
 
     const breadcrumbs = this.seoService.getBreadcrumbsSchema([
@@ -66,7 +66,7 @@ export class ContactComponent implements OnInit {
     {
       title: 'Email Contact',
       line1: 'visiongridacademy@gmail.com',
-      line2: 'admissions@techspark.com.np',
+      line2: 'admissions@Visiongrid.com.np',
       icon: 'fa-envelope',
     },
     {

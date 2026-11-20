@@ -9,7 +9,7 @@ export class ThemeService {
   currentTheme$ = this.themeSubject.asObservable();
 
   constructor() {
-    const savedTheme = localStorage.getItem('techspark_theme') as ThemeMode;
+    const savedTheme = localStorage.getItem('Visiongrid_theme') as ThemeMode;
     if (savedTheme === 'dark' || savedTheme === 'light') {
       this.setTheme(savedTheme);
     } else {
@@ -25,7 +25,7 @@ export class ThemeService {
 
   setTheme(theme: ThemeMode): void {
     this.themeSubject.next(theme);
-    localStorage.setItem('techspark_theme', theme);
+    localStorage.setItem('Visiongrid_theme', theme);
     document.documentElement.setAttribute('data-theme', theme);
   }
 

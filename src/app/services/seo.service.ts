@@ -14,7 +14,7 @@ export interface SeoConfig {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SeoService {
   private titleService = inject(Title);
@@ -23,57 +23,104 @@ export class SeoService {
 
   private readonly siteName = 'Vision Grid Academy';
   private readonly baseUrl = 'https://visiongridacademy.com';
-  private readonly defaultImage = 'https://visiongridacademy.com/assets/logo.png';
+  private readonly defaultImage =
+    'https://visiongridacademy.com/assets/logo.png';
 
   /**
    * Set dynamic page titles, standard meta tags, OpenGraph, and Twitter cards
    */
   setSeoData(config: SeoConfig): void {
-    const fullTitle = config.title.includes('Vision Grid Academy') ? config.title : `${config.title} | ${this.siteName}`;
+    const fullTitle = config.title.includes('Vision Grid Academy')
+      ? config.title
+      : `${config.title} | ${this.siteName}`;
     this.titleService.setTitle(fullTitle);
 
     // Standard Meta Tags
-    this.metaService.updateTag({ name: 'description', content: config.description });
+    this.metaService.updateTag({
+      name: 'description',
+      content: config.description,
+    });
     if (config.keywords && config.keywords.length > 0) {
-      this.metaService.updateTag({ name: 'keywords', content: config.keywords.join(', ') });
+      this.metaService.updateTag({
+        name: 'keywords',
+        content: config.keywords.join(', '),
+      });
     } else {
       this.metaService.updateTag({
         name: 'keywords',
-        content: 'IT training Kathmandu, best software courses Nepal, MERN stack course, Python AI training, DevOps AWS Kathmandu, UI/UX Figma course, Vision Grid Academy'
+        content:
+          'IT training Kathmandu, best software courses Nepal, MERN stack course, Python AI training, DevOps AWS Kathmandu, UI/UX Figma course, Vision Grid Academy',
       });
     }
 
-    this.metaService.updateTag({ name: 'author', content: 'Vision Grid Academy' });
+    this.metaService.updateTag({
+      name: 'author',
+      content: 'Vision Grid Academy',
+    });
     this.metaService.updateTag({
       name: 'robots',
-      content: config.noIndex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+      content: config.noIndex
+        ? 'noindex, nofollow'
+        : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
     });
 
     // Canonical URL
-    const canonical = config.canonicalUrl || (this.doc.location ? this.doc.location.pathname : '/');
-    this.setCanonicalUrl(canonical.startsWith('http') ? canonical : `${this.baseUrl}${canonical}`);
+    const canonical =
+      config.canonicalUrl ||
+      (this.doc.location ? this.doc.location.pathname : '/');
+    this.setCanonicalUrl(
+      canonical.startsWith('http') ? canonical : `${this.baseUrl}${canonical}`,
+    );
 
     // OpenGraph Meta Tags
-    this.metaService.updateTag({ property: 'og:site_name', content: this.siteName });
+    this.metaService.updateTag({
+      property: 'og:site_name',
+      content: this.siteName,
+    });
     this.metaService.updateTag({ property: 'og:title', content: fullTitle });
-    this.metaService.updateTag({ property: 'og:description', content: config.description });
-    this.metaService.updateTag({ property: 'og:type', content: config.ogType || 'website' });
-    this.metaService.updateTag({ property: 'og:url', content: canonical.startsWith('http') ? canonical : `${this.baseUrl}${canonical}` });
-    this.metaService.updateTag({ property: 'og:image', content: config.ogImage || this.defaultImage });
+    this.metaService.updateTag({
+      property: 'og:description',
+      content: config.description,
+    });
+    this.metaService.updateTag({
+      property: 'og:type',
+      content: config.ogType || 'website',
+    });
+    this.metaService.updateTag({
+      property: 'og:url',
+      content: canonical.startsWith('http')
+        ? canonical
+        : `${this.baseUrl}${canonical}`,
+    });
+    this.metaService.updateTag({
+      property: 'og:image',
+      content: config.ogImage || this.defaultImage,
+    });
     this.metaService.updateTag({ property: 'og:locale', content: 'en_US' });
 
     // Twitter Cards
-    this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.metaService.updateTag({
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    });
     this.metaService.updateTag({ name: 'twitter:title', content: fullTitle });
-    this.metaService.updateTag({ name: 'twitter:description', content: config.description });
-    this.metaService.updateTag({ name: 'twitter:image', content: config.ogImage || this.defaultImage });
+    this.metaService.updateTag({
+      name: 'twitter:description',
+      content: config.description,
+    });
+    this.metaService.updateTag({
+      name: 'twitter:image',
+      content: config.ogImage || this.defaultImage,
+    });
   }
 
   /**
    * Set or update canonical link element in document head
    */
   setCanonicalUrl(url: string): void {
-    let link: HTMLLinkElement | null = this.doc.querySelector('link[rel="canonical"]');
+    let link: HTMLLinkElement | null = this.doc.querySelector(
+      'link[rel="canonical"]',
+    );
     if (!link) {
       link = this.doc.createElement('link');
       link.setAttribute('rel', 'canonical');
@@ -85,8 +132,13 @@ export class SeoService {
   /**
    * Injects or updates JSON-LD Schema markup in document head
    */
-  setStructuredData(schema: object | object[], scriptId = 'techspark-schema-jsonld'): void {
-    let script: HTMLScriptElement | null = this.doc.getElementById(scriptId) as HTMLScriptElement;
+  setStructuredData(
+    schema: object | object[],
+    scriptId = 'Visiongrid-schema-jsonld',
+  ): void {
+    let script: HTMLScriptElement | null = this.doc.getElementById(
+      scriptId,
+    ) as HTMLScriptElement;
     if (!script) {
       script = this.doc.createElement('script');
       script.id = scriptId;
@@ -99,7 +151,7 @@ export class SeoService {
   /**
    * Removes injected structured data script
    */
-  removeStructuredData(scriptId = 'techspark-schema-jsonld'): void {
+  removeStructuredData(scriptId = 'Visiongrid-schema-jsonld'): void {
     const script = this.doc.getElementById(scriptId);
     if (script) {
       script.remove();
@@ -116,63 +168,71 @@ export class SeoService {
         {
           '@type': 'EducationalOrganization',
           '@id': `${this.baseUrl}/#organization`,
-          'name': 'Techspark Academy',
-          'alternateName': 'Techspark Technology Pvt. Ltd.',
-          'url': this.baseUrl,
-          'logo': `${this.baseUrl}/assets/logoFn.png`,
-          'sameAs': [
-            'https://facebook.com/techsparknepal',
-            'https://linkedin.com/company/techspark-nepal',
-            'https://instagram.com/techspark.np',
-            'https://github.com/techspark'
+          name: 'Visiongrid Academy',
+          alternateName: 'Visiongrid Technology Pvt. Ltd.',
+          url: this.baseUrl,
+          logo: `${this.baseUrl}/assets/logoFn.png`,
+          sameAs: [
+            'https://facebook.com/Visiongridnepal',
+            'https://linkedin.com/company/Visiongrid-nepal',
+            'https://instagram.com/Visiongrid.np',
+            'https://github.com/Visiongrid',
           ],
-          'description': 'Leading IT Academy & Software Development House in Kathmandu, Nepal providing job-oriented tech bootcamps, corporate upskilling, and full-stack software solutions.',
-          'address': {
+          description:
+            'Leading IT Academy & Software Development House in Kathmandu, Nepal providing job-oriented tech bootcamps, corporate upskilling, and full-stack software solutions.',
+          address: {
             '@type': 'PostalAddress',
-            'streetAddress': 'Putalisadak / New Baneshwor',
-            'addressLocality': 'Kathmandu',
-            'addressRegion': 'Bagmati Province',
-            'postalCode': '44600',
-            'addressCountry': 'NP'
+            streetAddress: 'Putalisadak / New Baneshwor',
+            addressLocality: 'Kathmandu',
+            addressRegion: 'Bagmati Province',
+            postalCode: '44600',
+            addressCountry: 'NP',
           },
-          'contactPoint': {
+          contactPoint: {
             '@type': 'ContactPoint',
-            'telephone': '+977-9800000000',
-            'contactType': 'admissions and customer service',
-            'areaServed': 'NP',
-            'availableLanguage': ['English', 'Nepali']
-          }
+            telephone: '+977-9800000000',
+            contactType: 'admissions and customer service',
+            areaServed: 'NP',
+            availableLanguage: ['English', 'Nepali'],
+          },
         },
         {
           '@type': 'LocalBusiness',
           '@id': `${this.baseUrl}/#localbusiness`,
-          'name': 'Techspark Technology & Skill Academy',
-          'image': `${this.baseUrl}/assets/office.jpg`,
-          'telephone': '+977-9800000000',
-          'priceRange': 'NPR 18,000 - NPR 32,000',
-          'address': {
+          name: 'Visiongrid Technology & Skill Academy',
+          image: `${this.baseUrl}/assets/office.jpg`,
+          telephone: '+977-9800000000',
+          priceRange: 'NPR 18,000 - NPR 32,000',
+          address: {
             '@type': 'PostalAddress',
-            'streetAddress': 'Putalisadak Tech Hub',
-            'addressLocality': 'Kathmandu',
-            'addressRegion': 'Bagmati',
-            'postalCode': '44600',
-            'addressCountry': 'NP'
+            streetAddress: 'Putalisadak Tech Hub',
+            addressLocality: 'Kathmandu',
+            addressRegion: 'Bagmati',
+            postalCode: '44600',
+            addressCountry: 'NP',
           },
-          'geo': {
+          geo: {
             '@type': 'GeoCoordinates',
-            'latitude': 27.700769,
-            'longitude': 85.320496
+            latitude: 27.700769,
+            longitude: 85.320496,
           },
-          'openingHoursSpecification': [
+          openingHoursSpecification: [
             {
               '@type': 'OpeningHoursSpecification',
-              'dayOfWeek': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-              'opens': '06:30',
-              'closes': '19:30'
-            }
-          ]
-        }
-      ]
+              dayOfWeek: [
+                'Sunday',
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+              ],
+              opens: '06:30',
+              closes: '19:30',
+            },
+          ],
+        },
+      ],
     };
   }
 
@@ -183,47 +243,50 @@ export class SeoService {
     return {
       '@context': 'https://schema.org',
       '@type': 'Course',
-      'name': course.title,
-      'description': course.fullDescription || course.shortDescription,
-      'provider': {
+      name: course.title,
+      description: course.fullDescription || course.shortDescription,
+      provider: {
         '@type': 'EducationalOrganization',
-        'name': 'Techspark Academy',
-        'sameAs': this.baseUrl
+        name: 'Visiongrid Academy',
+        sameAs: this.baseUrl,
       },
-      'educationalCredentialAwarded': 'Official Techspark Industry Certificate of Completion',
-      'courseCode': course.id.toUpperCase(),
-      'timeRequired': course.duration,
-      'hasCourseInstance': {
+      educationalCredentialAwarded:
+        'Official Visiongrid Industry Certificate of Completion',
+      courseCode: course.id.toUpperCase(),
+      timeRequired: course.duration,
+      hasCourseInstance: {
         '@type': 'CourseInstance',
-        'courseMode': course.mode.toLowerCase().includes('online') ? 'Blended' : 'Onsite',
-        'courseWorkload': course.duration,
-        'instructor': {
+        courseMode: course.mode.toLowerCase().includes('online')
+          ? 'Blended'
+          : 'Onsite',
+        courseWorkload: course.duration,
+        instructor: {
           '@type': 'Person',
-          'name': 'Senior Lead Software Architect at Techspark'
-        }
+          name: 'Senior Lead Software Architect at Visiongrid',
+        },
       },
-      'offers': {
+      offers: {
         '@type': 'Offer',
-        'category': 'Paid',
-        'price': course.price,
-        'priceCurrency': 'NPR',
-        'availability': 'https://schema.org/InStock',
-        'validFrom': new Date().toISOString().split('T')[0],
-        'url': `${this.baseUrl}/enroll?course=${course.id}`
+        category: 'Paid',
+        price: course.price,
+        priceCurrency: 'NPR',
+        availability: 'https://schema.org/InStock',
+        validFrom: new Date().toISOString().split('T')[0],
+        url: `${this.baseUrl}/enroll?course=${course.id}`,
       },
-      'aggregateRating': {
+      aggregateRating: {
         '@type': 'AggregateRating',
-        'ratingValue': course.rating || 4.9,
-        'ratingCount': course.ratingCount || 120,
-        'bestRating': 5,
-        'worstRating': 1
+        ratingValue: course.rating || 4.9,
+        ratingCount: course.ratingCount || 120,
+        bestRating: 5,
+        worstRating: 1,
       },
-      'syllabusSections': course.syllabus.map((mod, idx) => ({
+      syllabusSections: course.syllabus.map((mod, idx) => ({
         '@type': 'Syllabus',
-        'name': mod.title,
-        'position': idx + 1,
-        'description': mod.topics.join(', ')
-      }))
+        name: mod.title,
+        position: idx + 1,
+        description: mod.topics.join(', '),
+      })),
     };
   }
 
@@ -234,14 +297,14 @@ export class SeoService {
     return {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
-      'mainEntity': faqs.map(faq => ({
+      mainEntity: faqs.map((faq) => ({
         '@type': 'Question',
-        'name': faq.question,
-        'acceptedAnswer': {
+        name: faq.question,
+        acceptedAnswer: {
           '@type': 'Answer',
-          'text': faq.answer
-        }
-      }))
+          text: faq.answer,
+        },
+      })),
     };
   }
 
@@ -252,12 +315,12 @@ export class SeoService {
     return {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
-      'itemListElement': items.map((item, index) => ({
+      itemListElement: items.map((item, index) => ({
         '@type': 'ListItem',
-        'position': index + 1,
-        'name': item.name,
-        'item': `${this.baseUrl}${item.path}`
-      }))
+        position: index + 1,
+        name: item.name,
+        item: `${this.baseUrl}${item.path}`,
+      })),
     };
   }
 }
