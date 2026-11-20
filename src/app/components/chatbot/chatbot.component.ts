@@ -201,7 +201,7 @@ If the question is completely unrelated to Visiongrid or IT training, politely d
 Our professional course fees range between NPR 18,000 to NPR 30,000 depending on the domain:
 - Digital Marketing 360: NPR 18,000
 - UI/UX & Figma: NPR 20,000
-- MERN Stack Development: NPR 25,000 (22% OFF)
+- MERN Stack Development: NPR 20,000 (22% OFF)
 - Python & Django: NPR 24,000
 - AI with Python & ML: NPR 28,000
 - DevOps & AWS Cloud: NPR 30,000
