@@ -1,4 +1,10 @@
-import { Component, ElementRef, ViewChild, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CourseService } from '../../services/course.service';
@@ -16,7 +22,7 @@ interface ChatMessage {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './chatbot.component.html',
-  styleUrls: ['./chatbot.component.css']
+  styleUrls: ['./chatbot.component.css'],
 })
 export class ChatbotComponent implements OnInit {
   private courseService = inject(CourseService);
@@ -33,9 +39,9 @@ export class ChatbotComponent implements OnInit {
   messages: ChatMessage[] = [
     {
       sender: 'bot',
-      text: 'Hello! 👋 I am Techspark AI Assistant. I can answer any questions about our IT training courses, batch timings, tuition fees, admission process, or software services.',
-      timestamp: this.getFormattedTime()
-    }
+      text: 'Hello! 👋 I am  AI Assistant. I can answer any questions about our IT training courses, batch timings, tuition fees, admission process, or software services.',
+      timestamp: this.getFormattedTime(),
+    },
   ];
 
   quickPrompts = [
@@ -43,11 +49,11 @@ export class ChatbotComponent implements OnInit {
     'When does the next MERN batch start?',
     'What is the fee for Python with AI?',
     'Where is Techspark located?',
-    'Do you offer online classes?'
+    'Do you offer online classes?',
   ];
 
   ngOnInit(): void {
-    this.courseService.getCourses().subscribe(c => {
+    this.courseService.getCourses().subscribe((c) => {
       this.coursesList = c;
     });
 
@@ -85,7 +91,7 @@ export class ChatbotComponent implements OnInit {
     this.messages.push({
       sender: 'user',
       text: query,
-      timestamp: this.getFormattedTime()
+      timestamp: this.getFormattedTime(),
     });
 
     this.userMessage = '';
@@ -100,7 +106,7 @@ export class ChatbotComponent implements OnInit {
         this.messages.push({
           sender: 'bot',
           text: botReply,
-          timestamp: this.getFormattedTime()
+          timestamp: this.getFormattedTime(),
         });
         this.isTyping = false;
         this.scrollToBottom();
@@ -109,28 +115,31 @@ export class ChatbotComponent implements OnInit {
   }
 
   private async fetchOpenAiResponse(query: string): Promise<void> {
-    const systemPrompt = `You are Techspark AI Assistant for Techspark Academy & Technology located in Tinkune, Kathmandu, Nepal.
+    const systemPrompt = `You are  AI Assistant for Techspark Academy & Technology located in Tinkune, Kathmandu, Nepal.
 Your goal is to answer queries strictly about Techspark's IT courses (MERN Stack, Python & Django, AI & GenAI with Python, Flutter Mobile Dev, DevOps & AWS Cloud, Cybersecurity & Ethical Hacking, Java Spring Boot, Digital Marketing 360, UI/UX Design, QA Automation, Data Science, C# .NET Core), tuition fees (NPR 18,000 - 30,000), physical vs online classes, admissions, and IT services.
 Keep your responses polite, concise, professional, and formatted clearly.
 If the question is completely unrelated to Techspark or IT training, politely direct the user back to Techspark courses or services.`;
 
     try {
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.openAiKey}`
+      const response = await fetch(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.openAiKey}`,
+          },
+          body: JSON.stringify({
+            model: 'gpt-3.5-turbo',
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: query },
+            ],
+            temperature: 0.5,
+            max_tokens: 300,
+          }),
         },
-        body: JSON.stringify({
-          model: 'gpt-3.5-turbo',
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: query }
-          ],
-          temperature: 0.5,
-          max_tokens: 300
-        })
-      });
+      );
 
       const data = await response.json();
       this.isTyping = false;
@@ -139,14 +148,14 @@ If the question is completely unrelated to Techspark or IT training, politely di
         this.messages.push({
           sender: 'bot',
           text: data.choices[0].message.content,
-          timestamp: this.getFormattedTime()
+          timestamp: this.getFormattedTime(),
         });
       } else {
         const fallbackReply = this.generateLocalAiResponse(query);
         this.messages.push({
           sender: 'bot',
           text: fallbackReply,
-          timestamp: this.getFormattedTime()
+          timestamp: this.getFormattedTime(),
         });
       }
     } catch (error) {
@@ -155,7 +164,7 @@ If the question is completely unrelated to Techspark or IT training, politely di
       this.messages.push({
         sender: 'bot',
         text: fallbackReply,
-        timestamp: this.getFormattedTime()
+        timestamp: this.getFormattedTime(),
       });
     }
     this.scrollToBottom();
@@ -165,16 +174,29 @@ If the question is completely unrelated to Techspark or IT training, politely di
     const q = rawQuery.toLowerCase();
 
     // Location / Contact
-    if (q.includes('location') || q.includes('where') || q.includes('address') || q.includes('contact') || q.includes('phone') || q.includes('map')) {
+    if (
+      q.includes('location') ||
+      q.includes('where') ||
+      q.includes('address') ||
+      q.includes('contact') ||
+      q.includes('phone') ||
+      q.includes('map')
+    ) {
       return `📍 Techspark Academy Location & Contact:
 - Address: Tinkune, Subidhanagar (Near Ring Road Bridge), Kathmandu, Nepal
 - Phone Hotline: +977-1-4500000 / +977-9800000000
-- Email: info@techspark.com.np
+- Email: visiongridacademy@gmail.com
 - Opening Hours: Sunday – Friday (6:30 AM – 7:00 PM)`;
     }
 
     // Fee / Price / Cost
-    if (q.includes('fee') || q.includes('price') || q.includes('cost') || q.includes('discount') || q.includes('npr')) {
+    if (
+      q.includes('fee') ||
+      q.includes('price') ||
+      q.includes('cost') ||
+      q.includes('discount') ||
+      q.includes('npr')
+    ) {
       return `💰 Tuition Fees & Special Offers:
 Our professional course fees range between NPR 18,000 to NPR 30,000 depending on the domain:
 - Digital Marketing 360: NPR 18,000
@@ -188,7 +210,13 @@ We also offer installment payment options and up to 20% discount for early batch
     }
 
     // Courses List
-    if (q.includes('course') || q.includes('program') || q.includes('offer') || q.includes('catalog') || q.includes('learn')) {
+    if (
+      q.includes('course') ||
+      q.includes('program') ||
+      q.includes('offer') ||
+      q.includes('catalog') ||
+      q.includes('learn')
+    ) {
       return `🎓 Popular IT Courses at Techspark:
 1. MERN Stack Development (3.5 Months)
 2. Python & Django Full Stack (3 Months)
@@ -205,7 +233,15 @@ You can click "All Courses" in the menu or visit the /courses page to see full m
     }
 
     // Batch Timings / Online vs Physical
-    if (q.includes('batch') || q.includes('timing') || q.includes('shift') || q.includes('online') || q.includes('physical') || q.includes('zoom') || q.includes('class')) {
+    if (
+      q.includes('batch') ||
+      q.includes('timing') ||
+      q.includes('shift') ||
+      q.includes('online') ||
+      q.includes('physical') ||
+      q.includes('zoom') ||
+      q.includes('class')
+    ) {
       return `📅 Batches & Training Modes:
 We provide both Physical Classroom and Online Live Classes!
 - Morning Shift: 7:00 AM - 9:00 AM
@@ -216,7 +252,13 @@ New batches start every Monday and the 1st of every month. You can register onli
     }
 
     // Admission / Enrollment
-    if (q.includes('enroll') || q.includes('admission') || q.includes('apply') || q.includes('register') || q.includes('join')) {
+    if (
+      q.includes('enroll') ||
+      q.includes('admission') ||
+      q.includes('apply') ||
+      q.includes('register') ||
+      q.includes('join')
+    ) {
       return `📝 How to Enroll at Techspark:
 1. Visit our Online Admission Page at /enroll or click the yellow "Enroll Now" button.
 2. Select your course, preferred shift (Morning/Day/Evening), and learning mode (Physical/Online).
@@ -225,10 +267,13 @@ New batches start every Monday and the 1st of every month. You can register onli
     }
 
     // Specific Course Search matching
-    const matchedCourse = this.coursesList.find(c =>
-      q.includes(c.title.toLowerCase()) ||
-      q.includes(c.id.toLowerCase()) ||
-      c.syllabus.some(s => s.topics.some(t => q.includes(t.toLowerCase())))
+    const matchedCourse = this.coursesList.find(
+      (c) =>
+        q.includes(c.title.toLowerCase()) ||
+        q.includes(c.id.toLowerCase()) ||
+        c.syllabus.some((s) =>
+          s.topics.some((t) => q.includes(t.toLowerCase())),
+        ),
     );
 
     if (matchedCourse) {
@@ -261,7 +306,8 @@ What would you like to know more about?`;
   private scrollToBottom(): void {
     try {
       if (this.chatScroll) {
-        this.chatScroll.nativeElement.scrollTop = this.chatScroll.nativeElement.scrollHeight;
+        this.chatScroll.nativeElement.scrollTop =
+          this.chatScroll.nativeElement.scrollHeight;
       }
     } catch (e) {}
   }
